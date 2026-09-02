@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://bprd4rc1bu4ai"]
 
+[ext_resource type="Script" uid="uid://d3laq21t338qq" path="res://game_root.gd" id="1_pjpa4"]
+[ext_resource type="PackedScene" uid="uid://ylgrmunrywg2" path="res://ui/game_menu.tscn" id="1_xj5yv"]
+
 [node name="GameRoot" type="Node" unique_id=1688041711]
+script = ExtResource("1_pjpa4")
 
 [node name="WorldCanvas" type="CanvasLayer" parent="." unique_id=1962273433]
 
@@ -8,7 +12,7 @@
 
 [node name="OverlayCanvas" type="CanvasLayer" parent="." unique_id=87051162]
 
-[node name="OverlayRoot" type="Control" parent="OverlayCanvas" unique_id=1584405039]
+[node name="OverlayRoot" type="Control" parent="OverlayCanvas" unique_id=1584405039 groups=["overlay_root"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,3 +30,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+
+[node name="GameMenuCanvas" type="CanvasLayer" parent="." unique_id=132678326]
+
+[node name="GameMenuRoot" type="Control" parent="GameMenuCanvas" unique_id=1412530352]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="GameMenu" parent="GameMenuCanvas/GameMenuRoot" unique_id=1605496912 instance=ExtResource("1_xj5yv")]
+layout_mode = 1
