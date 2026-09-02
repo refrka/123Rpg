@@ -1,0 +1,1 @@
+class_name Opinion extends RefCounted

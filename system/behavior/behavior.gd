@@ -1,0 +1,1 @@
+class_name Behavior extends Resource

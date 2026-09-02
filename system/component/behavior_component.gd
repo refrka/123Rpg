@@ -1,0 +1,1 @@
+class_name BehaviorComponent extends Component

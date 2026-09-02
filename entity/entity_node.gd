@@ -1,0 +1,1 @@
+@abstract class_name EntityNode extends PhysicsBody2D

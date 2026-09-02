@@ -1,0 +1,1 @@
+@abstract class_name EntityDef extends Resource

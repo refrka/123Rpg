@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bprd4rc1bu4ai"]
+
+[node name="GameRoot" type="Node" unique_id=1688041711]
+
+[node name="WorldCanvas" type="CanvasLayer" parent="." unique_id=1962273433]
+
+[node name="WorldRoot" type="Node2D" parent="WorldCanvas" unique_id=1254222544]
+
+[node name="OverlayCanvas" type="CanvasLayer" parent="." unique_id=87051162]
+
+[node name="OverlayRoot" type="Control" parent="OverlayCanvas" unique_id=1584405039]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="DebugCanvas" type="CanvasLayer" parent="." unique_id=1834661430]
+
+[node name="DebugRoot" type="Control" parent="DebugCanvas" unique_id=1660772206]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
