@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://d3v01cnw30pli"]
+
+[ext_resource type="PackedScene" uid="uid://bcb5k64hx4wh8" path="res://entity/character_node.tscn" id="1_oul6g"]
+[ext_resource type="Script" uid="uid://cfhgu5c81fw1w" path="res://system/component/input_component.gd" id="2_rkbax"]
+
+[node name="Player" unique_id=1179065956 instance=ExtResource("1_oul6g")]
+
+[node name="InputComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1298652872) index="6" unique_id=1505771537]
+script = ExtResource("2_rkbax")
+
+[editable path="VisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox"]
+[editable path="BodyHurtbox"]

@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://ce7h7pou0v67x"]
+
+[ext_resource type="Script" uid="uid://dlwkufpih1aj5" path="res://system/sensor/sensor.gd" id="1_qxpxj"]
+[ext_resource type="PackedScene" uid="uid://bffwx4v3ji1jf" path="res://system/sensor/hurtbox.tscn" id="2_f1sxq"]
+[ext_resource type="Script" uid="uid://ce5sc78pccbjh" path="res://system/component/health_component.gd" id="6_knbs7"]
+[ext_resource type="Script" uid="uid://b3tm6gbbprkmc" path="res://system/component/effects_component.gd" id="8_ud07a"]
+[ext_resource type="Script" uid="uid://bwq7g52j8dk61" path="res://system/state/state_machine.gd" id="9_8v4lx"]
+[ext_resource type="Script" uid="uid://t0gd6nmeqkif" path="res://system/state/body_idle_state.gd" id="10_4u2cn"]
+
+[node name="ObjectNode" type="StaticBody2D" unique_id=637575485]
+collision_layer = 2
+collision_mask = 0
+
+[node name="VisualRoot" type="Node2D" parent="." unique_id=1081402819]
+
+[node name="BodyVisualRoot" type="Node2D" parent="VisualRoot" unique_id=86824929]
+
+[node name="BodySprite" type="AnimatedSprite2D" parent="VisualRoot/BodyVisualRoot" unique_id=613068804]
+
+[node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=1021961883]
+
+[node name="VisionSensor" type="Area2D" parent="." unique_id=1925446894]
+script = ExtResource("1_qxpxj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionSensor" unique_id=1088924322]
+debug_color = Color(0.76, 0.76, 0.76, 0)
+
+[node name="BodyHurtbox" parent="." unique_id=869768629 instance=ExtResource("2_f1sxq")]
+
+[node name="CollisionShape2D" parent="BodyHurtbox" index="0" unique_id=248750470]
+debug_color = Color(0.5661667, 0.79, 0, 0)
+
+[node name="ComponentRoot" type="Node" parent="." unique_id=1707679954]
+
+[node name="HealthComponent" type="Node" parent="ComponentRoot" unique_id=215316171]
+script = ExtResource("6_knbs7")
+
+[node name="EffectsComponent" type="Node" parent="ComponentRoot" unique_id=100061401]
+script = ExtResource("8_ud07a")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1815478981]
+script = ExtResource("9_8v4lx")
+
+[node name="BodyRoot" type="Node" parent="StateMachine" unique_id=798187377]
+
+[node name="BodyIdleState" type="Node" parent="StateMachine/BodyRoot" unique_id=1514645126]
+script = ExtResource("10_4u2cn")
+
+[editable path="BodyHurtbox"]

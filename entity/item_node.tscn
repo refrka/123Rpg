@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://is823h5mhhwg"]
+
+[ext_resource type="Script" uid="uid://duji57yv4y2dy" path="res://entity/item_node.gd" id="1_hhj0b"]
+[ext_resource type="Script" uid="uid://bwq7g52j8dk61" path="res://system/state/state_machine.gd" id="2_1bwnk"]
+[ext_resource type="Script" uid="uid://t0gd6nmeqkif" path="res://system/state/body_idle_state.gd" id="3_4hl2a"]
+
+[node name="ItemNode" type="StaticBody2D" unique_id=1154531157]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_hhj0b")
+
+[node name="VisualRoot" type="Node2D" parent="." unique_id=332404051]
+
+[node name="BodyVisualRoot" type="Node2D" parent="VisualRoot" unique_id=1981814163]
+
+[node name="BodySprite" type="AnimatedSprite2D" parent="VisualRoot/BodyVisualRoot" unique_id=464982421]
+
+[node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=2073472726]
+
+[node name="ComponentRoot" type="Node" parent="." unique_id=1675986413]
+
+[node name="StateMachine" type="Node" parent="." unique_id=202087744]
+script = ExtResource("2_1bwnk")
+
+[node name="BodyRoot" type="Node" parent="StateMachine" unique_id=1782149726]
+
+[node name="BodyIdleState" type="Node" parent="StateMachine/BodyRoot" unique_id=1879653769]
+script = ExtResource("3_4hl2a")
