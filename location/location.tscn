@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://caaihxl625mc5"]
+
+[ext_resource type="Script" uid="uid://i7oifgyecu33" path="res://location/location.gd" id="1_b5lvo"]
+
+[node name="Location" type="Node2D" unique_id=1762781793 node_paths=PackedStringArray("ysort_root") groups=["location"]]
+script = ExtResource("1_b5lvo")
+ysort_root = NodePath("YSortRoot")
+metadata/_custom_type_script = "uid://i7oifgyecu33"
+
+[node name="YSortRoot" type="Node2D" parent="." unique_id=546240414]
+y_sort_enabled = true
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1121169985]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="TileMapLayer" unique_id=691261128]

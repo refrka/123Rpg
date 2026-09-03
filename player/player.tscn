@@ -1,9 +1,30 @@
 [gd_scene format=3 uid="uid://d3v01cnw30pli"]
 
 [ext_resource type="PackedScene" uid="uid://bcb5k64hx4wh8" path="res://entity/character_node.tscn" id="1_oul6g"]
+[ext_resource type="Texture2D" uid="uid://bc73ueorlbrol" path="res://player/player_sprite_sheet.png" id="2_g1dw6"]
 [ext_resource type="Script" uid="uid://cfhgu5c81fw1w" path="res://system/component/input_component.gd" id="2_rkbax"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_yw30f"]
+atlas = ExtResource("2_g1dw6")
+region = Rect2(0, 0, 36, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lkrbl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yw30f")
+}],
+"loop": 1,
+"name": &"idle_down",
+"speed": 5.0
+}]
+
 [node name="Player" unique_id=1179065956 instance=ExtResource("1_oul6g")]
+
+[node name="BodySprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="0" unique_id=1518069600]
+position = Vector2(0, -18)
+sprite_frames = SubResource("SpriteFrames_lkrbl")
+animation = &"idle_down"
 
 [node name="InputComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1298652872) index="6" unique_id=1505771537]
 script = ExtResource("2_rkbax")
