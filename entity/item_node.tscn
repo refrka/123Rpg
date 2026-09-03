@@ -4,10 +4,12 @@
 [ext_resource type="Script" uid="uid://bwq7g52j8dk61" path="res://system/state/state_machine.gd" id="2_1bwnk"]
 [ext_resource type="Script" uid="uid://t0gd6nmeqkif" path="res://system/state/body_idle_state.gd" id="3_4hl2a"]
 
-[node name="ItemNode" type="StaticBody2D" unique_id=1154531157]
+[node name="ItemNode" type="StaticBody2D" unique_id=1154531157 node_paths=PackedStringArray("component_root", "state_machine")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_hhj0b")
+component_root = NodePath("ComponentRoot")
+state_machine = NodePath("StateMachine")
 
 [node name="VisualRoot" type="Node2D" parent="." unique_id=332404051]
 
@@ -19,8 +21,9 @@ script = ExtResource("1_hhj0b")
 
 [node name="ComponentRoot" type="Node" parent="." unique_id=1675986413]
 
-[node name="StateMachine" type="Node" parent="." unique_id=202087744]
+[node name="StateMachine" type="Node" parent="." unique_id=202087744 node_paths=PackedStringArray("body_root")]
 script = ExtResource("2_1bwnk")
+body_root = NodePath("BodyRoot")
 
 [node name="BodyRoot" type="Node" parent="StateMachine" unique_id=1782149726]
 

@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://bcb5k64hx4wh8" path="res://entity/character_node.tscn" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://bc73ueorlbrol" path="res://player/player_sprite_sheet.png" id="2_g1dw6"]
 [ext_resource type="Script" uid="uid://cfhgu5c81fw1w" path="res://system/component/input_component.gd" id="2_rkbax"]
+[ext_resource type="Resource" uid="uid://de86yi014b1de" path="res://player/player_def.tres" id="2_yw30f"]
+[ext_resource type="Script" uid="uid://c1ab0ojesdubb" path="res://system/state/body_moving_state.gd" id="5_qjkh3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yw30f"]
 atlas = ExtResource("2_g1dw6")
@@ -20,6 +22,7 @@ animations = [{
 }]
 
 [node name="Player" unique_id=1179065956 instance=ExtResource("1_oul6g")]
+entity_def = ExtResource("2_yw30f")
 
 [node name="BodySprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="0" unique_id=1518069600]
 position = Vector2(0, -18)
@@ -28,6 +31,14 @@ animation = &"idle_down"
 
 [node name="InputComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1298652872) index="6" unique_id=1505771537]
 script = ExtResource("2_rkbax")
+
+[node name="StateMachine" parent="." index="6" unique_id=873685549 node_paths=PackedStringArray("initial_body_state", "initial_combat_state")]
+initial_body_state = NodePath("BodyRoot/BodyIdleState")
+initial_combat_state = NodePath("CombatRoot/CombatIdleState")
+
+[node name="BodyMovingState" type="Node" parent="StateMachine/BodyRoot" parent_id_path=PackedInt32Array(1947284531) index="1" unique_id=1193616849]
+script = ExtResource("5_qjkh3")
+metadata/_custom_type_script = "uid://c1ab0ojesdubb"
 
 [editable path="VisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox"]
 [editable path="BodyHurtbox"]

@@ -14,9 +14,12 @@
 [ext_resource type="Script" uid="uid://chey2k08sd5y4" path="res://system/state/combat_idle_state.gd" id="12_8mhx1"]
 [ext_resource type="Script" uid="uid://t0gd6nmeqkif" path="res://system/state/body_idle_state.gd" id="12_udydy"]
 
-[node name="CharacterNode" type="CharacterBody2D" unique_id=1179065956]
+[node name="CharacterNode" type="CharacterBody2D" unique_id=1179065956 node_paths=PackedStringArray("component_root", "state_machine")]
 collision_mask = 0
+motion_mode = 1
 script = ExtResource("1_ufg3e")
+component_root = NodePath("ComponentRoot")
+state_machine = NodePath("StateMachine")
 
 [node name="VisualRoot" type="Node2D" parent="." unique_id=1995510688]
 
@@ -73,8 +76,10 @@ script = ExtResource("9_udydy")
 [node name="EffectsComponent" type="Node" parent="ComponentRoot" unique_id=1459866721]
 script = ExtResource("10_me77t")
 
-[node name="StateMachine" type="Node" parent="." unique_id=873685549]
+[node name="StateMachine" type="Node" parent="." unique_id=873685549 node_paths=PackedStringArray("body_root", "combat_root")]
 script = ExtResource("5_jg2qq")
+body_root = NodePath("BodyRoot")
+combat_root = NodePath("CombatRoot")
 
 [node name="BodyRoot" type="Node" parent="StateMachine" unique_id=1947284531]
 

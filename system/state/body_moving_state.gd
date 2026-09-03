@@ -1,4 +1,6 @@
-class_name BodyIdleState extends BodyState
+class_name BodyMovingState extends BodyState
+
+
 
 
 
@@ -11,7 +13,7 @@ func _connect_signals() -> void:
 
 	var movement_component = entity.get_component(MovementComponent)
 
-	movement_component.move_started.connect(_on_move_started)
+	movement_component.move_ended.connect(_on_move_ended)
 
 
 
@@ -21,7 +23,7 @@ func _disconnect_signals() -> void:
 
 	var movement_component = entity.get_component(MovementComponent)
 
-	movement_component.move_started.disconnect(_on_move_started)
+	movement_component.move_ended.disconnect(_on_move_ended)
 
 
 
@@ -30,6 +32,6 @@ func _disconnect_signals() -> void:
 
 
 
-func _on_move_started() -> void:
+func _on_move_ended() -> void:
 
-	_transition(BodyMovingState)
+	_transition(BodyIdleState)

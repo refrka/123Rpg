@@ -11,3 +11,7 @@ func _ready() -> void:
 
 	location.add_entity_node(player, Vector2(200.0, 200.0))
 
+	player._initialize()
+
+	player._activate()
+
