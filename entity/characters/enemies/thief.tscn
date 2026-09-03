@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bcb5k64hx4wh8" path="res://entity/character_node.tscn" id="1_7fyac"]
 [ext_resource type="Texture2D" uid="uid://wkjxgcn70ei3" path="res://entity/characters/enemies/thief_sprite.png" id="2_bqkhk"]
+[ext_resource type="Resource" uid="uid://dnb55qcchd324" path="res://entity/characters/enemies/thief_def.tres" id="2_g2erd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2erd"]
 atlas = ExtResource("2_bqkhk")
@@ -29,6 +30,7 @@ radius = 154.00325
 size = Vector2(18, 28)
 
 [node name="Thief" unique_id=1179065956 instance=ExtResource("1_7fyac")]
+entity_def = ExtResource("2_g2erd")
 
 [node name="BodySprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="0" unique_id=1518069600]
 position = Vector2(0, -16)

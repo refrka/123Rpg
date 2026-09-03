@@ -20,6 +20,9 @@ enum Result {
 }
 
 
+@export var await_result:= false
+
+
 
 var blackboard: Blackboard
 
@@ -28,5 +31,26 @@ var blackboard: Blackboard
 func _execute(_blackboard: Blackboard) -> Result:
 
 	blackboard = _blackboard
+
+	return Result.SUCCESS
+
+
+
+
+func _cancel() -> void:
+
+	command_executed.emit(Result.CANCELLED)
+
+
+
+
+func _get_actor() -> EntityNode:
+
+	return blackboard.get_value("actor")
+
+
+
+
+static func run(_blackboard: Blackboard) -> Result:
 
 	return Result.SUCCESS

@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://i7oifgyecu33" path="res://location/location.gd" id="1_b5lvo"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_me77t"]
+vertices = PackedVector2Array(664.71094, 363.15625, -1.0703125, 373.82813, -3.921875, -7.1015625, 654.27344, -13.890625)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-14, -17, -11, 384, 675, 373, 664, -24)])
+
 [node name="Location" type="Node2D" unique_id=1762781793 node_paths=PackedStringArray("ysort_root") groups=["location"]]
 script = ExtResource("1_b5lvo")
 ysort_root = NodePath("YSortRoot")
@@ -13,3 +18,4 @@ y_sort_enabled = true
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1121169985]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="TileMapLayer" unique_id=691261128]
+navigation_polygon = SubResource("NavigationPolygon_me77t")

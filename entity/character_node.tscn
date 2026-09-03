@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://ce5sc78pccbjh" path="res://system/component/health_component.gd" id="8_8mhx1"]
 [ext_resource type="Script" uid="uid://bcfls24p4qdwo" path="res://system/component/interaction_component.gd" id="9_udydy"]
 [ext_resource type="Script" uid="uid://b3tm6gbbprkmc" path="res://system/component/effects_component.gd" id="10_me77t"]
+[ext_resource type="Script" uid="uid://5oeo0b2of4ao" path="res://system/component/navigation_component.gd" id="11_me77t"]
 [ext_resource type="Script" uid="uid://chey2k08sd5y4" path="res://system/state/combat_idle_state.gd" id="12_8mhx1"]
 [ext_resource type="Script" uid="uid://t0gd6nmeqkif" path="res://system/state/body_idle_state.gd" id="12_udydy"]
 
@@ -71,6 +72,8 @@ script = ExtResource("2_mbyps")
 [node name="CombatSpriteRemote" type="RemoteTransform2D" parent="CenterMarker/CombatOrigin" unique_id=398266469]
 remote_path = NodePath("../../../VisualRoot/CombatVisualRoot/CombatSprite")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=220968712]
+
 [node name="ComponentRoot" type="Node" parent="." unique_id=1298652872]
 
 [node name="MovementComponent" type="Node" parent="ComponentRoot" unique_id=1090916971]
@@ -90,6 +93,11 @@ script = ExtResource("9_udydy")
 
 [node name="EffectsComponent" type="Node" parent="ComponentRoot" unique_id=1459866721]
 script = ExtResource("10_me77t")
+
+[node name="NavigationComponent" type="Node" parent="ComponentRoot" unique_id=1893443168 node_paths=PackedStringArray("nav_agent")]
+script = ExtResource("11_me77t")
+nav_agent = NodePath("../../NavigationAgent2D")
+metadata/_custom_type_script = "uid://5oeo0b2of4ao"
 
 [node name="StateMachine" type="Node" parent="." unique_id=873685549 node_paths=PackedStringArray("body_root", "combat_root")]
 script = ExtResource("5_jg2qq")

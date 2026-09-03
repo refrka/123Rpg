@@ -29,6 +29,14 @@ func handle_input_dir(dir: Vector2) -> void:
 
 
 
+func halt() -> void:
+
+	set_move_dir(Vector2.ZERO)
+
+	current_move_velocity = Vector2.ZERO
+
+
+
 
 func set_move_dir(dir: Vector2) -> void:
 

@@ -15,6 +15,10 @@ var movement_component: MovementComponent
 
 
 func _initialize(_entity: EntityNode) -> void:
+
+	if initialized:
+
+		return
 	
 	super(_entity)
 
