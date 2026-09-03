@@ -10,6 +10,14 @@
 
 @export var state_machine: StateMachine
 
+@export var vision_sensor: Sensor
+
+@export var interaction_sensor: Sensor
+
+@export var body_hurtbox: Hurtbox
+
+@export var combat_hitbox: Hitbox
+
 
 
 

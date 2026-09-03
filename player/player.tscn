@@ -39,6 +39,9 @@ position = Vector2(0, -18)
 sprite_frames = SubResource("SpriteFrames_lkrbl")
 animation = &"idle_down"
 
+[node name="CombatSprite" parent="VisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(1666789074) index="0" unique_id=1245738592]
+position = Vector2(0, -14)
+
 [node name="BodyCollision" parent="." index="1" unique_id=1637569305]
 position = Vector2(0, -6)
 rotation = 1.5707964
@@ -51,10 +54,13 @@ shape = SubResource("CircleShape2D_qjkh3")
 position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_qjkh3")
 
+[node name="CenterMarker" parent="." index="5" unique_id=1102797740]
+position = Vector2(0, -14)
+
 [node name="InputComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1298652872) index="6" unique_id=1505771537]
 script = ExtResource("2_rkbax")
 
-[node name="StateMachine" parent="." index="6" unique_id=873685549 node_paths=PackedStringArray("initial_body_state", "initial_combat_state")]
+[node name="StateMachine" parent="." index="7" unique_id=873685549 node_paths=PackedStringArray("initial_body_state", "initial_combat_state")]
 initial_body_state = NodePath("BodyRoot/BodyIdleState")
 initial_combat_state = NodePath("CombatRoot/CombatIdleState")
 

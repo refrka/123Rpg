@@ -14,12 +14,16 @@
 [ext_resource type="Script" uid="uid://chey2k08sd5y4" path="res://system/state/combat_idle_state.gd" id="12_8mhx1"]
 [ext_resource type="Script" uid="uid://t0gd6nmeqkif" path="res://system/state/body_idle_state.gd" id="12_udydy"]
 
-[node name="CharacterNode" type="CharacterBody2D" unique_id=1179065956 node_paths=PackedStringArray("component_root", "state_machine")]
+[node name="CharacterNode" type="CharacterBody2D" unique_id=1179065956 node_paths=PackedStringArray("component_root", "state_machine", "vision_sensor", "interaction_sensor", "body_hurtbox", "combat_hitbox")]
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_ufg3e")
 component_root = NodePath("ComponentRoot")
 state_machine = NodePath("StateMachine")
+vision_sensor = NodePath("VisionSensor")
+interaction_sensor = NodePath("InteractionSensor")
+body_hurtbox = NodePath("BodyHurtbox")
+combat_hitbox = NodePath("VisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox")
 
 [node name="VisualRoot" type="Node2D" parent="." unique_id=1995510688]
 
@@ -59,6 +63,13 @@ collision_mask = 0
 script = ExtResource("2_mbyps")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionSensor" unique_id=1415403427]
+
+[node name="CenterMarker" type="Marker2D" parent="." unique_id=1102797740]
+
+[node name="CombatOrigin" type="Node2D" parent="CenterMarker" unique_id=469163336]
+
+[node name="CombatSpriteRemote" type="RemoteTransform2D" parent="CenterMarker/CombatOrigin" unique_id=398266469]
+remote_path = NodePath("../../../VisualRoot/CombatVisualRoot/CombatSprite")
 
 [node name="ComponentRoot" type="Node" parent="." unique_id=1298652872]
 
