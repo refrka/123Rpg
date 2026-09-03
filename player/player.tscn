@@ -21,6 +21,16 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_udydy"]
+radius = 6.0
+height = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qjkh3"]
+radius = 111.01801
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjkh3"]
+size = Vector2(20, 32)
+
 [node name="Player" unique_id=1179065956 instance=ExtResource("1_oul6g")]
 entity_def = ExtResource("2_yw30f")
 
@@ -28,6 +38,18 @@ entity_def = ExtResource("2_yw30f")
 position = Vector2(0, -18)
 sprite_frames = SubResource("SpriteFrames_lkrbl")
 animation = &"idle_down"
+
+[node name="BodyCollision" parent="." index="1" unique_id=1637569305]
+position = Vector2(0, -6)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_udydy")
+
+[node name="CollisionShape2D" parent="VisionSensor" parent_id_path=PackedInt32Array(1364341677) index="0" unique_id=1241352674]
+shape = SubResource("CircleShape2D_qjkh3")
+
+[node name="CollisionShape2D" parent="BodyHurtbox" parent_id_path=PackedInt32Array(869768629) index="0" unique_id=248750470]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_qjkh3")
 
 [node name="InputComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1298652872) index="6" unique_id=1505771537]
 script = ExtResource("2_rkbax")

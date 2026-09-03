@@ -33,10 +33,14 @@ state_machine = NodePath("StateMachine")
 
 [node name="CombatHitbox" parent="VisualRoot/CombatVisualRoot/CombatSprite" unique_id=1741834420 instance=ExtResource("2_0rdkl")]
 
+[node name="CollisionShape2D" parent="VisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox" index="0" unique_id=237750791]
+debug_color = Color(1, 0, 0.1833334, 0.03137255)
+
 [node name="CombatAnimationPlayer" type="AnimationPlayer" parent="VisualRoot/CombatVisualRoot" unique_id=23580488]
 root_node = NodePath("../CombatSprite")
 
 [node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=1637569305]
+debug_color = Color(0, 0.2336402, 0.4857911, 0)
 
 [node name="VisionSensor" type="Area2D" parent="." unique_id=1364341677]
 script = ExtResource("2_mbyps")

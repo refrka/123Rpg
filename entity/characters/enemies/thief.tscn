@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://cl0n4dxbs3gfe"]
+
+[ext_resource type="PackedScene" uid="uid://bcb5k64hx4wh8" path="res://entity/character_node.tscn" id="1_7fyac"]
+[ext_resource type="Texture2D" uid="uid://wkjxgcn70ei3" path="res://entity/characters/enemies/thief_sprite.png" id="2_bqkhk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2erd"]
+atlas = ExtResource("2_bqkhk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7fyac"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2erd")
+}],
+"loop": 1,
+"name": &"idle_down",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qjkh3"]
+radius = 4.0
+height = 18.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bqkhk"]
+radius = 154.00325
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bqkhk"]
+size = Vector2(18, 28)
+
+[node name="Thief" unique_id=1179065956 instance=ExtResource("1_7fyac")]
+
+[node name="BodySprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="0" unique_id=1518069600]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_7fyac")
+animation = &"idle_down"
+
+[node name="BodyCollision" parent="." index="1" unique_id=1637569305]
+position = Vector2(0, -4)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_qjkh3")
+
+[node name="CollisionShape2D" parent="VisionSensor" parent_id_path=PackedInt32Array(1364341677) index="0" unique_id=1241352674]
+shape = SubResource("CircleShape2D_bqkhk")
+
+[node name="CollisionShape2D" parent="BodyHurtbox" parent_id_path=PackedInt32Array(869768629) index="0" unique_id=248750470]
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_bqkhk")
+
+[editable path="VisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox"]
+[editable path="BodyHurtbox"]
