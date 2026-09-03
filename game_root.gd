@@ -22,4 +22,3 @@ func _ready() -> void:
 	thief._initialize()
 
 	thief._activate()
-
