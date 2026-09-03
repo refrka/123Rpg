@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d3laq21t338qq" path="res://game_root.gd" id="1_pjpa4"]
 [ext_resource type="PackedScene" uid="uid://ylgrmunrywg2" path="res://ui/game_menu.tscn" id="1_xj5yv"]
+[ext_resource type="PackedScene" uid="uid://bs4xcxdhy16gf" path="res://ui/main_menu.tscn" id="3_bxsma"]
 
 [node name="GameRoot" type="Node" unique_id=1688041711]
 script = ExtResource("1_pjpa4")
@@ -44,4 +45,21 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="GameMenu" parent="GameMenuCanvas/GameMenuRoot" unique_id=1605496912 instance=ExtResource("1_xj5yv")]
+visible = false
 layout_mode = 1
+
+[node name="MainMenuCanvas" type="CanvasLayer" parent="." unique_id=1295910693]
+
+[node name="MainMenuRoot" type="Control" parent="MainMenuCanvas" unique_id=1752065735]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MainMenu" parent="MainMenuCanvas/MainMenuRoot" unique_id=1205347690 instance=ExtResource("3_bxsma")]
+visible = false
+layout_mode = 1
+mouse_filter = 2

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bs4xcxdhy16gf"]
+
+[ext_resource type="Script" uid="uid://dw7ad8sfrlqq2" path="res://ui/main_menu.gd" id="1_t7e0r"]
+
+[node name="MainMenu" type="MarginContainer" unique_id=1205347690]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t7e0r")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2003556115]
+custom_minimum_size = Vector2(300, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
