@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bmax6irqxiedh"]
+
+[ext_resource type="Script" uid="uid://d05nod3akdwlt" path="res://ui/command_row.gd" id="1_io71j"]
+
+[node name="CommandRow" type="HBoxContainer" unique_id=271948832 node_paths=PackedStringArray("arrow_label", "command_name_label", "result_label", "awaiting_result_label")]
+script = ExtResource("1_io71j")
+arrow_label = NodePath("ArrowLabel")
+command_name_label = NodePath("CommandNameLabel")
+result_label = NodePath("ResultLabel")
+awaiting_result_label = NodePath("AwaitingResultLabel")
+
+[node name="ArrowLabel" type="Label" parent="." unique_id=2020474370]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.41546753, 0.41546753, 0.41546753, 1)
+text = ">"
+
+[node name="CommandNameLabel" type="Label" parent="." unique_id=207524565]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.41546753, 0.41546753, 0.41546753, 1)
+text = "Command"
+
+[node name="VSeparator" type="VSeparator" parent="." unique_id=2026800484]
+layout_mode = 2
+
+[node name="ResultLabel" type="Label" parent="." unique_id=1540417423]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.41546753, 0.41546753, 0.41546753, 1)
+text = "Result"
+
+[node name="VSeparator2" type="VSeparator" parent="." unique_id=1454797987]
+layout_mode = 2
+
+[node name="AwaitingResultLabel" type="Label" parent="." unique_id=1234759069]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.41546753, 0.41546753, 0.41546753, 1)
+text = "( awaiting result )"

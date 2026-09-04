@@ -4,7 +4,9 @@ class_name Command extends Resource
 @warning_ignore("unused_signal")
 
 
-signal command_executed(result: Result)
+signal command_executed(command: Command, result: Result)
+
+signal result_changed(result: Result)
 
 
 enum Result {
@@ -19,6 +21,7 @@ enum Result {
 
 }
 
+@export var display_name: String
 
 @export var await_result:= false
 
@@ -26,20 +29,30 @@ enum Result {
 
 var blackboard: Blackboard
 
+var result: Result
+
+
+
+
+
 
 
 func _execute(_blackboard: Blackboard) -> Result:
 
 	blackboard = _blackboard
 
-	return Result.SUCCESS
+	_set_result(Result.SUCCESS)
+
+	return result
 
 
 
 
 func _cancel() -> void:
 
-	command_executed.emit(Result.CANCELLED)
+	_set_result(Result.CANCELLED)
+
+	command_executed.emit(result)
 
 
 
@@ -47,6 +60,14 @@ func _cancel() -> void:
 func _get_actor() -> EntityNode:
 
 	return blackboard.get_value("actor")
+
+
+
+func _set_result(_result: Result) -> void:
+
+	result = _result
+
+	result_changed.emit(result)
 
 
 

@@ -1,7 +1,7 @@
 class_name BehaviorPhase extends Resource
 
 
-
+@export var phase_name: String
 
 @export var phase_commands: Array[Command]
 

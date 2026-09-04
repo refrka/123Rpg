@@ -21,4 +21,6 @@ func _ready() -> void:
 
 	thief._initialize()
 
+	Debug.load_entity_behavior(thief)
+
 	thief._activate()

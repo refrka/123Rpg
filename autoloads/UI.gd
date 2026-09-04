@@ -28,7 +28,7 @@ func _ready() -> void:
 
 func activate_overlay(overlay_script: Script) -> UIOverlay:
 
-	var overlay = _get_overlay(overlay_script)
+	var overlay = get_overlay(overlay_script)
 
 	if overlay:
 
@@ -50,7 +50,7 @@ func activate_overlay(overlay_script: Script) -> UIOverlay:
 
 func deactivate_overlay(overlay_script: Script) -> UIOverlay:
 
-	var overlay = _get_overlay(overlay_script)
+	var overlay = get_overlay(overlay_script)
 	
 	if overlay:
 
@@ -103,7 +103,7 @@ func unregister_overlay(overlay: UIOverlay) -> void:
 
 
 
-func _get_overlay(overlay_script: Script) -> UIOverlay:
+func get_overlay(overlay_script: Script) -> UIOverlay:
 
 	if overlay_registry.has(overlay_script):
 

@@ -1,7 +1,9 @@
 class_name BehaviorComponent extends Component
 
 
+signal behavior_evaluated(behavior: Behavior, score: float)
 
+signal behavior_changed(behavior: Behavior)
 
 
 var behaviors: Array[Behavior]
@@ -50,6 +52,8 @@ func _evaluate_all(target_disposition: Disposition = null) -> void:
 
 		var score = behavior._evaluate(target_disposition)
 
+		behavior_evaluated.emit(behavior, score)
+
 		if !best_behavior or score < best_score:
 
 			best_score = score
@@ -76,6 +80,8 @@ func _change_behavior(new_behavior: Behavior) -> void:
 	current_behavior = new_behavior
 
 	current_behavior._start()
+
+	behavior_changed.emit(new_behavior)
 
 
 

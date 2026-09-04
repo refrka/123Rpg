@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://d3laq21t338qq" path="res://game_root.gd" id="1_pjpa4"]
 [ext_resource type="PackedScene" uid="uid://ylgrmunrywg2" path="res://ui/game_menu.tscn" id="1_xj5yv"]
 [ext_resource type="PackedScene" uid="uid://caaihxl625mc5" path="res://location/location.tscn" id="2_lkrbl"]
+[ext_resource type="Script" uid="uid://bffuijocdkora" path="res://ui/debug_overlay.gd" id="3_0o8ui"]
 [ext_resource type="PackedScene" uid="uid://bs4xcxdhy16gf" path="res://ui/main_menu.tscn" id="3_bxsma"]
+[ext_resource type="PackedScene" uid="uid://bvr6nqochobhy" path="res://ui/behavior_overlay.tscn" id="3_wd1uf"]
 
 [node name="GameRoot" type="Node" unique_id=1688041711]
 script = ExtResource("1_pjpa4")
@@ -35,6 +37,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="DebugOverlay" type="MarginContainer" parent="DebugCanvas/DebugRoot" unique_id=268953944 node_paths=PackedStringArray("behavior_overlay")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_0o8ui")
+behavior_overlay = NodePath("BehaviorOverlay")
+
+[node name="BehaviorOverlay" parent="DebugCanvas/DebugRoot/DebugOverlay" unique_id=1569795286 instance=ExtResource("3_wd1uf")]
+layout_mode = 2
 
 [node name="GameMenuCanvas" type="CanvasLayer" parent="." unique_id=132678326]
 

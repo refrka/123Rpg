@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dg6k8fosmhym0"]
+
+[ext_resource type="Script" uid="uid://c1t23yhxlib2p" path="res://ui/behavior_evaluation_row.gd" id="1_mhdbo"]
+
+[node name="BehaviorEvaluationRow" type="HBoxContainer" unique_id=247768729 node_paths=PackedStringArray("behavior_name_label", "score_label")]
+script = ExtResource("1_mhdbo")
+behavior_name_label = NodePath("BehaviorNameLabel")
+score_label = NodePath("ScoreLabel")
+
+[node name="BehaviorNameLabel" type="Label" parent="." unique_id=1779337149]
+layout_mode = 2
+text = "Behavior"
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1708390090]
+layout_mode = 2
+size_flags_horizontal = 10
+text = ". . ."

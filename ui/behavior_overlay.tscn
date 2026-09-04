@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://bvr6nqochobhy"]
+
+[ext_resource type="Script" uid="uid://bbdv0peja7aky" path="res://ui/behavior_overlay.gd" id="1_11twm"]
+[ext_resource type="PackedScene" uid="uid://bmax6irqxiedh" path="res://ui/command_row.tscn" id="2_nkjd2"]
+[ext_resource type="PackedScene" uid="uid://dg6k8fosmhym0" path="res://ui/behavior_evaluation_row.tscn" id="3_nkjd2"]
+
+[node name="BehaviorOverlay" type="MarginContainer" unique_id=1569795286 node_paths=PackedStringArray("entity_name_label", "behavior_name_label", "evaluating_label", "behavior_score_label", "phase_name_label", "phase_command_list", "behavior_evaluation_list")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+script = ExtResource("1_11twm")
+entity_name_label = NodePath("HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/EntityNameLabel")
+behavior_name_label = NodePath("HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/BehaviorNameLabel")
+evaluating_label = NodePath("HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/EvaluatingLabel")
+behavior_score_label = NodePath("HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/ScoreLabels/BehaviorScoreLabel")
+phase_name_label = NodePath("HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/PhaseNameLabel")
+phase_command_list = NodePath("HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PhaseCommandList")
+behavior_evaluation_list = NodePath("HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/BehaviorEvaluationList")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1186042754]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer" unique_id=144514251]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer" unique_id=511512736]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer" unique_id=733612396]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=103610867]
+layout_mode = 2
+
+[node name="EntityNameLabel" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=917891296]
+layout_mode = 2
+text = "Entity name"
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=316062433]
+layout_mode = 2
+
+[node name="BehaviorNameLabel" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1300989778]
+layout_mode = 2
+text = "Behavior"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2127151025]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EvaluatingLabel" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=1509257155]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(0.41546753, 0.41546753, 0.41546753, 1)
+text = "( evaluating )"
+
+[node name="ScoreLabels" type="HBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=1114468822]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/ScoreLabels" unique_id=1696101741]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0.41546753, 0.41546753, 0.41546753, 1)
+text = "Score:"
+
+[node name="BehaviorScoreLabel" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/ScoreLabels" unique_id=956352899]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0.5"
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1940458635]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1987349676]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1221411882]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.41546753, 0.41546753, 0.41546753, 1)
+text = "Phase:"
+
+[node name="PhaseNameLabel" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1867097430]
+layout_mode = 2
+text = "Phase name"
+
+[node name="PhaseCommandList" type="VBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=2052111832]
+layout_mode = 2
+
+[node name="CommandRow" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PhaseCommandList" unique_id=271948832 instance=ExtResource("2_nkjd2")]
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=435084283]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=100291977]
+layout_mode = 2
+text = "Exit Commands"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=779124952]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=415875928]
+layout_mode = 2
+text = "Evaluations"
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer" unique_id=1634377721]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer/PanelContainer" unique_id=1709597394]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="BehaviorEvaluationList" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=653075621]
+layout_mode = 2
+
+[node name="BehaviorEvaluationRow" parent="HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/BehaviorEvaluationList" unique_id=247768729 instance=ExtResource("3_nkjd2")]
+layout_mode = 2

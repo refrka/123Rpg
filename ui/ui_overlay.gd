@@ -14,13 +14,6 @@ func _enter_tree() -> void:
 
 
 
-func _ready() -> void:
-
-	_deactivate()
-
-	hide()
-
-
 
 
 func _exit_tree() -> void:

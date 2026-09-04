@@ -24,7 +24,9 @@ func _execute(_blackboard: Blackboard) -> Result:
 
 	navigation_component.set_target_position(target_position)
 
-	return Result.PENDING
+	_set_result(Result.PENDING)
+
+	return result
 
 
 
@@ -37,6 +39,8 @@ func _cancel() -> void:
 
 	navigation_component.stop()
 
+	super()
+
 
 
 
@@ -44,4 +48,6 @@ func _cancel() -> void:
 
 func _on_navigation_finished() -> void:
 
-	command_executed.emit(Result.SUCCESS)
+	_set_result(Result.SUCCESS)
+
+	command_executed.emit(self, result)

@@ -2,6 +2,14 @@ class_name Behavior extends Resource
 
 
 
+signal phase_entered(phase: BehaviorPhase)
+
+signal phase_command_started(command: Command)
+
+signal phase_command_executed(command: Command)
+
+
+
 @export var display_name: String
 
 @export var gate_conditions: Array[Condition]
@@ -26,6 +34,17 @@ func _initialize(entity: EntityNode) -> void:
 
 
 
+
+
+
+
+func get_phase(index: int) -> BehaviorPhase:
+
+	if phases.size() - 1 <= index:
+
+		return phases[index]
+
+	return null
 
 
 
@@ -78,13 +97,19 @@ func _enter_phase(index: int) -> void:
 
 	current_phase_index = index
 
-	var phase = _get_phase(current_phase_index)
+	var phase = get_phase(current_phase_index)
+
+	phase_entered.emit(phase)
 
 	for command in phase.phase_commands:
 
+		phase_command_started.emit(command)
+
 		command.command_executed.connect(_on_command_executed, CONNECT_ONE_SHOT)
 
-		match command._execute(blackboard):
+		var result = command._execute(blackboard)
+
+		match result:
 
 			Command.Result.SUCCESS:
 
@@ -121,17 +146,6 @@ func _exit_phase() -> void:
 
 
 
-func _get_phase(index: int) -> BehaviorPhase:
-
-	if phases.size() - 1 <= index:
-
-		return phases[index]
-
-	return null
-
-
-
-
 
 func _get_behavior_multiplier() -> float:
 
@@ -149,6 +163,6 @@ func _get_disposition_multiplier(disposition: Disposition) -> float:
 
 
 
-func _on_command_executed(result: Command.Result) -> void:
+func _on_command_executed(command: Command, result: Command.Result) -> void:
 
-	pass
+	phase_command_executed.emit(command, result)
