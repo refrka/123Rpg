@@ -1,6 +1,9 @@
 extends Node
 
 
+@export var item_def_1: ItemDef
+
+@export var item_def_2: ItemDef
 
 
 func _ready() -> void:

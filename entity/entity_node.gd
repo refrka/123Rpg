@@ -6,6 +6,8 @@
 
 @export var entity_def: EntityDef
 
+@export var inventory: Inventory
+
 @export var component_root: Node
 
 @export var state_machine: StateMachine
@@ -45,6 +47,10 @@ func _initialize() -> void:
 
 	initialized = true
 
+	if inventory:
+
+		inventory.initialize()
+
 	for component in component_root.get_children():
 
 		component._initialize(self)
@@ -80,7 +86,13 @@ func _initialize() -> void:
 
 
 
+func receive_damage_package(damage_package: DamagePackage) -> void:
 
+	for component in component_root.get_children():
+
+		if component.has_method("receive_damage_package"):
+
+			component.receive_damage_packate(damage_package)
 
 
 

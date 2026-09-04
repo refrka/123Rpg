@@ -2,9 +2,25 @@
 
 [ext_resource type="PackedScene" uid="uid://bcb5k64hx4wh8" path="res://entity/character_node.tscn" id="1_oul6g"]
 [ext_resource type="Texture2D" uid="uid://bc73ueorlbrol" path="res://player/player_sprite_sheet.png" id="2_g1dw6"]
+[ext_resource type="Script" uid="uid://cb26f3nivegx2" path="res://player/player.gd" id="2_g6k8r"]
 [ext_resource type="Script" uid="uid://cfhgu5c81fw1w" path="res://system/component/input_component.gd" id="2_rkbax"]
 [ext_resource type="Resource" uid="uid://de86yi014b1de" path="res://player/player_def.tres" id="2_yw30f"]
+[ext_resource type="Script" uid="uid://df30ovb71pxmp" path="res://item/item_data.gd" id="4_rgyib"]
+[ext_resource type="Script" uid="uid://bs86td7ogvkvn" path="res://item/inventory.gd" id="5_hg6s5"]
 [ext_resource type="Script" uid="uid://c1ab0ojesdubb" path="res://system/state/body_moving_state.gd" id="5_qjkh3"]
+[ext_resource type="Resource" uid="uid://dcr0jswv6by5n" path="res://item/equipment/weapons/melee/short_sword_def.tres" id="6_8t03j"]
+[ext_resource type="Script" uid="uid://c6m2qonkgur2h" path="res://item/equipment_data.gd" id="6_hg6s5"]
+
+[sub_resource type="Resource" id="Resource_8gxew"]
+script = ExtResource("6_hg6s5")
+item_def = ExtResource("6_8t03j")
+count = 1
+metadata/_custom_type_script = "uid://c6m2qonkgur2h"
+
+[sub_resource type="Resource" id="Resource_g6k8r"]
+script = ExtResource("5_hg6s5")
+weapon_data = SubResource("Resource_8gxew")
+metadata/_custom_type_script = "uid://bs86td7ogvkvn"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yw30f"]
 atlas = ExtResource("2_g1dw6")
@@ -32,7 +48,9 @@ radius = 201.00249
 size = Vector2(20, 32)
 
 [node name="Player" unique_id=1179065956 instance=ExtResource("1_oul6g")]
+script = ExtResource("2_g6k8r")
 entity_def = ExtResource("2_yw30f")
+inventory = SubResource("Resource_g6k8r")
 
 [node name="BodySprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="0" unique_id=1518069600]
 position = Vector2(0, -18)
@@ -40,7 +58,8 @@ sprite_frames = SubResource("SpriteFrames_lkrbl")
 animation = &"idle_down"
 
 [node name="CombatSprite" parent="VisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(1666789074) index="0" unique_id=1245738592]
-position = Vector2(0, -14)
+position = Vector2(11.815286, -3.2111616)
+rotation = 0.7400196
 
 [node name="BodyCollision" parent="." index="1" unique_id=1637569305]
 position = Vector2(0, -6)
@@ -57,10 +76,13 @@ shape = SubResource("RectangleShape2D_qjkh3")
 [node name="CenterMarker" parent="." index="5" unique_id=1102797740]
 position = Vector2(0, -14)
 
+[node name="CombatOrigin" parent="CenterMarker" index="0" unique_id=469163336]
+rotation = 0.7400196
+
 [node name="InputComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1298652872) index="6" unique_id=1505771537]
 script = ExtResource("2_rkbax")
 
-[node name="StateMachine" parent="." index="7" unique_id=873685549 node_paths=PackedStringArray("initial_body_state", "initial_combat_state")]
+[node name="StateMachine" parent="." index="8" unique_id=873685549 node_paths=PackedStringArray("initial_body_state", "initial_combat_state")]
 initial_body_state = NodePath("BodyRoot/BodyIdleState")
 initial_combat_state = NodePath("CombatRoot/CombatIdleState")
 
