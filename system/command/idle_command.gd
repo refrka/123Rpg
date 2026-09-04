@@ -12,6 +12,8 @@ var idle_timer: SceneTreeTimer
 
 func _execute(_blackboard: Blackboard) -> Result:
 
+	super(_blackboard)
+
 	var navigation_component = _get_actor().get_component(NavigationComponent)
 
 	navigation_component.stop()

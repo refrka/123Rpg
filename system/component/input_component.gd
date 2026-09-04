@@ -1,6 +1,10 @@
 class_name InputComponent extends Component
 
 
+signal attack_pressed
+
+signal attack_released
+
 
 
 
@@ -30,6 +34,23 @@ func _initialize(_entity: EntityNode) -> void:
 
 
 
+
+
+
+
+func _unhandled_input(event: InputEvent) -> void:
+
+	if !active:
+
+		return
+
+	if event.is_action_pressed("attack"):
+
+		attack_pressed.emit()
+
+	if event.is_action_released("attack"):
+
+		attack_released.emit()
 
 
 

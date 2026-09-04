@@ -13,7 +13,10 @@
 [ext_resource type="Script" uid="uid://b3tm6gbbprkmc" path="res://system/component/effects_component.gd" id="10_me77t"]
 [ext_resource type="Script" uid="uid://5oeo0b2of4ao" path="res://system/component/navigation_component.gd" id="11_me77t"]
 [ext_resource type="Script" uid="uid://chey2k08sd5y4" path="res://system/state/combat_idle_state.gd" id="12_8mhx1"]
+[ext_resource type="Script" uid="uid://diloxmtd8fr1m" path="res://system/component/animation_component.gd" id="12_hv6ro"]
 [ext_resource type="Script" uid="uid://t0gd6nmeqkif" path="res://system/state/body_idle_state.gd" id="12_udydy"]
+[ext_resource type="Script" uid="uid://cppg1aowcd1hc" path="res://system/state/combat_ready_state.gd" id="15_cku0k"]
+[ext_resource type="Script" uid="uid://bcu4i16r7mx4o" path="res://system/state/combat_attacking_state.gd" id="16_hv6ro"]
 
 [node name="CharacterNode" type="CharacterBody2D" unique_id=1179065956 node_paths=PackedStringArray("component_root", "state_machine", "vision_sensor", "interaction_sensor", "body_hurtbox", "combat_hitbox")]
 collision_mask = 0
@@ -84,8 +87,9 @@ script = ExtResource("5_pgotb")
 [node name="BehaviorComponent" type="Node" parent="ComponentRoot" unique_id=516791025]
 script = ExtResource("6_0hq70")
 
-[node name="CombatComponent" type="Node" parent="ComponentRoot" unique_id=320259048]
+[node name="CombatComponent" type="Node" parent="ComponentRoot" unique_id=320259048 node_paths=PackedStringArray("combat_origin")]
 script = ExtResource("7_22lai")
+combat_origin = NodePath("../../CenterMarker/CombatOrigin")
 
 [node name="HealthComponent" type="Node" parent="ComponentRoot" unique_id=29735072]
 script = ExtResource("8_8mhx1")
@@ -101,6 +105,11 @@ script = ExtResource("11_me77t")
 nav_agent = NodePath("../../NavigationAgent2D")
 metadata/_custom_type_script = "uid://5oeo0b2of4ao"
 
+[node name="AnimationComponent" type="Node" parent="ComponentRoot" unique_id=836816065 node_paths=PackedStringArray("combat_anim_player")]
+script = ExtResource("12_hv6ro")
+combat_anim_player = NodePath("../../VisualRoot/CombatVisualRoot/CombatAnimationPlayer")
+metadata/_custom_type_script = "uid://diloxmtd8fr1m"
+
 [node name="StateMachine" type="Node" parent="." unique_id=873685549 node_paths=PackedStringArray("body_root", "combat_root")]
 script = ExtResource("5_jg2qq")
 body_root = NodePath("BodyRoot")
@@ -115,6 +124,12 @@ script = ExtResource("12_udydy")
 
 [node name="CombatIdleState" type="Node" parent="StateMachine/CombatRoot" unique_id=623793027]
 script = ExtResource("12_8mhx1")
+
+[node name="CombatReadyState" type="Node" parent="StateMachine/CombatRoot" unique_id=2047702735]
+script = ExtResource("15_cku0k")
+
+[node name="CombatAttackingState" type="Node" parent="StateMachine/CombatRoot" unique_id=1911384394]
+script = ExtResource("16_hv6ro")
 
 [editable path="VisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox"]
 [editable path="BodyHurtbox"]
