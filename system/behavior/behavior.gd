@@ -83,7 +83,7 @@ func _start() -> void:
 
 func _stop() -> void:
 
-	pass
+	current_phase_index = -1
 
 
 
@@ -95,41 +95,7 @@ func _stop() -> void:
 
 func _enter_phase(index: int) -> void:
 
-	current_phase_index = index
-
-	var phase = get_phase(current_phase_index)
-
-	phase_entered.emit(phase)
-
-	for command in phase.phase_commands:
-
-		phase_command_started.emit(command)
-
-		command.command_executed.connect(_on_command_executed, CONNECT_ONE_SHOT)
-
-		var result = command._execute(blackboard)
-
-		match result:
-
-			Command.Result.SUCCESS:
-
-				pass
-
-			Command.Result.FAILURE:
-
-				pass
-
-			Command.Result.PENDING:
-
-				if command.await_result:
-
-					await command.command_executed
-
-					continue
-
-			Command.Result.CANCELLED:
-
-				pass
+	pass
 
 
 
@@ -138,10 +104,6 @@ func _enter_phase(index: int) -> void:
 func _exit_phase() -> void:
 
 	pass
-
-
-
-
 
 
 
@@ -155,18 +117,3 @@ func _get_disposition_multiplier(disposition: Disposition) -> float:
 
 	return 1.0
 
-
-
-
-
-
-
-func _on_command_executed(command: Command, result: Command.Result) -> void:
-
-	phase_command_executed.emit(command, result)
-
-	var phase = get_phase(current_phase_index)
-
-	if phase.phase_command_transition_index != -1:
-
-		_enter_phase(phase.phase_command_transition_index)

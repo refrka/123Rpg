@@ -36,7 +36,13 @@ func _execute(_blackboard: Blackboard) -> Result:
 
 func _cancel() -> void:
 
-	pass
+	super()
+
+	var navigation_component = _get_actor().get_component(NavigationComponent)
+
+	if navigation_component.navigation_finished.is_connected(_on_navigation_finished):
+
+		navigation_component.navigation_finished.disconnect(_on_navigation_finished)
 
 
 

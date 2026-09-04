@@ -1,7 +1,9 @@
 class_name CombatComponent extends Component
 
 
+signal attack_started
 
+signal attack_ended
 
 
 @export var combat_origin: Node2D
@@ -118,6 +120,8 @@ func _start_attack() -> void:
 
 	entity.state_machine.request_state(CombatAttackingState)
 
+	attack_started.emit()
+
 
 
 
@@ -127,6 +131,8 @@ func _end_attack() -> void:
 	entity.combat_hitbox.clear_hit_list()
 
 	entity.state_machine.request_state(CombatReadyState)
+
+	attack_ended.emit()
 
 
 
@@ -164,6 +170,12 @@ func _get_attack_dir() -> Vector2:
 
 		return entity.global_position.direction_to(entity.get_global_mouse_position())
 	
+	var movement_component = entity.get_component(MovementComponent)
+
+	if movement_component:
+
+		return movement_component.face_dir
+
 	return Vector2.RIGHT
 
 

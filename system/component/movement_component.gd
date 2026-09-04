@@ -10,6 +10,7 @@ signal move_ended
 
 var move_dir: Vector2
 
+var face_dir: Vector2
 
 
 
@@ -43,6 +44,19 @@ func set_move_dir(dir: Vector2) -> void:
 	if dir != move_dir:
 
 		move_dir = dir
+
+		if dir != Vector2.ZERO:
+
+			set_face_dir(dir)
+
+
+
+
+func set_face_dir(dir: Vector2) -> void:
+
+	if dir != face_dir:
+
+		face_dir = dir
 
 
 

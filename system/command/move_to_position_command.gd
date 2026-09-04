@@ -35,6 +35,8 @@ func _execute(_blackboard: Blackboard) -> Result:
 
 func _cancel() -> void:
 
+	super()
+
 	var navigation_component = _get_actor().get_component(NavigationComponent)
 
 	navigation_component.stop()
@@ -49,5 +51,7 @@ func _cancel() -> void:
 func _on_navigation_finished() -> void:
 
 	_set_result(Result.SUCCESS)
+
+	print("nav finished emitting")
 
 	command_executed.emit(self, result)

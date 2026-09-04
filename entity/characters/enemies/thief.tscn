@@ -3,6 +3,21 @@
 [ext_resource type="PackedScene" uid="uid://bcb5k64hx4wh8" path="res://entity/character_node.tscn" id="1_7fyac"]
 [ext_resource type="Texture2D" uid="uid://wkjxgcn70ei3" path="res://entity/characters/enemies/thief_sprite.png" id="2_bqkhk"]
 [ext_resource type="Resource" uid="uid://dnb55qcchd324" path="res://entity/characters/enemies/thief_def.tres" id="2_g2erd"]
+[ext_resource type="Script" uid="uid://df30ovb71pxmp" path="res://item/item_data.gd" id="3_paph5"]
+[ext_resource type="Script" uid="uid://bs86td7ogvkvn" path="res://item/inventory.gd" id="4_ghgwx"]
+[ext_resource type="Resource" uid="uid://dcr0jswv6by5n" path="res://item/equipment/weapons/melee/short_sword_def.tres" id="5_qsuqc"]
+[ext_resource type="Script" uid="uid://c6m2qonkgur2h" path="res://item/equipment_data.gd" id="6_pg8bi"]
+
+[sub_resource type="Resource" id="Resource_5on3h"]
+script = ExtResource("6_pg8bi")
+item_def = ExtResource("5_qsuqc")
+count = 1
+metadata/_custom_type_script = "uid://c6m2qonkgur2h"
+
+[sub_resource type="Resource" id="Resource_0yde7"]
+script = ExtResource("4_ghgwx")
+weapon_data = SubResource("Resource_5on3h")
+metadata/_custom_type_script = "uid://bs86td7ogvkvn"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2erd"]
 atlas = ExtResource("2_bqkhk")
@@ -31,6 +46,7 @@ size = Vector2(18, 28)
 
 [node name="Thief" unique_id=1179065956 instance=ExtResource("1_7fyac")]
 entity_def = ExtResource("2_g2erd")
+inventory = SubResource("Resource_0yde7")
 
 [node name="BodySprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="0" unique_id=1518069600]
 position = Vector2(0, -16)
@@ -38,7 +54,7 @@ sprite_frames = SubResource("SpriteFrames_7fyac")
 animation = &"idle_down"
 
 [node name="CombatSprite" parent="VisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(1666789074) index="0" unique_id=1245738592]
-position = Vector2(0, 0)
+position = Vector2(0, -11)
 
 [node name="BodyCollision" parent="." index="1" unique_id=1637569305]
 position = Vector2(0, -4)
@@ -51,6 +67,9 @@ shape = SubResource("CircleShape2D_bqkhk")
 [node name="CollisionShape2D" parent="BodyHurtbox" parent_id_path=PackedInt32Array(869768629) index="0" unique_id=248750470]
 position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_bqkhk")
+
+[node name="CenterMarker" parent="." index="5" unique_id=1102797740]
+position = Vector2(0, -11)
 
 [editable path="VisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox"]
 [editable path="BodyHurtbox"]
