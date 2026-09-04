@@ -1,6 +1,8 @@
 class_name IdleCommand extends Command
 
 
+@export var timed:= true
+
 @export var idle_duration_range:= Vector2(3.0, 7.0)
 
 
@@ -10,13 +12,23 @@ var idle_timer: SceneTreeTimer
 
 func _execute(_blackboard: Blackboard) -> Result:
 
-	var duration = randf_range(idle_duration_range.x, idle_duration_range.y)
+	var navigation_component = _get_actor().get_component(NavigationComponent)
 
-	idle_timer = Game.get_tree().create_timer(duration)
+	navigation_component.stop()
 
-	idle_timer.timeout.connect(_on_idle_timeout, CONNECT_ONE_SHOT)
+	if !timed:
 
-	_set_result(Result.PENDING)
+		_set_result(Result.SUCCESS)
+
+	else:
+
+		var duration = randf_range(idle_duration_range.x, idle_duration_range.y)
+
+		idle_timer = Game.get_tree().create_timer(duration)
+
+		idle_timer.timeout.connect(_on_idle_timeout, CONNECT_ONE_SHOT)
+
+		_set_result(Result.PENDING)
 
 	return result
 

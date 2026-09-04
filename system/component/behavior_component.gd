@@ -35,6 +35,7 @@ func _initialize(_entity: EntityNode) -> void:
 
 		b._initialize(entity)
 		
+	entity.vision_sensor.entity_entered_sensor.connect(_on_entity_entered_sensor)
 
 
 
@@ -89,6 +90,47 @@ func _change_behavior(new_behavior: Behavior) -> void:
 
 
 
+func _create_disposition(target_entity: EntityNode) -> Disposition:
+
+	var disposition = Disposition.new()
+
+	disposition.target_entity = target_entity
+
+	dispositions.append(disposition)
+
+	return disposition
+
+
+
+
+
+func _get_disposition(target_entity: EntityNode) -> Disposition:
+
+	for disposition in dispositions:
+
+		if disposition.target_entity == target_entity:
+
+			return disposition
+
+	return null
+
+
+
+
+
+
+
+
+func _on_entity_entered_sensor(entity_node: EntityNode) -> void:
+
+	var disposition = _get_disposition(entity_node)
+
+	if !disposition:
+
+		_create_disposition(entity_node)
+
+
+
 
 
 
@@ -97,3 +139,8 @@ func _activate() -> void:
 	super()
 
 	_evaluate_all()
+
+
+
+
+

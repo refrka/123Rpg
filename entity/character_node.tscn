@@ -48,6 +48,8 @@ root_node = NodePath("../CombatSprite")
 debug_color = Color(0, 0.2336402, 0.4857911, 0)
 
 [node name="VisionSensor" type="Area2D" parent="." unique_id=1364341677]
+collision_layer = 0
+collision_mask = 3
 script = ExtResource("2_mbyps")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisionSensor" unique_id=1241352674]
@@ -60,7 +62,7 @@ debug_color = Color(0.5661667, 0.79, 0, 0)
 
 [node name="InteractionSensor" type="Area2D" parent="." unique_id=835967870]
 collision_layer = 0
-collision_mask = 0
+collision_mask = 3
 script = ExtResource("2_mbyps")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionSensor" unique_id=1415403427]

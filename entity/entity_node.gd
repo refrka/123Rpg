@@ -28,6 +28,15 @@ var active:= false
 
 
 
+
+
+
+
+
+
+
+
+
 func _initialize() -> void:
 
 	if initialized:
@@ -43,6 +52,36 @@ func _initialize() -> void:
 	if state_machine:
 
 		state_machine._initialize(self)
+
+	if vision_sensor:
+
+		vision_sensor.initialize(self)
+		
+	if interaction_sensor:
+
+		interaction_sensor.initialize(self)
+
+	if body_hurtbox:
+
+		body_hurtbox.initialize(self)
+
+	if combat_hitbox:
+
+		combat_hitbox.initialize(self)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -82,6 +121,18 @@ func get_component(component_script: Script) -> Component:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 	
 
 
@@ -100,6 +151,22 @@ func _activate() -> void:
 	if state_machine:
 
 		state_machine._activate()
+
+	if vision_sensor:
+
+		vision_sensor.activate()
+		
+	if interaction_sensor:
+
+		interaction_sensor.activate()
+
+	if body_hurtbox:
+
+		body_hurtbox.activate()
+
+	if combat_hitbox:
+
+		combat_hitbox.activate()
 
 
 
@@ -120,3 +187,19 @@ func _deactivate() -> void:
 	if state_machine:
 
 		state_machine._deactivate()
+
+	if vision_sensor:
+
+		vision_sensor.deactivate()
+		
+	if interaction_sensor:
+
+		interaction_sensor.deactivate()
+
+	if body_hurtbox:
+
+		body_hurtbox.deactivate()
+
+	if combat_hitbox:
+
+		combat_hitbox.deactivate()
