@@ -92,7 +92,7 @@ func receive_damage_package(damage_package: DamagePackage) -> void:
 
 		if component.has_method("receive_damage_package"):
 
-			component.receive_damage_packate(damage_package)
+			component.receive_damage_package(damage_package)
 
 
 

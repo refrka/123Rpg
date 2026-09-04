@@ -124,6 +124,8 @@ func _start_attack() -> void:
 
 func _end_attack() -> void:
 
+	entity.combat_hitbox.clear_hit_list()
+
 	entity.state_machine.request_state(CombatReadyState)
 
 

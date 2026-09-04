@@ -58,8 +58,7 @@ sprite_frames = SubResource("SpriteFrames_lkrbl")
 animation = &"idle_down"
 
 [node name="CombatSprite" parent="VisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(1666789074) index="0" unique_id=1245738592]
-position = Vector2(11.815286, -3.2111616)
-rotation = 0.7400196
+position = Vector2(16, -14)
 
 [node name="BodyCollision" parent="." index="1" unique_id=1637569305]
 position = Vector2(0, -6)
@@ -75,9 +74,6 @@ shape = SubResource("RectangleShape2D_qjkh3")
 
 [node name="CenterMarker" parent="." index="5" unique_id=1102797740]
 position = Vector2(0, -14)
-
-[node name="CombatOrigin" parent="CenterMarker" index="0" unique_id=469163336]
-rotation = 0.7400196
 
 [node name="InputComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1298652872) index="6" unique_id=1505771537]
 script = ExtResource("2_rkbax")

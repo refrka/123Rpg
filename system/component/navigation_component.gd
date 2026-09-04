@@ -77,8 +77,6 @@ func stop() -> void:
 
 	set_target_entity(null)
 
-	set_target_position(entity.global_position)
-
 
 
 

@@ -23,7 +23,7 @@ metadata/_custom_type_script = "uid://b4ot86r6gtxvc"
 
 [sub_resource type="Resource" id="Resource_cmfsp"]
 script = ExtResource("6_0yde7")
-idle_duration_range = Vector2(0.1, 0.3)
+idle_duration_range = Vector2(4, 8)
 
 [sub_resource type="Resource" id="Resource_g2erd"]
 script = ExtResource("3_f0ixx")
