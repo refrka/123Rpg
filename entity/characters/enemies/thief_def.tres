@@ -6,41 +6,46 @@
 [ext_resource type="Script" uid="uid://b4ot86r6gtxvc" path="res://system/behavior/behavior_phase.gd" id="3_f0ixx"]
 [ext_resource type="Script" uid="uid://due8im487owbs" path="res://system/behavior/behavior_profile.gd" id="4_0yde7"]
 [ext_resource type="Script" uid="uid://d00xm1l5u6bf1" path="res://system/command/command.gd" id="4_yuoec"]
-[ext_resource type="Script" uid="uid://bmj3ig5p45sje" path="res://system/command/move_to_position_command.gd" id="5_f0ixx"]
+[ext_resource type="Script" uid="uid://cgqp45med8m3p" path="res://system/command/move_to_random_position_command.gd" id="5_f0ixx"]
+[ext_resource type="Script" uid="uid://b0yo32y52i2ob" path="res://system/command/idle_command.gd" id="6_0yde7"]
 
-[sub_resource type="Resource" id="Resource_yuoec"]
+[sub_resource type="Resource" id="Resource_lr5gl"]
 script = ExtResource("5_f0ixx")
-target_position = Vector2(450, 100)
-display_name = "Moving"
-await_result = true
-metadata/_custom_type_script = "uid://bmj3ig5p45sje"
-
-[sub_resource type="Resource" id="Resource_b5lvo"]
-script = ExtResource("5_f0ixx")
-target_position = Vector2(100, 250)
-display_name = "Moving"
-metadata/_custom_type_script = "uid://bmj3ig5p45sje"
+distance_range = Vector2(20, 40)
+display_name = "Wander"
 
 [sub_resource type="Resource" id="Resource_5on3h"]
 script = ExtResource("3_f0ixx")
 phase_name = "Moving positions"
-phase_commands = Array[ExtResource("4_yuoec")]([SubResource("Resource_yuoec"), SubResource("Resource_b5lvo")])
+phase_commands = Array[ExtResource("4_yuoec")]([SubResource("Resource_lr5gl")])
+phase_command_transition_index = 1
+metadata/_custom_type_script = "uid://b4ot86r6gtxvc"
+
+[sub_resource type="Resource" id="Resource_cmfsp"]
+script = ExtResource("6_0yde7")
+idle_duration_range = Vector2(0.1, 0.3)
+
+[sub_resource type="Resource" id="Resource_g2erd"]
+script = ExtResource("3_f0ixx")
+phase_name = "Idle"
+phase_commands = Array[ExtResource("4_yuoec")]([SubResource("Resource_cmfsp")])
+phase_command_transition_index = 0
 metadata/_custom_type_script = "uid://b4ot86r6gtxvc"
 
 [sub_resource type="Resource" id="Resource_glfif"]
 script = ExtResource("1_mdlmf")
 display_name = "Wander"
-phases = Array[ExtResource("3_f0ixx")]([SubResource("Resource_5on3h")])
+phases = Array[ExtResource("3_f0ixx")]([SubResource("Resource_5on3h"), SubResource("Resource_g2erd")])
 metadata/_custom_type_script = "uid://bkpp3kbsa48gg"
 
-[sub_resource type="Resource" id="Resource_lr5gl"]
+[sub_resource type="Resource" id="Resource_0yde7"]
 script = ExtResource("4_0yde7")
 behaviors = Array[ExtResource("1_mdlmf")]([SubResource("Resource_glfif")])
 metadata/_custom_type_script = "uid://due8im487owbs"
 
 [resource]
 script = ExtResource("1_lhok0")
-behavior_profile = SubResource("Resource_lr5gl")
+behavior_profile = SubResource("Resource_0yde7")
 entity_id = &"thief"
 display_name = "Thief"
 metadata/_custom_type_script = "uid://bkum3t6uspol8"

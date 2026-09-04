@@ -40,7 +40,7 @@ func _initialize(entity: EntityNode) -> void:
 
 func get_phase(index: int) -> BehaviorPhase:
 
-	if phases.size() - 1 <= index:
+	if phases.size() - 1 >= index:
 
 		return phases[index]
 
@@ -121,8 +121,6 @@ func _enter_phase(index: int) -> void:
 
 			Command.Result.PENDING:
 
-				pass
-
 				if command.await_result:
 
 					await command.command_executed
@@ -166,3 +164,9 @@ func _get_disposition_multiplier(disposition: Disposition) -> float:
 func _on_command_executed(command: Command, result: Command.Result) -> void:
 
 	phase_command_executed.emit(command, result)
+
+	var phase = get_phase(current_phase_index)
+
+	if phase.phase_command_transition_index != -1:
+
+		_enter_phase(phase.phase_command_transition_index)
