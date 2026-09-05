@@ -4,6 +4,7 @@
 
 
 
+
 @export var entity_def: EntityDef
 
 @export var inventory: Inventory

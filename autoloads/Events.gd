@@ -5,6 +5,7 @@ extends Node
 
 var subscriptions: Dictionary[Script, Array]
 
+var entity_subscriptions: Dictionary[EntityNode, Array]
 
 
 
@@ -30,6 +31,17 @@ func subscribe(event_script: Script, callback: Callable) -> void:
 
 
 
+func subscribe_to_entity(entity_node: EntityNode, callback: Callable) -> void:
+
+	if !entity_subscriptions.has(entity_node):
+
+		entity_subscriptions[entity_node] = []
+
+	entity_subscriptions[entity_node].append(callback)
+
+
+
+
 
 func unsubscribe(event_script: Script, callback: Callable) -> void:
 
@@ -40,6 +52,20 @@ func unsubscribe(event_script: Script, callback: Callable) -> void:
 		if subscriptions[event_script].is_empty():
 
 			subscriptions.erase(event_script)
+
+
+
+
+func unsubscribe_from_entity(entity_node: EntityNode, callback: Callable) -> void:
+
+	if entity_subscriptions.has(entity_node) and entity_subscriptions[entity_node].has(callback):
+
+		entity_subscriptions[entity_node].erase(callback)
+
+		if entity_subscriptions[entity_node].is_empty():
+
+			entity_subscriptions.erase(entity_node)
+
 
 
 
@@ -58,3 +84,15 @@ func fire(event_script: Script, blackboard: Blackboard = null) -> void:
 			if callback.is_valid():
 
 				callback.call(event)
+
+	if event is EntityEvent:
+
+		var entity_node = event.entity
+
+		if entity_subscriptions.has(entity_node):
+
+			for callback in entity_subscriptions[entity_node]:
+
+				if callback.is_valid():
+					
+					callback.call(event)

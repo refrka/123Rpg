@@ -43,6 +43,8 @@ func _initialize(_entity: EntityNode) -> void:
 		b._initialize(entity)
 		
 	entity.vision_sensor.entity_entered_sensor.connect(_on_entity_entered_sensor)
+		
+	entity.vision_sensor.entity_exited_sensor.connect(_on_entity_exited_sensor)
 
 	attitude = behavior_profile.default_baseline.get_value(Behavior.Attribute.ATTITUDE)
 
@@ -160,6 +162,22 @@ func _on_entity_entered_sensor(entity_node: EntityNode) -> void:
 
 			disposition.add_baseline(baseline)
 
+	Events.subscribe_to_entity(entity_node, _on_visible_entity_event)
+
+
+
+
+
+func _on_entity_exited_sensor(entity_node: EntityNode) -> void:
+
+	Events.unsubscribe_from_entity(entity_node, _on_visible_entity_event)
+
+
+
+
+func _on_visible_entity_event(_event: EntityEvent) -> void:
+
+	pass
 
 
 
