@@ -6,6 +6,9 @@ signal behavior_evaluated(behavior: Behavior, score: float)
 signal behavior_changed(behavior: Behavior)
 
 
+
+
+
 var behaviors: Array[Behavior]
 
 var current_behavior: Behavior

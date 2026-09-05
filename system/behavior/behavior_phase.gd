@@ -13,10 +13,3 @@ class_name BehaviorPhase extends Resource
 
 
 
-
-
-# Phase command
-
-# Exit command
-
-# Transitions

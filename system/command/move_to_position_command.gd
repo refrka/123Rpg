@@ -52,6 +52,4 @@ func _on_navigation_finished() -> void:
 
 	_set_result(Result.SUCCESS)
 
-	print("nav finished emitting")
-
 	command_executed.emit(self, result)

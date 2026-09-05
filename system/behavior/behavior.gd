@@ -2,25 +2,24 @@ class_name Behavior extends Resource
 
 
 
-signal phase_entered(phase: BehaviorPhase)
 
-signal phase_command_started(command: Command)
-
-signal phase_command_executed(command: Command)
-
-
-
-@export var display_name: String
-
-@export var gate_conditions: Array[Condition]
 
 @export var phases: Array[BehaviorPhase]
 
-@export var baseline_score:= 0.5
 
-var current_phase_index:= -1
+
 
 var blackboard:= Blackboard.new()
+
+var current_phase: BehaviorPhase
+
+var current_command_index:= 0
+
+var current_command: Command
+
+var pending_commands: Array[Command]
+
+
 
 
 
@@ -37,36 +36,9 @@ func _initialize(entity: EntityNode) -> void:
 
 
 
-
-func get_phase(index: int) -> BehaviorPhase:
-
-	if phases.size() - 1 >= index:
-
-		return phases[index]
-
-	return null
-
-
-
-
-
-
 func _evaluate(target_disposition: Disposition = null) -> float:
 
-	blackboard.set_value("target_disposition", target_disposition)
-
-	for condition in gate_conditions:
-
-		if !condition._evaluate(blackboard):
-
-			return 0.0
-
-	var behavior_multiplier = _get_behavior_multiplier()
-
-	var disposition_multiplier = _get_disposition_multiplier(target_disposition)
-
-	return baseline_score * behavior_multiplier * disposition_multiplier
-
+	return 1.0
 
 
 
@@ -83,10 +55,7 @@ func _start() -> void:
 
 func _stop() -> void:
 
-	current_phase_index = -1
-
-
-
+	pass
 
 
 
@@ -95,7 +64,21 @@ func _stop() -> void:
 
 func _enter_phase(index: int) -> void:
 
-	pass
+	if current_phase:
+
+		_exit_phase()
+
+	pending_commands.clear()
+
+	current_command_index = 0
+
+	current_phase = _get_phase(index)
+
+	if !current_phase:
+
+		return
+
+	_execute_phase_command(0)
 
 
 
@@ -107,13 +90,69 @@ func _exit_phase() -> void:
 
 
 
-func _get_behavior_multiplier() -> float:
-
-	return 1.0
 
 
+func _execute_phase_command(index: int) -> void:
 
-func _get_disposition_multiplier(disposition: Disposition) -> float:
+	if current_phase.phase_commands.size() - 1 < index:
 
-	return 1.0
+		if pending_commands.is_empty() and current_phase.phase_command_transition_index != -1:
+
+			_enter_phase(current_phase.phase_command_transition_index)
+
+		return
+
+	current_command = current_phase.phase_commands[index]
+
+	current_command.command_executed.connect(_on_phase_command_executed)
+
+	if current_command._execute(blackboard) == Command.Result.PENDING:
+	
+		pending_commands.append(current_command)
+
+	if !current_command.await_result:
+
+		current_command_index += 1
+
+		_execute_phase_command(current_command_index)
+
+
+
+
+
+func _get_phase(index: int) -> BehaviorPhase:
+
+	if phases.size() - 1 >= index:
+
+		return phases[index]
+	
+	return null
+
+
+
+
+
+
+
+
+
+func _on_phase_command_executed(command: Command, result: Command.Result) -> void:
+
+	command.command_executed.disconnect(_on_phase_command_executed)
+
+	pending_commands.erase(command)
+
+	match result:
+
+		Command.Result.SUCCESS:
+
+			current_command_index += 1
+
+			if current_phase.phase_commands.size() - 1 < current_command_index and current_phase.phase_command_transition_index != -1 and pending_commands.is_empty():
+
+				_enter_phase(current_phase.phase_command_transition_index)
+
+			else:
+
+				_execute_phase_command(current_command_index)
 

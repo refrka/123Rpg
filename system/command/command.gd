@@ -52,8 +52,6 @@ func _cancel() -> void:
 
 	_set_result(Result.CANCELLED)
 
-	print("_cancel emitting")
-
 	command_executed.emit(self, result)
 
 

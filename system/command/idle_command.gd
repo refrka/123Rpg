@@ -43,7 +43,5 @@ func _execute(_blackboard: Blackboard) -> Result:
 func _on_idle_timeout() -> void:
 
 	_set_result(Result.SUCCESS)
-	
-	print("idle timeout emitting")
 
 	command_executed.emit(self, result)
