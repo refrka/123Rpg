@@ -26,6 +26,12 @@ func _execute(_blackboard: Blackboard) -> Result:
 
 
 
+
+
+
+
+
+
 func _on_attack_ended() -> void:
 
 	_set_result(Result.SUCCESS)

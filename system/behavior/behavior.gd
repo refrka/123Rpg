@@ -2,9 +2,27 @@ class_name Behavior extends Resource
 
 
 
+enum Attribute {
 
+	ATTITUDE,
+
+	TEMPERAMENT,
+
+	FEAR,
+
+	AFFECTION,
+
+	RESPECT
+
+}
+
+
+
+@export var baseline_score: float
 
 @export var phases: Array[BehaviorPhase]
+
+@export var fail_conditions: Array[Condition]
 
 
 
@@ -38,7 +56,13 @@ func _initialize(entity: EntityNode) -> void:
 
 func _evaluate(target_disposition: Disposition = null) -> float:
 
-	return 1.0
+	for condition in fail_conditions:
+
+		if !condition._evaluate(blackboard):
+
+			return 0.0
+
+	return baseline_score
 
 
 
@@ -55,7 +79,9 @@ func _start() -> void:
 
 func _stop() -> void:
 
-	pass
+	for command in pending_commands:
+
+		command._cancel()
 
 
 

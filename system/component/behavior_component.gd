@@ -15,7 +15,9 @@ var current_behavior: Behavior
 
 var dispositions: Array[Disposition]
 
+var attitude: float
 
+var temperament: float
 
 
 
@@ -30,6 +32,8 @@ func _initialize(_entity: EntityNode) -> void:
 
 	super(_entity)
 
+	var behavior_profile = entity.entity_def.behavior_profile
+
 	for behavior in entity.entity_def.behavior_profile.behaviors:
 
 		var b = behavior.duplicate(true)
@@ -40,6 +44,22 @@ func _initialize(_entity: EntityNode) -> void:
 		
 	entity.vision_sensor.entity_entered_sensor.connect(_on_entity_entered_sensor)
 
+	attitude = behavior_profile.default_baseline.get_value(Behavior.Attribute.ATTITUDE)
+
+	temperament = behavior_profile.default_baseline.get_value(Behavior.Attribute.TEMPERAMENT)
+
+
+
+
+func receive_damage_package(damage_package: DamagePackage) -> void:
+
+	var disposition = _get_disposition(damage_package.source_entity)
+
+	if disposition:
+		
+		var damage_baseline = entity.entity_def.behavior_profile.damage_baseline
+
+		disposition.add_baseline(damage_baseline)
 
 
 
@@ -130,7 +150,15 @@ func _on_entity_entered_sensor(entity_node: EntityNode) -> void:
 
 	if !disposition:
 
-		_create_disposition(entity_node)
+		disposition = _create_disposition(entity_node)
+
+		disposition.add_baseline(entity.entity_def.behavior_profile.default_baseline)
+
+		if entity.entity_def.behavior_profile.entity_baselines.has(entity_node.entity_def):
+
+			var baseline = entity.entity_def.behavior_profile.entity_baselines[entity_node.entity_def]
+
+			disposition.add_baseline(baseline)
 
 
 

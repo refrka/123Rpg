@@ -35,8 +35,6 @@ func _execute(_blackboard: Blackboard) -> Result:
 
 func _cancel() -> void:
 
-	super()
-
 	var navigation_component = _get_actor().get_component(NavigationComponent)
 
 	navigation_component.stop()

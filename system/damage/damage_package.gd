@@ -2,6 +2,8 @@ class_name DamagePackage extends RefCounted
 
 
 
+var source_entity: EntityNode
+
 var damage_entries: Array[DamageEntry]
 
 

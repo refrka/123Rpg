@@ -2,12 +2,14 @@
 
 [ext_resource type="Script" uid="uid://bkum3t6uspol8" path="res://entity/character_def.gd" id="1_lhok0"]
 [ext_resource type="Script" uid="uid://bkpp3kbsa48gg" path="res://system/behavior/behavior.gd" id="1_mdlmf"]
+[ext_resource type="Script" uid="uid://d1fu2jcoxhr46" path="res://system/condition/condition.gd" id="2_yuoec"]
 [ext_resource type="Script" uid="uid://b4ot86r6gtxvc" path="res://system/behavior/behavior_phase.gd" id="3_f0ixx"]
 [ext_resource type="Script" uid="uid://due8im487owbs" path="res://system/behavior/behavior_profile.gd" id="4_0yde7"]
 [ext_resource type="Script" uid="uid://d00xm1l5u6bf1" path="res://system/command/command.gd" id="4_yuoec"]
 [ext_resource type="Script" uid="uid://cgqp45med8m3p" path="res://system/command/move_to_random_position_command.gd" id="5_f0ixx"]
-[ext_resource type="Script" uid="uid://b0yo32y52i2ob" path="res://system/command/idle_command.gd" id="6_0yde7"]
-[ext_resource type="Script" uid="uid://bkeo7gm77rp4c" path="res://system/command/attack_command.gd" id="6_5on3h"]
+[ext_resource type="Script" uid="uid://d4extd2fjk4ob" path="res://system/behavior/attribute_baseline.gd" id="8_1mi0g"]
+[ext_resource type="Script" uid="uid://cowmr2asnpoj2" path="res://entity/entity_def.gd" id="9_dsgrx"]
+[ext_resource type="Resource" uid="uid://de86yi014b1de" path="res://player/player_def.tres" id="10_dsgrx"]
 
 [sub_resource type="Resource" id="Resource_yuoec"]
 script = ExtResource("5_f0ixx")
@@ -18,38 +20,61 @@ metadata/_custom_type_script = "uid://cgqp45med8m3p"
 script = ExtResource("3_f0ixx")
 phase_name = "Random move"
 phase_commands = Array[ExtResource("4_yuoec")]([SubResource("Resource_yuoec")])
-phase_command_transition_index = 1
-metadata/_custom_type_script = "uid://b4ot86r6gtxvc"
-
-[sub_resource type="Resource" id="Resource_f0ixx"]
-script = ExtResource("6_0yde7")
-display_name = "idle"
-metadata/_custom_type_script = "uid://b0yo32y52i2ob"
-
-[sub_resource type="Resource" id="Resource_0yde7"]
-script = ExtResource("6_5on3h")
-display_name = "atk"
-metadata/_custom_type_script = "uid://bkeo7gm77rp4c"
-
-[sub_resource type="Resource" id="Resource_mdlmf"]
-script = ExtResource("3_f0ixx")
-phase_commands = Array[ExtResource("4_yuoec")]([SubResource("Resource_f0ixx"), SubResource("Resource_0yde7")])
 phase_command_transition_index = 0
 metadata/_custom_type_script = "uid://b4ot86r6gtxvc"
 
 [sub_resource type="Resource" id="Resource_yccte"]
 script = ExtResource("1_mdlmf")
-phases = Array[ExtResource("3_f0ixx")]([SubResource("Resource_stalf"), SubResource("Resource_mdlmf")])
+phases = Array[ExtResource("3_f0ixx")]([SubResource("Resource_stalf")])
 metadata/_custom_type_script = "uid://bkpp3kbsa48gg"
 
-[sub_resource type="Resource" id="Resource_1mi0g"]
+[sub_resource type="Resource" id="Resource_paph5"]
+script = ExtResource("8_1mi0g")
+baseline_values = {
+"AFFECTION": -0.1,
+"ATTITUDE": -0.1,
+"FEAR": 0.1,
+"RESPECT": -0.1,
+"TEMPERAMENT": 0.1
+}
+metadata/_custom_type_script = "uid://d4extd2fjk4ob"
+
+[sub_resource type="Resource" id="Resource_dsgrx"]
+script = ExtResource("8_1mi0g")
+baseline_values = {
+"AFFECTION": 0.0,
+"ATTITUDE": 0.2,
+"FEAR": 0.0,
+"RESPECT": 0.0,
+"TEMPERAMENT": 0.2
+}
+metadata/_custom_type_script = "uid://d4extd2fjk4ob"
+
+[sub_resource type="Resource" id="Resource_jnrlm"]
+script = ExtResource("8_1mi0g")
+baseline_values = {
+"AFFECTION": 0.5,
+"ATTITUDE": 0.0,
+"FEAR": 0.0,
+"RESPECT": 0.0,
+"TEMPERAMENT": 0.0
+}
+metadata/_custom_type_script = "uid://d4extd2fjk4ob"
+
+[sub_resource type="Resource" id="Resource_8r3an"]
 script = ExtResource("4_0yde7")
 behaviors = Array[ExtResource("1_mdlmf")]([SubResource("Resource_yccte")])
+default_baseline = SubResource("Resource_dsgrx")
+damage_baseline = SubResource("Resource_paph5")
+entity_baselines = Dictionary[ExtResource("9_dsgrx"), ExtResource("8_1mi0g")]({
+ExtResource("10_dsgrx"): SubResource("Resource_jnrlm")
+})
 metadata/_custom_type_script = "uid://due8im487owbs"
 
 [resource]
 script = ExtResource("1_lhok0")
-behavior_profile = SubResource("Resource_1mi0g")
+behavior_profile = SubResource("Resource_8r3an")
+move_speed = 10.0
 entity_id = &"thief"
 display_name = "Thief"
 metadata/_custom_type_script = "uid://bkum3t6uspol8"

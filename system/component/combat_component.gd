@@ -221,6 +221,8 @@ func _on_combat_hit_detected(entity_node: EntityNode) -> void:
 	
 	var damage_package = DamagePackage.from_attack_entry(attack_entry)
 
+	damage_package.source_entity = entity
+
 	entity_node.receive_damage_package(damage_package)
 
 

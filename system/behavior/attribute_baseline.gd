@@ -1,12 +1,25 @@
 class_name AttributeBaseline extends Resource
 
 
-@export var attitude_baseline:= 0.0
+@export var baseline_values:= {
 
-@export var temperament_baseline:= 0.0
+	"ATTITUDE": 0.0,
 
-@export var fear_baseline:= 0.0
+	"TEMPERAMENT": 0.0,
 
-@export var affection_baseline:= 0.0
+	"FEAR": 0.0,
 
-@export var respect_baseline:= 0.0
+	"AFFECTION": 0.0,
+
+	"RESPECT": 0.0,
+
+}
+
+
+func get_value(attribute: Behavior.Attribute) -> float:
+
+	var attribute_name = Behavior.Attribute.keys()[attribute]
+
+	return baseline_values[attribute_name]
+
+		

@@ -39,6 +39,18 @@ func _execute(_blackboard: Blackboard) -> Result:
 
 
 
+func _cancel() -> void:
+
+	if idle_timer:
+
+		idle_timer.timeout.disconnect(_on_idle_timeout)
+
+	super()
+
+
+
+
+
 
 func _on_idle_timeout() -> void:
 
