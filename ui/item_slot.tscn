@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://bfmnwsqfdsatc"]
+
+[ext_resource type="Script" uid="uid://ca5ocenegh0q5" path="res://ui/item_slot.gd" id="1_m0q4r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lxngi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m0q4r"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6, 0.6, 0.6, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gpwhp"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.95596343, 0.9559633, 0.95596343, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rjkvc"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.39308554, 0.39308554, 0.39308533, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="ItemSlot" type="MarginContainer" unique_id=473208627 node_paths=PackedStringArray("linked_panel")]
+custom_minimum_size = Vector2(48, 48)
+mouse_filter = 0
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+script = ExtResource("1_m0q4r")
+linked_panel = NodePath("PanelContainer")
+select_enabled = true
+hover_enabled = true
+default_stylebox = SubResource("StyleBoxFlat_lxngi")
+hovered_stylebox = SubResource("StyleBoxFlat_m0q4r")
+selected_stylebox = SubResource("StyleBoxFlat_gpwhp")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2135732646]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rjkvc")

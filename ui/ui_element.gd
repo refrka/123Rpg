@@ -3,21 +3,7 @@ class_name UIElement extends Control
 
 
 
-var active:= false
-
-
-
-
-
-func _initialize() -> void:
-
-	pass
-
-
-
-
-
-
+var active:= true
 
 
 
@@ -31,9 +17,7 @@ func _activate() -> void:
 
 
 
+
 func _deactivate() -> void:
 
 	active = false
-
-
-

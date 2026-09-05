@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dhkdhvpja8b77"]
+
+[ext_resource type="Script" uid="uid://dkdbt354cvvtt" path="res://ui/inventory_grid.gd" id="1_3fxdd"]
+
+[node name="InventoryGrid" type="GridContainer" unique_id=1812371165]
+mouse_filter = 2
+columns = 3
+script = ExtResource("1_3fxdd")

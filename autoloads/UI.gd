@@ -134,3 +134,19 @@ func _unhandled_input(event: InputEvent) -> void:
 				var overlay = active_overlays.back()
 
 				deactivate_overlay(overlay.get_script())
+
+	if event.is_action_pressed("profile"):
+
+		if Game.is_active():
+
+			var overlay = get_overlay(ProfileOverlay)
+
+			if overlay.active:
+
+				deactivate_overlay(ProfileOverlay)
+
+			else:
+
+				if active_overlays.is_empty():
+
+					activate_overlay(ProfileOverlay)
