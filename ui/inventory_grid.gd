@@ -16,6 +16,14 @@ func load_inventory(_inventory: Inventory) -> void:
 
 	_resize(inventory.size)
 
+	for i in range(inventory.size):
+
+		var item_data = inventory.item_list[i]
+
+		var item_slot = get_child(i)
+
+		item_slot.load_item_data(item_data)
+
 
 
 
@@ -35,6 +43,12 @@ func _resize(_size: int) -> void:
 		slot.select_input_received.connect(_on_slot_select_input_received.bind(slot))
 
 		add_child(slot)
+
+
+
+
+
+
 
 
 
@@ -75,3 +89,31 @@ func _on_slot_select_input_received(slot: ItemSlot) -> void:
 				item_slot.set_select_state(false)
 
 		slot.set_select_state(true)
+
+
+
+
+
+
+
+
+
+
+func _activate() -> void:
+
+	super()
+
+	for child in get_children():
+
+		child._activate()
+
+
+
+
+func _deactivate() -> void:
+
+	super()
+
+	for child in get_children():
+
+		child._deactivate()

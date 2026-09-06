@@ -23,3 +23,28 @@ func _on_player_initialized(event: Event) -> void:
 
 	inventory_grid.load_inventory(player.inventory)
 
+
+
+
+
+
+
+
+
+
+
+
+
+func _activate() -> void:
+
+	super()
+
+	inventory_grid._activate()
+
+
+
+func _deactivate() -> void:
+
+	super()
+
+	inventory_grid._deactivate()

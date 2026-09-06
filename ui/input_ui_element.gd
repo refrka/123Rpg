@@ -33,14 +33,6 @@ func _ready() -> void:
 
 	_update_stylebox()
 
-	if hover_enabled:
-
-		_connect_hover()
-
-	if select_enabled:
-
-		_connect_select_input()
-
 	if input_group_name != &"":
 
 		add_to_group(input_group_name)

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://dw104wl4o0pb4"]
+
+[ext_resource type="Script" uid="uid://cpdljppo0cqe3" path="res://item/item_def.gd" id="1_ls3k6"]
+
+[resource]
+script = ExtResource("1_ls3k6")
+item_id = &"light_health_potion"
+display_name = "Light health potion"
+max_stack = 10
+metadata/_custom_type_script = "uid://cpdljppo0cqe3"

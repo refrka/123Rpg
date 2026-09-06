@@ -3,8 +3,6 @@
 [ext_resource type="Script" uid="uid://ca5ocenegh0q5" path="res://ui/item_slot.gd" id="1_m0q4r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lxngi"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m0q4r"]
 draw_center = false
 border_width_left = 2
 border_width_top = 2
@@ -12,8 +10,16 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.6, 0.6, 0.6, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m0q4r"]
+bg_color = Color(0.6, 0.6, 0.6, 0.07058824)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6, 0.6, 0.6, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gpwhp"]
-draw_center = false
+bg_color = Color(0.6, 0.6, 0.6, 0.07058824)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -38,7 +44,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[node name="ItemSlot" type="MarginContainer" unique_id=473208627 node_paths=PackedStringArray("linked_panel")]
+[node name="ItemSlot" type="MarginContainer" unique_id=473208627 node_paths=PackedStringArray("slot_texture", "slot_count_label", "linked_panel")]
 custom_minimum_size = Vector2(48, 48)
 mouse_filter = 0
 theme_override_constants/margin_left = 2
@@ -46,6 +52,8 @@ theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 script = ExtResource("1_m0q4r")
+slot_texture = NodePath("PanelContainer/MarginContainer/SlotTexture")
+slot_count_label = NodePath("PanelContainer/MarginContainer/SlotCountLabel")
 linked_panel = NodePath("PanelContainer")
 select_enabled = true
 hover_enabled = true
@@ -57,3 +65,19 @@ selected_stylebox = SubResource("StyleBoxFlat_gpwhp")
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rjkvc")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=76083233]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="SlotTexture" type="TextureRect" parent="PanelContainer/MarginContainer" unique_id=1038984980]
+layout_mode = 2
+
+[node name="SlotCountLabel" type="Label" parent="PanelContainer/MarginContainer" unique_id=123362751]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "99"
