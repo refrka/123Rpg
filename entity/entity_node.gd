@@ -136,11 +136,40 @@ func get_component(component_script: Script) -> Component:
 
 
 
+func is_interactable() -> bool:
+
+	for component in component_root.get_children():
+
+		if component is InteractableComponent:
+
+			return true
+
+	return false
+
+
+
+func is_busy() -> bool:
+
+	return state_machine.current_body_state is BodyBusyState
 
 
 
 
 
+
+
+
+
+
+func get_interactable_component() -> InteractableComponent:
+
+	for component in component_root.get_children():
+
+		if component is InteractableComponent:
+
+			return component
+
+	return null
 
 
 

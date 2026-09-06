@@ -8,20 +8,26 @@
 [ext_resource type="Script" uid="uid://bwq7g52j8dk61" path="res://system/state/state_machine.gd" id="9_8v4lx"]
 [ext_resource type="Script" uid="uid://t0gd6nmeqkif" path="res://system/state/body_idle_state.gd" id="10_4u2cn"]
 
-[node name="ObjectNode" type="StaticBody2D" unique_id=637575485 node_paths=PackedStringArray("component_root", "state_machine")]
+[node name="ObjectNode" type="StaticBody2D" unique_id=637575485 node_paths=PackedStringArray("component_root", "state_machine", "vision_sensor", "body_hurtbox")]
+y_sort_enabled = true
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_hlto5")
 component_root = NodePath("ComponentRoot")
 state_machine = NodePath("StateMachine")
+vision_sensor = NodePath("VisionSensor")
+body_hurtbox = NodePath("BodyHurtbox")
 
 [node name="VisualRoot" type="Node2D" parent="." unique_id=1081402819]
+y_sort_enabled = true
 
 [node name="BodyVisualRoot" type="Node2D" parent="VisualRoot" unique_id=86824929]
+y_sort_enabled = true
 
 [node name="BodySprite" type="AnimatedSprite2D" parent="VisualRoot/BodyVisualRoot" unique_id=613068804]
 
 [node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=1021961883]
+debug_color = Color(0, 0.2336402, 0.4857911, 0)
 
 [node name="VisionSensor" type="Area2D" parent="." unique_id=1925446894]
 script = ExtResource("1_qxpxj")
@@ -42,13 +48,17 @@ script = ExtResource("6_knbs7")
 [node name="EffectsComponent" type="Node" parent="ComponentRoot" unique_id=100061401]
 script = ExtResource("8_ud07a")
 
-[node name="StateMachine" type="Node" parent="." unique_id=1815478981 node_paths=PackedStringArray("body_root")]
+[node name="StateMachine" type="Node" parent="." unique_id=1815478981 node_paths=PackedStringArray("initial_body_state", "body_root", "combat_root")]
 script = ExtResource("9_8v4lx")
+initial_body_state = NodePath("BodyRoot/BodyIdleState")
 body_root = NodePath("BodyRoot")
+combat_root = NodePath("CombatRoot")
 
 [node name="BodyRoot" type="Node" parent="StateMachine" unique_id=798187377]
 
 [node name="BodyIdleState" type="Node" parent="StateMachine/BodyRoot" unique_id=1514645126]
 script = ExtResource("10_4u2cn")
+
+[node name="CombatRoot" type="Node" parent="StateMachine" unique_id=1851307046]
 
 [editable path="BodyHurtbox"]

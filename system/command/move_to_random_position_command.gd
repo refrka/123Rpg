@@ -52,8 +52,6 @@ func _cancel() -> void:
 
 func _on_navigation_finished() -> void:
 
-	print("fubusg")
-
 	_set_result(Result.SUCCESS)
 
 	command_executed.emit(self, result)

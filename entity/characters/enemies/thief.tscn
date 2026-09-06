@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bs86td7ogvkvn" path="res://item/inventory.gd" id="4_ghgwx"]
 [ext_resource type="Resource" uid="uid://dcr0jswv6by5n" path="res://item/equipment/weapons/melee/short_sword_def.tres" id="5_qsuqc"]
 [ext_resource type="Script" uid="uid://c6m2qonkgur2h" path="res://item/equipment_data.gd" id="6_pg8bi"]
+[ext_resource type="Script" uid="uid://rptsln3jgi3t" path="res://system/component/interactable_component.gd" id="8_ghgwx"]
 
 [sub_resource type="Resource" id="Resource_5on3h"]
 script = ExtResource("6_pg8bi")
@@ -70,6 +71,10 @@ shape = SubResource("RectangleShape2D_bqkhk")
 
 [node name="CenterMarker" parent="." index="5" unique_id=1102797740]
 position = Vector2(0, -11)
+
+[node name="InteractableComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1298652872) index="8" unique_id=1955839989]
+script = ExtResource("8_ghgwx")
+metadata/_custom_type_script = "uid://rptsln3jgi3t"
 
 [editable path="VisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox"]
 [editable path="BodyHurtbox"]

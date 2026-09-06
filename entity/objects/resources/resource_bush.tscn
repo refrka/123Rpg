@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://oqlfj2v8q7sm"]
+
+[ext_resource type="PackedScene" uid="uid://bw1vvit1jn5sg" path="res://entity/resource_node.tscn" id="1_w02n3"]
+[ext_resource type="Script" uid="uid://bejgxucx3qnl3" path="res://entity/resource_def.gd" id="2_ourmy"]
+[ext_resource type="Script" uid="uid://b1eymgblf0vy0" path="res://entity/resource_config.gd" id="2_x464m"]
+[ext_resource type="Texture2D" uid="uid://ca0xl6jok5wqs" path="res://entity/objects/resources/resource_bush_sprite.png" id="3_ourmy"]
+[ext_resource type="Script" uid="uid://bp43pditgdclj" path="res://ui/interaction_progress_bar.gd" id="5_su2t8"]
+
+[sub_resource type="Resource" id="Resource_ourmy"]
+script = ExtResource("2_x464m")
+interact_duration = 0.9
+
+[sub_resource type="Resource" id="Resource_hlto5"]
+script = ExtResource("2_ourmy")
+resource_config = SubResource("Resource_ourmy")
+entity_id = &"resource_bush"
+display_name = "Resource bush"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x464m"]
+atlas = ExtResource("3_ourmy")
+region = Rect2(0, 0, 29, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ourmy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x464m")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nv6xm"]
+radius = 5.0
+height = 24.0
+
+[node name="ResourceBush" unique_id=637575485 instance=ExtResource("1_w02n3")]
+entity_def = SubResource("Resource_hlto5")
+
+[node name="BodySprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(86824929) index="0" unique_id=613068804]
+position = Vector2(0, -15)
+sprite_frames = SubResource("SpriteFrames_ourmy")
+
+[node name="BodyCollision" parent="." index="1" unique_id=1021961883]
+position = Vector2(0, -5)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_nv6xm")
+
+[node name="ResourceComponent" parent="ComponentRoot" parent_id_path=PackedInt32Array(1707679954) index="2" unique_id=1295596735 node_paths=PackedStringArray("progress_bar")]
+progress_bar = NodePath("../../InteractionProgressBar")
+
+[node name="InteractionProgressBar" type="ProgressBar" parent="." index="6" unique_id=951771015]
+visible = false
+custom_minimum_size = Vector2(50, 0)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -25.0
+offset_right = 25.0
+offset_bottom = 12.0
+grow_horizontal = 2
+script = ExtResource("5_su2t8")
+
+[editable path="BodyHurtbox"]

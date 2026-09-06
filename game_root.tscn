@@ -8,8 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://bvr6nqochobhy" path="res://ui/behavior_overlay.tscn" id="3_wd1uf"]
 [ext_resource type="PackedScene" uid="uid://tx1lnuejx2fm" path="res://ui/profile_overlay.tscn" id="4_ledqy"]
 
-[node name="GameRoot" type="Node" unique_id=1688041711]
+[node name="GameRoot" type="Node" unique_id=1688041711 node_paths=PackedStringArray("location")]
 script = ExtResource("1_pjpa4")
+location = NodePath("WorldCanvas/WorldRoot/Location")
 
 [node name="WorldCanvas" type="CanvasLayer" parent="." unique_id=1962273433]
 

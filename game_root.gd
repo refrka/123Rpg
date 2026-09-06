@@ -1,25 +1,12 @@
 extends Node
 
+@export var location: Location
 
 
 func _ready() -> void:
 
-	var player = load("res://player/player.tscn").instantiate()
+	for entity in location.ysort_root.get_children():
 
-	var thief = load("res://entity/characters/enemies/thief.tscn").instantiate()
+		entity._initialize()
 
-	var location = Scenes.get_location()
-
-	location.add_entity_node(player, Vector2(200.0, 200.0))
-
-	location.add_entity_node(thief, Vector2(400.0, 200.0))
-
-	player._initialize()
-
-	player._activate()
-
-	thief._initialize()
-
-	Debug.load_entity_behavior(thief)
-
-	thief._activate()
+		entity._activate()

@@ -5,6 +5,10 @@ signal attack_pressed
 
 signal attack_released
 
+signal interact_pressed
+
+signal interact_released
+
 
 
 
@@ -52,6 +56,13 @@ func _unhandled_input(event: InputEvent) -> void:
 
 		attack_released.emit()
 
+	if event.is_action_pressed("interact"):
+
+		interact_pressed.emit()
+
+	if event.is_action_released("interact"):
+
+		interact_released.emit()
 
 
 

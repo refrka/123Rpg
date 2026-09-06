@@ -66,7 +66,7 @@ func set_face_dir(dir: Vector2) -> void:
 
 func _physics_process(delta: float) -> void:
 
-	if !active:
+	if !active or entity.is_busy():
 
 		return
 

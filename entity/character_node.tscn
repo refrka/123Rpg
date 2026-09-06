@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bwq7g52j8dk61" path="res://system/state/state_machine.gd" id="5_jg2qq"]
 [ext_resource type="Script" uid="uid://l42xar04t01" path="res://system/component/movement_component.gd" id="5_pgotb"]
 [ext_resource type="Script" uid="uid://crnnq4ahqtcv3" path="res://system/component/behavior_component.gd" id="6_0hq70"]
+[ext_resource type="Script" uid="uid://c85qr7vkxjpli" path="res://system/sensor/interaction_sensor.gd" id="6_dgn7c"]
 [ext_resource type="Script" uid="uid://b3q8vdqgq8oib" path="res://system/component/combat_component.gd" id="7_22lai"]
 [ext_resource type="Script" uid="uid://ce5sc78pccbjh" path="res://system/component/health_component.gd" id="8_8mhx1"]
 [ext_resource type="Script" uid="uid://bcfls24p4qdwo" path="res://system/component/interaction_component.gd" id="9_udydy"]
@@ -18,6 +19,7 @@
 [ext_resource type="Script" uid="uid://t0gd6nmeqkif" path="res://system/state/body_idle_state.gd" id="12_udydy"]
 [ext_resource type="Script" uid="uid://cppg1aowcd1hc" path="res://system/state/combat_ready_state.gd" id="15_cku0k"]
 [ext_resource type="Script" uid="uid://bcu4i16r7mx4o" path="res://system/state/combat_attacking_state.gd" id="16_hv6ro"]
+[ext_resource type="Script" uid="uid://diqawhqdf7cvv" path="res://system/state/body_interacting_state.gd" id="17_dsukw"]
 
 [sub_resource type="Animation" id="Animation_dgn7c"]
 length = 0.001
@@ -264,9 +266,10 @@ debug_color = Color(0.5661667, 0.79, 0, 0)
 [node name="InteractionSensor" type="Area2D" parent="." unique_id=835967870]
 collision_layer = 0
 collision_mask = 3
-script = ExtResource("2_mbyps")
+script = ExtResource("6_dgn7c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionSensor" unique_id=1415403427]
+debug_color = Color(0.7, 0.40833336, 0, 0.03137255)
 
 [node name="CenterMarker" type="Marker2D" parent="." unique_id=1102797740]
 
@@ -317,6 +320,9 @@ combat_root = NodePath("CombatRoot")
 
 [node name="BodyIdleState" type="Node" parent="StateMachine/BodyRoot" unique_id=1981698377]
 script = ExtResource("12_udydy")
+
+[node name="BodyInteractingState" type="Node" parent="StateMachine/BodyRoot" unique_id=1072967043]
+script = ExtResource("17_dsukw")
 
 [node name="CombatRoot" type="Node" parent="StateMachine" unique_id=822405411]
 
