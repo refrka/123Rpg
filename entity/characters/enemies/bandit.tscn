@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://dkpwr74wloe6s"]
+
+[ext_resource type="PackedScene" uid="uid://bcb5k64hx4wh8" path="res://entity/character_node.tscn" id="1_iayho"]
+[ext_resource type="Resource" uid="uid://c6gaxut4iywue" path="res://entity/characters/enemies/bandit_def.tres" id="2_nx6jw"]
+[ext_resource type="Texture2D" uid="uid://dorcf00p380ft" path="res://entity/characters/enemies/bandit_sprite.png" id="2_ub2v2"]
+[ext_resource type="Script" uid="uid://rptsln3jgi3t" path="res://system/component/interactable_component.gd" id="4_uw5eg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nx6jw"]
+atlas = ExtResource("2_ub2v2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ub2v2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nx6jw")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nx6jw"]
+radius = 5.0
+height = 18.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nx6jw"]
+radius = 125.016
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ub2v2"]
+size = Vector2(18, 26)
+
+[node name="Bandit" unique_id=1179065956 instance=ExtResource("1_iayho")]
+entity_def = ExtResource("2_nx6jw")
+
+[node name="BodySprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="0" unique_id=1518069600]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_ub2v2")
+
+[node name="CombatSprite" parent="VisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(1666789074) index="0" unique_id=1245738592]
+position = Vector2(0, 0)
+
+[node name="BodyCollision" parent="." index="1" unique_id=1637569305]
+position = Vector2(0, -5)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_nx6jw")
+
+[node name="CollisionShape2D" parent="VisionSensor" parent_id_path=PackedInt32Array(1364341677) index="0" unique_id=1241352674]
+shape = SubResource("CircleShape2D_nx6jw")
+
+[node name="CollisionShape2D" parent="BodyHurtbox" parent_id_path=PackedInt32Array(869768629) index="0" unique_id=248750470]
+position = Vector2(0, -13)
+shape = SubResource("RectangleShape2D_ub2v2")
+
+[node name="InteractableComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1298652872) index="8" unique_id=1616986966]
+script = ExtResource("4_uw5eg")
+metadata/_custom_type_script = "uid://rptsln3jgi3t"
+
+[editable path="VisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox"]
+[editable path="BodyHurtbox"]

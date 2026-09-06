@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CharacterDef" format=3 uid="uid://c6gaxut4iywue"]
+
+[ext_resource type="Script" uid="uid://bkum3t6uspol8" path="res://entity/character_def.gd" id="1_nmy8h"]
+[ext_resource type="Script" uid="uid://bkpp3kbsa48gg" path="res://system/behavior/behavior.gd" id="1_q8xwr"]
+[ext_resource type="Script" uid="uid://cowmr2asnpoj2" path="res://entity/entity_def.gd" id="2_ujca4"]
+[ext_resource type="Script" uid="uid://d4extd2fjk4ob" path="res://system/behavior/attribute_baseline.gd" id="3_dbuqc"]
+[ext_resource type="Script" uid="uid://due8im487owbs" path="res://system/behavior/behavior_profile.gd" id="4_dfkjx"]
+
+[sub_resource type="Resource" id="Resource_q8xwr"]
+script = ExtResource("3_dbuqc")
+metadata/_custom_type_script = "uid://d4extd2fjk4ob"
+
+[sub_resource type="Resource" id="Resource_gcmsa"]
+script = ExtResource("3_dbuqc")
+metadata/_custom_type_script = "uid://d4extd2fjk4ob"
+
+[sub_resource type="Resource" id="Resource_nmy8h"]
+script = ExtResource("4_dfkjx")
+default_baseline = SubResource("Resource_gcmsa")
+damage_baseline = SubResource("Resource_q8xwr")
+metadata/_custom_type_script = "uid://due8im487owbs"
+
+[resource]
+script = ExtResource("1_nmy8h")
+behavior_profile = SubResource("Resource_nmy8h")
+entity_id = &"bandit"
+display_name = "Bandit"
+metadata/_custom_type_script = "uid://bkum3t6uspol8"
