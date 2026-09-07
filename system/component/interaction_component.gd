@@ -1,17 +1,14 @@
 class_name InteractionComponent extends Component
 
 
-signal interaction_complete
-
-
-
-var target_interactable_entity: EntityNode
-
-var target_interactable_component: InteractableComponent
-
 
 
 var current_interaction: Interaction
+
+
+
+
+
 
 
 
@@ -20,66 +17,27 @@ func _initialize(_entity: EntityNode) -> void:
 
 	super(_entity)
 
+	var input_component = entity.get_component(InputComponent)
+
+	if input_component:
+
+		input_component.interact_pressed.connect(_on_interact_pressed)
+
+		input_component.interact_released.connect(_on_interact_released)
 
 
 
 
 
-func _start_interaction(target_entity: EntityNode) -> void:
 
-	_set_target_interactable(target_entity)
+func get_interaction_status() -> Interaction.Status:
 
-	current_interaction = Interaction.start(self, target_interactable_component)
+	if current_interaction:
 
-	current_interaction.interaction_ended.connect(_on_interaction_ended)
+		return current_interaction.status
 
-	current_interaction.interaction_complete.connect(_on_interaction_complete)
+	return Interaction.Status.INACTIVE
 
-	current_interaction.interactable_component._start(entity)
-
-
-
-
-
-func _end_interaction() -> void:
-
-	current_interaction.interactable_component._end()
-
-	current_interaction = null
-
-	target_interactable_entity = null
-
-	target_interactable_component = null
-
-
-
-
-func _complete_interaction() -> void:
-
-	target_interactable_component._complete()
-
-	_end_interaction()
-
-	interaction_complete.emit()
-
-
-
-
-func _cancel_interaction() -> void:
-
-	target_interactable_component._cancel()
-
-	_end_interaction()
-
-
-
-
-
-func _set_target_interactable(entity_node: EntityNode) -> void:
-
-	target_interactable_entity = entity_node
-
-	target_interactable_component = entity_node.get_interactable_component()
 
 
 
@@ -99,20 +57,63 @@ func _can_interact(target_entity: EntityNode) -> bool:
 
 
 
+func _start_interaction(target_entity: EntityNode) -> void:
+
+	if current_interaction:
+
+		_end_interaction()
+
+	current_interaction = Interaction.start_new(entity, target_entity)
+
+	
 
 
 
-func _on_interaction_complete() -> void:
-
-	print("interaction complete")
-
-	_complete_interaction()
 
 
 
-func _on_interaction_ended() -> void:
+func _end_interaction() -> void:
+
+	match current_interaction.status:
+
+		Interaction.Status.PENDING:
+
+			current_interaction.set_status(Interaction.Status.CANCELLED)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+func _on_interact_pressed() -> void:
 
 	pass
+
+
+
+func _on_interact_released() -> void:
+
+	pass
+
+
+
+
+
+
+
+
 
 
 
@@ -123,10 +124,6 @@ func _physics_process(delta: float) -> void:
 
 		return
 
-	if current_interaction and current_interaction.interaction_timer > 0.0:
+	if get_interaction_status() == Interaction.Status.PENDING:
 
-		current_interaction.interaction_timer -= delta
-
-		if current_interaction.interaction_timer <= 0.0:
-
-			_complete_interaction()
+		current_interaction.tick(delta)

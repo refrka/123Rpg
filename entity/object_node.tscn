@@ -22,12 +22,13 @@ state_machine = NodePath("StateMachine")
 [node name="BodySprite" type="AnimatedSprite2D" parent="VisualRoot/BodyVisualRoot" unique_id=613068804]
 
 [node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=1021961883]
+debug_color = Color(0.12565511, 0.5359635, 0.9999501, 0)
 
 [node name="VisionSensor" type="Area2D" parent="." unique_id=1925446894]
 script = ExtResource("1_qxpxj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisionSensor" unique_id=1088924322]
-debug_color = Color(0.76, 0.76, 0.76, 0)
+debug_color = Color(0.7607843, 0.7607843, 0.7607843, 0)
 
 [node name="BodyHurtbox" parent="." unique_id=869768629 instance=ExtResource("2_f1sxq")]
 
@@ -42,13 +43,17 @@ script = ExtResource("6_knbs7")
 [node name="EffectsComponent" type="Node" parent="ComponentRoot" unique_id=100061401]
 script = ExtResource("8_ud07a")
 
-[node name="StateMachine" type="Node" parent="." unique_id=1815478981 node_paths=PackedStringArray("body_root")]
+[node name="StateMachine" type="Node" parent="." unique_id=1815478981 node_paths=PackedStringArray("initial_body_state", "body_root", "combat_root")]
 script = ExtResource("9_8v4lx")
+initial_body_state = NodePath("BodyRoot/BodyIdleState")
 body_root = NodePath("BodyRoot")
+combat_root = NodePath("CombatRoot")
 
 [node name="BodyRoot" type="Node" parent="StateMachine" unique_id=798187377]
 
 [node name="BodyIdleState" type="Node" parent="StateMachine/BodyRoot" unique_id=1514645126]
 script = ExtResource("10_4u2cn")
+
+[node name="CombatRoot" type="Node" parent="StateMachine" unique_id=964602283]
 
 [editable path="BodyHurtbox"]

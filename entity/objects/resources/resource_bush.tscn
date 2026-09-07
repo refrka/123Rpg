@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://oqlfj2v8q7sm"]
+
+[ext_resource type="PackedScene" uid="uid://7d00yyc7h186" path="res://entity/resource_node.tscn" id="1_w02n3"]
+[ext_resource type="Texture2D" uid="uid://bti6amyxn84ob" path="res://entity/objects/resources/resource_bush.png" id="2_qtjxt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ourmy"]
+atlas = ExtResource("2_qtjxt")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w02n3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ourmy")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qtjxt"]
+radius = 13.038404
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ourmy"]
+radius = 21.023796
+
+[node name="ResourceBush" unique_id=637575485 instance=ExtResource("1_w02n3")]
+
+[node name="BodySprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(86824929) index="0" unique_id=613068804]
+position = Vector2(0, -23)
+sprite_frames = SubResource("SpriteFrames_w02n3")
+
+[node name="BodyCollision" parent="." index="1" unique_id=1021961883]
+position = Vector2(0, -7)
+rotation = 1.5707964
+shape = SubResource("CircleShape2D_qtjxt")
+
+[node name="CollisionShape2D" parent="VisionSensor" parent_id_path=PackedInt32Array(1925446894) index="0" unique_id=1088924322]
+debug_color = Color(0.76, 0.76, 0.76, 0)
+
+[node name="CollisionShape2D" parent="BodyHurtbox" parent_id_path=PackedInt32Array(869768629) index="0" unique_id=248750470]
+position = Vector2(0, -21)
+shape = SubResource("CircleShape2D_ourmy")
+
+[editable path="BodyHurtbox"]

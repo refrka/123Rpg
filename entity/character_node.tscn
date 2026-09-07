@@ -46,7 +46,7 @@ debug_color = Color(1, 0, 0.1833334, 0.03137255)
 root_node = NodePath("../CombatSprite")
 
 [node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=1637569305]
-debug_color = Color(0, 0.2336402, 0.4857911, 0)
+debug_color = Color(0.12565511, 0.5359635, 0.9999501, 0)
 
 [node name="VisionSensor" type="Area2D" parent="." unique_id=1364341677]
 script = ExtResource("2_mbyps")

@@ -1,47 +1,75 @@
 class_name Interaction extends RefCounted
 
 
-signal interaction_ended
-
-signal interaction_complete
+signal completed
 
 
-var interaction_component: InteractionComponent
+enum Status {
 
-var interactable_component: InteractableComponent
+	INACTIVE,
 
-var interaction_timer:= 0.0
+	ACTIVE,
+
+	PENDING,
+
+	COMPLETE,
+
+	CANCELLED,
+
+}
+
+
+# Types:
+
+# - Instant (flip a switch)
+# - Duration (harvest a plant)
+# - Toggle (open/close dialogue or container)
+
+
+
+var actor: EntityNode
+
+var target_entity: EntityNode
+
+var status: Status
+
+var timer:= 0.0
 
 
 
 
+func set_status(_status: Status) -> void:
+
+	status = _status
+
+	if status == Status.COMPLETE:
+
+		completed.emit()
 
 
-static func start(_interaction_component: InteractionComponent, _interactable_component: InteractableComponent) -> Interaction:
+
+func tick(delta: float) -> void:
+
+	timer -= delta
+
+	if timer <= 0.0:
+
+		set_status(Status.COMPLETE)
+
+
+
+static func start_new(_actor: EntityNode, _target_entity: EntityNode) -> Interaction:
 
 	var interaction = Interaction.new()
 
-	interaction.interaction_component = _interaction_component
+	interaction.actor = _actor
 
-	interaction.interactable_component = _interactable_component
+	interaction.target_entity = _target_entity
 
-	interaction.interactable_component.interaction_complete.connect(interaction._on_interaction_complete, CONNECT_ONE_SHOT)
+	interaction.set_status(Status.ACTIVE)
 
-	interaction.interaction_timer = _interactable_component._get_duration()
+	var interactable_component = interaction.target_entity.get_interactable_component()
+
+	interaction.timer = interactable_component._get_duration()
 
 	return interaction
-
-
-
-
-func end() -> void:
-
-	interaction_ended.emit()
-
-
-
-
-
-func _on_interaction_complete() -> void:
-
-	interaction_complete.emit()

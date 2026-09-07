@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d3v01cnw30pli" path="res://player/player.tscn" id="2_tm4m8"]
 [ext_resource type="PackedScene" uid="uid://cl0n4dxbs3gfe" path="res://entity/characters/enemies/thief.tscn" id="3_3qwiq"]
 [ext_resource type="PackedScene" uid="uid://jxypldpaok2p" path="res://entity/characters/enemies/bandit.tscn" id="5_3qwiq"]
+[ext_resource type="PackedScene" uid="uid://oqlfj2v8q7sm" path="res://entity/objects/resources/resource_bush.tscn" id="5_jbmeb"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_me77t"]
 vertices = PackedVector2Array(664.71094, 363.15625, -1.0703125, 373.82813, -3.921875, -7.1015625, 654.27344, -13.890625)
@@ -26,6 +27,9 @@ position = Vector2(335, 143)
 
 [node name="Bandit" parent="YSortRoot" unique_id=756126760 instance=ExtResource("5_3qwiq")]
 position = Vector2(361, 146)
+
+[node name="ResourceBush" parent="YSortRoot" unique_id=637575485 instance=ExtResource("5_jbmeb")]
+position = Vector2(390, 316)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1121169985]
 

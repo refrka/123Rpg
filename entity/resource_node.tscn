@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://7d00yyc7h186"]
 
 [ext_resource type="PackedScene" uid="uid://ce7h7pou0v67x" path="res://entity/object_node.tscn" id="1_53o7a"]
+[ext_resource type="Script" uid="uid://1s0q2q38f1q4" path="res://system/component/resource_component.gd" id="2_2my28"]
 
 [node name="ResourceNode" unique_id=637575485 instance=ExtResource("1_53o7a")]
+
+[node name="ResourceComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1707679954) index="2" unique_id=1759899807]
+script = ExtResource("2_2my28")
 
 [editable path="BodyHurtbox"]
