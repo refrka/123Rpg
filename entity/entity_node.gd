@@ -9,6 +9,8 @@
 
 @export var inventory: Inventory
 
+@export var body_sprite: AnimatedSprite2D
+
 @export var component_root: Node
 
 @export var state_machine: StateMachine
@@ -52,14 +54,6 @@ func _initialize() -> void:
 
 		inventory.initialize()
 
-	for component in component_root.get_children():
-
-		component._initialize(self)
-
-	if state_machine:
-
-		state_machine._initialize(self)
-
 	if vision_sensor:
 
 		vision_sensor.initialize(self)
@@ -75,6 +69,14 @@ func _initialize() -> void:
 	if combat_hitbox:
 
 		combat_hitbox.initialize(self)
+
+	for component in component_root.get_children():
+
+		component._initialize(self)
+
+	if state_machine:
+
+		state_machine._initialize(self)
 
 
 
@@ -186,14 +188,6 @@ func _activate() -> void:
 
 	active = true
 
-	for component in component_root.get_children():
-
-		component._activate()
-
-	if state_machine:
-
-		state_machine._activate()
-
 	if vision_sensor:
 
 		vision_sensor.activate()
@@ -209,6 +203,14 @@ func _activate() -> void:
 	if combat_hitbox:
 
 		combat_hitbox.activate()
+
+	for component in component_root.get_children():
+
+		component._activate.call_deferred()
+
+	if state_machine:
+
+		state_machine._activate.call_deferred()
 
 
 

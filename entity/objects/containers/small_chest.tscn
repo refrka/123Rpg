@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://t81hf3p6dau5"]
+
+[ext_resource type="PackedScene" uid="uid://chfcse8y6hj1i" path="res://entity/container_node.tscn" id="1_dty4y"]
+[ext_resource type="Resource" uid="uid://dtv7u0bq2h7da" path="res://entity/objects/containers/small_chest_def.tres" id="2_1i77j"]
+[ext_resource type="Texture2D" uid="uid://b8ipyy3w22moq" path="res://entity/objects/containers/small_chest_sprite.png" id="3_l7702"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nfnh"]
+atlas = ExtResource("3_l7702")
+region = Rect2(0, 0, 28, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1i77j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4nfnh")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7a4lk"]
+size = Vector2(24, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l7702"]
+size = Vector2(24, 20)
+
+[node name="SmallChest" unique_id=637575485 instance=ExtResource("1_dty4y")]
+entity_def = ExtResource("2_1i77j")
+
+[node name="BodySprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(86824929) index="0" unique_id=613068804]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_1i77j")
+
+[node name="BodyCollision" parent="." index="1" unique_id=1021961883]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_7a4lk")
+
+[node name="CollisionShape2D" parent="BodyHurtbox" parent_id_path=PackedInt32Array(869768629) index="0" unique_id=248750470]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_l7702")
+
+[editable path="BodyHurtbox"]

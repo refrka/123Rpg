@@ -54,6 +54,12 @@ func activate() -> void:
 
 	_connect_signals()
 
+	for body in get_overlapping_bodies():
+
+		if body is EntityNode and body != entity:
+
+			entities.append(body)
+
 
 
 

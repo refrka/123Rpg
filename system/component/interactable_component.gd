@@ -25,7 +25,7 @@ func _initialize(_entity: EntityNode) -> void:
 
 
 
-func _start_interacting() -> bool:
+func  _start_interacting() -> bool:
 
 	entity.state_machine.request_state(BodyInteractingState)
 
@@ -49,6 +49,22 @@ func _end_interacting() -> bool:
 func _complete_interacting() -> bool:
 
 	return true
+
+
+
+
+
+
+
+func _load_ui() -> void:
+
+	pass
+
+
+func _unload_ui() -> void:
+
+	pass
+
 
 
 

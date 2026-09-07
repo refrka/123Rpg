@@ -23,7 +23,7 @@ func _execute(_blackboard: Blackboard) -> Result:
 
 	var distance = randf_range(distance_range.x, distance_range.y)
 
-	navigation_component.set_target_position(actor.global_position + dir * distance)
+	navigation_component.set_target_position(actor.global_position + (dir * distance))
 
 	_set_result(Result.PENDING)
 
@@ -51,6 +51,8 @@ func _cancel() -> void:
 
 
 func _on_navigation_finished() -> void:
+
+	print("nav finished")
 
 	_set_result(Result.SUCCESS)
 

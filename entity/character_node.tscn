@@ -209,11 +209,12 @@ _data = {
 &"attack_0": SubResource("Animation_hv6ro")
 }
 
-[node name="CharacterNode" type="CharacterBody2D" unique_id=1179065956 node_paths=PackedStringArray("component_root", "state_machine", "vision_sensor", "interaction_sensor", "body_hurtbox", "combat_hitbox")]
+[node name="CharacterNode" type="CharacterBody2D" unique_id=1179065956 node_paths=PackedStringArray("body_sprite", "component_root", "state_machine", "vision_sensor", "interaction_sensor", "body_hurtbox", "combat_hitbox")]
 y_sort_enabled = true
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_ufg3e")
+body_sprite = NodePath("VisualRoot/BodyVisualRoot/BodySprite")
 component_root = NodePath("ComponentRoot")
 state_machine = NodePath("StateMachine")
 vision_sensor = NodePath("VisionSensor")
@@ -225,12 +226,10 @@ combat_hitbox = NodePath("VisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox"
 y_sort_enabled = true
 
 [node name="BodyVisualRoot" type="Node2D" parent="VisualRoot" unique_id=312874977]
-y_sort_enabled = true
 
 [node name="BodySprite" type="AnimatedSprite2D" parent="VisualRoot/BodyVisualRoot" unique_id=1518069600]
 
 [node name="CombatVisualRoot" type="Node2D" parent="VisualRoot" unique_id=1666789074]
-y_sort_enabled = true
 
 [node name="CombatSprite" type="Sprite2D" parent="VisualRoot/CombatVisualRoot" unique_id=1245738592]
 visible = false
@@ -311,8 +310,10 @@ script = ExtResource("12_hv6ro")
 combat_anim_player = NodePath("../../VisualRoot/CombatVisualRoot/CombatAnimationPlayer")
 metadata/_custom_type_script = "uid://diloxmtd8fr1m"
 
-[node name="StateMachine" type="Node" parent="." unique_id=873685549 node_paths=PackedStringArray("body_root", "combat_root")]
+[node name="StateMachine" type="Node" parent="." unique_id=873685549 node_paths=PackedStringArray("initial_body_state", "initial_combat_state", "body_root", "combat_root")]
 script = ExtResource("5_jg2qq")
+initial_body_state = NodePath("BodyRoot/BodyIdleState")
+initial_combat_state = NodePath("CombatRoot/CombatIdleState")
 body_root = NodePath("BodyRoot")
 combat_root = NodePath("CombatRoot")
 

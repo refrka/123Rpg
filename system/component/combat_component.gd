@@ -95,6 +95,16 @@ func _handle_attack_input(pressed: bool) -> void:
 
 
 
+func _enter_combat() -> void:
+
+	entity.state_machine.request_state(CombatReadyState)
+
+	var blackboard = Blackboard.new()
+
+	blackboard.set_value("entity", entity)
+
+	Events.fire(EntityEnteredCombatEvent, blackboard)
+
 
 
 
@@ -103,6 +113,10 @@ func _handle_attack_input(pressed: bool) -> void:
 
 
 func _try_attack() -> void:
+
+	if !_is_in_combat():
+
+		_enter_combat()
 
 	_start_attack()
 
@@ -184,7 +198,9 @@ func _get_attack_dir() -> Vector2:
 
 
 
+func _is_in_combat() -> bool:
 
+	return not entity.state_machine.current_combat_state is CombatIdleState
 
 
 func _is_attacking() -> bool:

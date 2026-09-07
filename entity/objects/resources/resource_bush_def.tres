@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ResourceDef" format=3 uid="uid://c2kn06j1b1ggj"]
+
+[ext_resource type="Script" uid="uid://b1eymgblf0vy0" path="res://entity/resource_config.gd" id="1_ugnf1"]
+[ext_resource type="Script" uid="uid://bejgxucx3qnl3" path="res://entity/resource_def.gd" id="2_bctts"]
+
+[sub_resource type="Resource" id="Resource_ourmy"]
+script = ExtResource("1_ugnf1")
+interact_duration = 0.9
+
+[resource]
+script = ExtResource("2_bctts")
+resource_config = SubResource("Resource_ourmy")
+entity_id = &"resource_bush"
+display_name = "Resource bush"

@@ -56,10 +56,6 @@ func _complete_interacting() -> bool:
 
 	super()
 
-	# Dip into config for items to drop
-
-	interaction_complete.emit()
-
 	return true
 
 
@@ -96,4 +92,4 @@ func _process(delta: float) -> void:
 
 		if interact_timer <= 0.0:
 
-			_complete_interacting()
+			interaction_complete.emit()

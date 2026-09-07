@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://c1ab0ojesdubb" path="res://system/state/body_moving_state.gd" id="5_qjkh3"]
 [ext_resource type="Resource" uid="uid://dcr0jswv6by5n" path="res://item/equipment/weapons/melee/short_sword_def.tres" id="6_8t03j"]
 [ext_resource type="Script" uid="uid://c6m2qonkgur2h" path="res://item/equipment_data.gd" id="6_hg6s5"]
+[ext_resource type="Script" uid="uid://rptsln3jgi3t" path="res://system/component/interactable_component.gd" id="10_2ieo8"]
 
 [sub_resource type="Resource" id="Resource_8gxew"]
 script = ExtResource("6_hg6s5")
@@ -87,9 +88,9 @@ position = Vector2(0, -14)
 [node name="InputComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1298652872) index="6" unique_id=1505771537]
 script = ExtResource("2_rkbax")
 
-[node name="StateMachine" parent="." index="8" unique_id=873685549 node_paths=PackedStringArray("initial_body_state", "initial_combat_state")]
-initial_body_state = NodePath("BodyRoot/BodyIdleState")
-initial_combat_state = NodePath("CombatRoot/CombatIdleState")
+[node name="InteractableComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1298652872) index="9" unique_id=1731137825]
+script = ExtResource("10_2ieo8")
+metadata/_custom_type_script = "uid://rptsln3jgi3t"
 
 [node name="BodyMovingState" type="Node" parent="StateMachine/BodyRoot" parent_id_path=PackedInt32Array(1947284531) index="1" unique_id=1193616849]
 script = ExtResource("5_qjkh3")

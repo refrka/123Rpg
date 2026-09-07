@@ -30,6 +30,9 @@ radius = 125.016
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ub2v2"]
 size = Vector2(18, 26)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_cmfsp"]
+radius = 20.0
+
 [node name="Bandit" unique_id=1179065956 instance=ExtResource("1_iayho")]
 entity_def = ExtResource("2_nx6jw")
 
@@ -38,7 +41,7 @@ position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_ub2v2")
 
 [node name="CombatSprite" parent="VisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(1666789074) index="0" unique_id=1245738592]
-position = Vector2(0, 0)
+position = Vector2(0, -11)
 
 [node name="BodyCollision" parent="." index="1" unique_id=1637569305]
 position = Vector2(0, -5)
@@ -51,6 +54,15 @@ shape = SubResource("CircleShape2D_nx6jw")
 [node name="CollisionShape2D" parent="BodyHurtbox" parent_id_path=PackedInt32Array(869768629) index="0" unique_id=248750470]
 position = Vector2(0, -13)
 shape = SubResource("RectangleShape2D_ub2v2")
+
+[node name="InteractionSensor" parent="." index="4" unique_id=835967870]
+position = Vector2(0, -11)
+
+[node name="CollisionShape2D" parent="InteractionSensor" index="0" unique_id=1415403427]
+shape = SubResource("CircleShape2D_cmfsp")
+
+[node name="CenterMarker" parent="." index="5" unique_id=1102797740]
+position = Vector2(0, -11)
 
 [node name="InteractableComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1298652872) index="8" unique_id=1616986966]
 script = ExtResource("4_uw5eg")

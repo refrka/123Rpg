@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://caaihxl625mc5"]
 
 [ext_resource type="Script" uid="uid://i7oifgyecu33" path="res://location/location.gd" id="1_b5lvo"]
-[ext_resource type="PackedScene" uid="uid://d3v01cnw30pli" path="res://player/player.tscn" id="2_tm4m8"]
 [ext_resource type="PackedScene" uid="uid://cl0n4dxbs3gfe" path="res://entity/characters/enemies/thief.tscn" id="3_3qwiq"]
 [ext_resource type="PackedScene" uid="uid://oqlfj2v8q7sm" path="res://entity/objects/resources/resource_bush.tscn" id="4_jbmeb"]
-[ext_resource type="PackedScene" uid="uid://dkpwr74wloe6s" path="res://entity/characters/enemies/bandit.tscn" id="5_3qwiq"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_me77t"]
 vertices = PackedVector2Array(664.71094, 363.15625, -1.0703125, 373.82813, -3.921875, -7.1015625, 654.27344, -13.890625)
@@ -19,17 +17,26 @@ metadata/_custom_type_script = "uid://i7oifgyecu33"
 [node name="YSortRoot" type="Node2D" parent="." unique_id=546240414]
 y_sort_enabled = true
 
-[node name="Player" parent="YSortRoot" unique_id=1179065956 instance=ExtResource("2_tm4m8")]
-position = Vector2(210, 166)
-
 [node name="Thief" parent="YSortRoot" unique_id=116620531 instance=ExtResource("3_3qwiq")]
-position = Vector2(402, 178)
+position = Vector2(520, 231)
 
 [node name="ResourceBush" parent="YSortRoot" unique_id=637575485 instance=ExtResource("4_jbmeb")]
 position = Vector2(314, 247)
 
-[node name="Bandit" parent="YSortRoot" unique_id=1086646241 instance=ExtResource("5_3qwiq")]
-position = Vector2(122, 225)
+[node name="ResourceBush2" parent="YSortRoot" unique_id=1516421957 instance=ExtResource("4_jbmeb")]
+position = Vector2(456, 159)
+
+[node name="ResourceBush3" parent="YSortRoot" unique_id=1556766284 instance=ExtResource("4_jbmeb")]
+position = Vector2(210, 103)
+
+[node name="ResourceBush4" parent="YSortRoot" unique_id=263278417 instance=ExtResource("4_jbmeb")]
+position = Vector2(173, 253)
+
+[node name="ResourceBush5" parent="YSortRoot" unique_id=497968393 instance=ExtResource("4_jbmeb")]
+position = Vector2(396, 66)
+
+[node name="ResourceBush6" parent="YSortRoot" unique_id=505927286 instance=ExtResource("4_jbmeb")]
+position = Vector2(352, 351)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1121169985]
 

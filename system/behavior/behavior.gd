@@ -1,6 +1,8 @@
 class_name Behavior extends Resource
 
 
+signal evaluation_requested
+
 
 enum Attribute {
 
@@ -17,6 +19,7 @@ enum Attribute {
 }
 
 
+@export var display_name: String
 
 @export var baseline_score: float
 
@@ -24,6 +27,13 @@ enum Attribute {
 
 @export var fail_conditions: Array[Condition]
 
+@export var cooldown:= 0.0
+
+@export var requires_disposition:= false
+
+@export var target_whitelist: Array[EntityDef]
+
+var cooldown_timer:= 0.0
 
 
 
@@ -55,6 +65,18 @@ func _initialize(entity: EntityNode) -> void:
 
 
 func _evaluate(target_disposition: Disposition = null) -> float:
+
+	if cooldown_timer > 0.0:
+
+		return 0.0
+
+	if requires_disposition and !target_disposition:
+
+		return 0.0
+
+	if target_disposition:
+
+		blackboard.set_value("target_entity", target_disposition.target_entity)
 
 	for condition in fail_conditions:
 
@@ -99,6 +121,8 @@ func _enter_phase(index: int) -> void:
 	current_command_index = 0
 
 	current_phase = _get_phase(index)
+
+	print("entering: ", current_phase.phase_name)
 
 	if !current_phase:
 
@@ -180,5 +204,9 @@ func _on_phase_command_executed(command: Command, result: Command.Result) -> voi
 
 			else:
 
-				_execute_phase_command(current_command_index)
+				cooldown_timer = cooldown
+
+				evaluation_requested.emit()
+
+			
 

@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bffuijocdkora" path="res://ui/debug_overlay.gd" id="3_0o8ui"]
 [ext_resource type="PackedScene" uid="uid://bs4xcxdhy16gf" path="res://ui/main_menu.tscn" id="3_bxsma"]
 [ext_resource type="PackedScene" uid="uid://bvr6nqochobhy" path="res://ui/behavior_overlay.tscn" id="3_wd1uf"]
+[ext_resource type="PackedScene" uid="uid://cx131ifd0b37f" path="res://ui/container_overlay.tscn" id="4_6t5o2"]
 [ext_resource type="PackedScene" uid="uid://tx1lnuejx2fm" path="res://ui/profile_overlay.tscn" id="4_ledqy"]
 
 [node name="GameRoot" type="Node" unique_id=1688041711 node_paths=PackedStringArray("location")]
@@ -42,6 +43,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="ContainerOverlay" parent="OverlayCanvas/OverlayRoot" unique_id=460552143 instance=ExtResource("4_6t5o2")]
+layout_mode = 1
+offset_right = 43.0
+pause_game = true
 
 [node name="DebugCanvas" type="CanvasLayer" parent="." unique_id=1834661430]
 

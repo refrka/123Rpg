@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://chfcse8y6hj1i"]
+
+[ext_resource type="PackedScene" uid="uid://ce7h7pou0v67x" path="res://entity/object_node.tscn" id="1_woxib"]
+[ext_resource type="Script" uid="uid://dvvvile6buv53" path="res://system/component/container_component.gd" id="2_a6o61"]
+
+[node name="ContainerNode" unique_id=637575485 instance=ExtResource("1_woxib")]
+
+[node name="ContainerComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1707679954) index="2" unique_id=1827654383]
+script = ExtResource("2_a6o61")
+
+[editable path="BodyHurtbox"]

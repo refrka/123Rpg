@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ObjectDef" format=3 uid="uid://dtv7u0bq2h7da"]
+
+[ext_resource type="Script" uid="uid://ctynuguh2hlac" path="res://entity/object_def.gd" id="1_g4djl"]
+
+[resource]
+script = ExtResource("1_g4djl")
+entity_id = &"small_chest"
+display_name = "Small chest"
+metadata/_custom_type_script = "uid://ctynuguh2hlac"

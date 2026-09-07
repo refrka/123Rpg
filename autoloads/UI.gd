@@ -81,6 +81,8 @@ func register_overlay(overlay: UIOverlay) -> void:
 
 	overlay_registry[overlay_script] = overlay
 
+	overlay.deactivate_requested.connect(_on_overlay_deactivate_requested.bind(overlay))
+
 
 
 
@@ -93,6 +95,8 @@ func unregister_overlay(overlay: UIOverlay) -> void:
 	if overlay_registry.has(overlay_script):
 
 		overlay_registry.erase(overlay_script)
+
+		overlay.deactivate_requested.disconnect(_on_overlay_deactivate_requested)
 
 
 
@@ -112,6 +116,13 @@ func get_overlay(overlay_script: Script) -> UIOverlay:
 	return null
 
 
+
+
+
+
+func _on_overlay_deactivate_requested(overlay: UIOverlay) -> void:
+
+	deactivate_overlay(overlay.get_script())
 
 
 

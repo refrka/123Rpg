@@ -7,6 +7,9 @@ signal behavior_changed(behavior: Behavior)
 
 
 
+@export var evaluation_time:= 30.0
+
+
 
 
 var behaviors: Array[Behavior]
@@ -19,6 +22,9 @@ var attitude: float
 
 var temperament: float
 
+
+
+var evaluation_timer:= 0.0
 
 
 
@@ -40,6 +46,8 @@ func _initialize(_entity: EntityNode) -> void:
 
 		behaviors.append(b)
 
+		b.evaluation_requested.connect(_on_behavior_evaluation_requested)
+
 		b._initialize(entity)
 		
 	entity.vision_sensor.entity_entered_sensor.connect(_on_entity_entered_sensor)
@@ -49,6 +57,7 @@ func _initialize(_entity: EntityNode) -> void:
 	attitude = behavior_profile.default_baseline.get_value(Behavior.Attribute.ATTITUDE)
 
 	temperament = behavior_profile.default_baseline.get_value(Behavior.Attribute.TEMPERAMENT)
+
 
 
 
@@ -76,17 +85,21 @@ func _evaluate_all(target_disposition: Disposition = null) -> void:
 
 	for behavior in behaviors:
 
+		behavior.blackboard.set_value("nearest_disposition", _get_nearest_disposition())
+
 		var score = behavior._evaluate(target_disposition)
 
 		behavior_evaluated.emit(behavior, score)
 
-		if !best_behavior or score < best_score:
+		if !best_behavior or score > best_score:
 
 			best_score = score
 
 			best_behavior = behavior
 
 	_change_behavior(best_behavior)
+
+	evaluation_timer = evaluation_time
 
 	
 
@@ -143,6 +156,25 @@ func _get_disposition(target_entity: EntityNode) -> Disposition:
 
 
 
+func _get_nearest_disposition() -> Disposition:
+
+	var nearest_disposition: Disposition = null
+
+	var nearest_distance:= -INF
+
+	for disposition in dispositions:
+
+		var distance = entity.global_position.distance_to(disposition.target_entity.global_position)
+
+		if !nearest_disposition or distance < nearest_distance:
+
+			nearest_disposition = disposition
+
+			nearest_distance = distance
+
+	return nearest_disposition
+
+
 
 
 
@@ -164,6 +196,12 @@ func _on_entity_entered_sensor(entity_node: EntityNode) -> void:
 
 	Events.subscribe_to_entity(entity_node, _on_visible_entity_event)
 
+	for behavior in behaviors:
+
+		if behavior.target_whitelist.has(entity_node.entity_def):
+
+			_evaluate_all(disposition)
+
 
 
 
@@ -182,13 +220,40 @@ func _on_visible_entity_event(_event: EntityEvent) -> void:
 
 
 
+func _on_behavior_evaluation_requested() -> void:
+
+	_evaluate_all()
+
+
+
 
 func _activate() -> void:
 
 	super()
 
+	await get_tree().physics_frame
+
 	_evaluate_all()
 
+
+
+
+
+func _process(delta: float) -> void:
+
+	for behavior in behaviors:
+
+		if behavior.cooldown_timer > 0.0:
+
+			behavior.cooldown_timer -= delta
+
+	if evaluation_timer > 0.0:
+
+		evaluation_timer -= delta
+
+		if evaluation_timer <= 0.0:
+
+			_evaluate_all()
 
 
 

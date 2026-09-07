@@ -45,6 +45,12 @@ func _disconnect_signals() -> void:
 
 func set_target_position(target_position: Vector2) -> void:
 
+	if current_target_position == target_position:
+
+		return
+
+	print("target: ", target_position)
+
 	current_target_position = target_position
 
 	nav_agent.target_position = target_position
@@ -65,6 +71,7 @@ func set_target_entity(target_entity: EntityNode) -> void:
 
 	else:
 
+
 		update_timer = 0.0
 
 
@@ -76,7 +83,6 @@ func stop() -> void:
 	movement_component.halt()
 
 	set_target_entity(null)
-
 
 
 

@@ -1,6 +1,10 @@
 class_name UIOverlay extends UIElement
 
 
+@warning_ignore("unused_signal")
+
+signal deactivate_requested
+
 
 @export var pause_game:= false
 

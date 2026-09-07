@@ -1,7 +1,7 @@
 class_name InteractionComponent extends Component
 
 
-
+signal interaction_completed
 
 
 
@@ -30,18 +30,27 @@ func _initialize(_entity: EntityNode) -> void:
 
 
 
-func _try_interact() -> void:
+func _try_interact(target_entity: EntityNode = null) -> bool:
 
 	if entity.interaction_sensor.entities.is_empty():
 
-		return
+		return false
 
-	var nearest_entity = entity.interaction_sensor.get_nearest_entity()
+	if target_entity:
 
-	_set_target_interactable(nearest_entity)
+		if !entity.interaction_sensor.entities.has(target_entity):
+
+			return false
+
+	else:
+		
+		target_entity = entity.interaction_sensor.get_nearest_entity()
+
+	_set_target_interactable(target_entity)
 
 	_start_interaction()
 
+	return true
 
 
 
@@ -61,9 +70,17 @@ func _start_interaction() -> void:
 
 	if target_interactable_component._start_interacting(): 
 
+		print("started interaction with ", target_interactable_component)
+
 		target_interactable_component.interaction_complete.connect(_complete_interaction)
 
+		print("connected")
+
 		entity.state_machine.request_state(BodyInteractingState)
+
+		if entity is Player:
+
+			target_interactable_component._load_ui()
 
 
 
@@ -77,12 +94,20 @@ func _end_interaction() -> void:
 
 	target_interactable_component.interaction_complete.disconnect(_complete_interaction)
 
+	if entity is Player:
+
+		target_interactable_component._unload_ui()
+
 
 
 
 func _complete_interaction() -> void:
 
+	target_interactable_component._complete_interacting()
+
 	_end_interaction()
+
+	interaction_completed.emit()
 
 
 
@@ -111,7 +136,7 @@ func _set_target_interactable(target_entity: EntityNode) -> void:
 
 func _on_interact_pressed() -> void:
 
-	if _is_interacting():
+	if _is_interacting() and target_interactable_component:
 
 		_try_end_interaction()
 

@@ -20,6 +20,11 @@ var movement_component: MovementComponent
 
 
 
+func _ready() -> void:
+
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
+
 
 
 func _initialize(_entity: EntityNode) -> void:

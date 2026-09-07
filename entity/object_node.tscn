@@ -3,16 +3,18 @@
 [ext_resource type="Script" uid="uid://hc5d6ok0pgd6" path="res://entity/object_node.gd" id="1_hlto5"]
 [ext_resource type="Script" uid="uid://dlwkufpih1aj5" path="res://system/sensor/sensor.gd" id="1_qxpxj"]
 [ext_resource type="PackedScene" uid="uid://bffwx4v3ji1jf" path="res://system/sensor/hurtbox.tscn" id="2_f1sxq"]
+[ext_resource type="Script" uid="uid://diloxmtd8fr1m" path="res://system/component/animation_component.gd" id="6_5i0gu"]
 [ext_resource type="Script" uid="uid://ce5sc78pccbjh" path="res://system/component/health_component.gd" id="6_knbs7"]
 [ext_resource type="Script" uid="uid://b3tm6gbbprkmc" path="res://system/component/effects_component.gd" id="8_ud07a"]
 [ext_resource type="Script" uid="uid://bwq7g52j8dk61" path="res://system/state/state_machine.gd" id="9_8v4lx"]
 [ext_resource type="Script" uid="uid://t0gd6nmeqkif" path="res://system/state/body_idle_state.gd" id="10_4u2cn"]
 
-[node name="ObjectNode" type="StaticBody2D" unique_id=637575485 node_paths=PackedStringArray("component_root", "state_machine", "vision_sensor", "body_hurtbox")]
+[node name="ObjectNode" type="StaticBody2D" unique_id=637575485 node_paths=PackedStringArray("body_sprite", "component_root", "state_machine", "vision_sensor", "body_hurtbox")]
 y_sort_enabled = true
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_hlto5")
+body_sprite = NodePath("VisualRoot/BodyVisualRoot/BodySprite")
 component_root = NodePath("ComponentRoot")
 state_machine = NodePath("StateMachine")
 vision_sensor = NodePath("VisionSensor")
@@ -22,7 +24,6 @@ body_hurtbox = NodePath("BodyHurtbox")
 y_sort_enabled = true
 
 [node name="BodyVisualRoot" type="Node2D" parent="VisualRoot" unique_id=86824929]
-y_sort_enabled = true
 
 [node name="BodySprite" type="AnimatedSprite2D" parent="VisualRoot/BodyVisualRoot" unique_id=613068804]
 
@@ -47,6 +48,10 @@ script = ExtResource("6_knbs7")
 
 [node name="EffectsComponent" type="Node" parent="ComponentRoot" unique_id=100061401]
 script = ExtResource("8_ud07a")
+
+[node name="AnimationComponent" type="Node" parent="ComponentRoot" unique_id=1700220954]
+script = ExtResource("6_5i0gu")
+metadata/_custom_type_script = "uid://diloxmtd8fr1m"
 
 [node name="StateMachine" type="Node" parent="." unique_id=1815478981 node_paths=PackedStringArray("initial_body_state", "body_root", "combat_root")]
 script = ExtResource("9_8v4lx")
