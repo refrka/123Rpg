@@ -4,4 +4,6 @@
 
 [resource]
 script = ExtResource("1_cujn1")
+entity_id = &"player"
+display_name = "Player"
 metadata/_custom_type_script = "uid://bkum3t6uspol8"

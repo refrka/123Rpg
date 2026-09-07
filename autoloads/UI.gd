@@ -56,6 +56,8 @@ func deactivate_overlay(overlay_script: Script) -> UIOverlay:
 
 		active_overlays.erase(overlay)
 
+		overlay.close()
+
 		overlay._deactivate()
 
 		overlay.hide()

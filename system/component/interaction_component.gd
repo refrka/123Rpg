@@ -10,7 +10,9 @@ var target_interactable_entity: EntityNode
 var target_interactable_component: InteractableComponent
 
 
-var interaction_timer: SceneTreeTimer
+
+var current_interaction: Interaction
+
 
 
 
@@ -27,33 +29,27 @@ func _start_interaction(target_entity: EntityNode) -> void:
 
 	_set_target_interactable(target_entity)
 
-	var duration = target_interactable_component._get_duration()
+	current_interaction = Interaction.start(self, target_interactable_component)
 
-	if duration > 0.0:
+	current_interaction.interaction_ended.connect(_on_interaction_ended)
 
-		interaction_timer = Game.get_tree().create_timer(duration)
+	current_interaction.interaction_complete.connect(_on_interaction_complete)
 
-		interaction_timer.timeout.connect(_on_interaction_duration_complete, CONNECT_ONE_SHOT)
+	current_interaction.interactable_component._start(entity)
 
-	else:
 
-		target_interactable_component.interaction_complete.connect(_on_interaction_complete)
-
-	target_interactable_component._start(entity)
 
 
 
 func _end_interaction() -> void:
 
-	target_interactable_component._end()
+	current_interaction.interactable_component._end()
+
+	current_interaction = null
 
 	target_interactable_entity = null
 
 	target_interactable_component = null
-
-	if interaction_timer:
-
-		interaction_timer.timeout.disconnect(_on_interaction_duration_complete)
 
 
 
@@ -106,17 +102,31 @@ func _can_interact(target_entity: EntityNode) -> bool:
 
 
 
-
-
-
-func _on_interaction_duration_complete() -> void:
-
-	interaction_timer = null
-
-	_complete_interaction()
-
-
-
 func _on_interaction_complete() -> void:
 
+	print("interaction complete")
+
 	_complete_interaction()
+
+
+
+func _on_interaction_ended() -> void:
+
+	pass
+
+
+
+
+func _physics_process(delta: float) -> void:
+
+	if !active:
+
+		return
+
+	if current_interaction and current_interaction.interaction_timer > 0.0:
+
+		current_interaction.interaction_timer -= delta
+
+		if current_interaction.interaction_timer <= 0.0:
+
+			_complete_interaction()

@@ -1,6 +1,8 @@
 class_name UIOverlay extends UIElement
 
 
+signal overlay_closed
+
 
 @export var pause_game:= false
 
@@ -20,6 +22,12 @@ func _ready() -> void:
 
 	hide()
 
+
+
+
+func close() -> void:
+
+	overlay_closed.emit()
 
 
 
