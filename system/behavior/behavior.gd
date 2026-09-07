@@ -12,6 +12,10 @@ class_name Behavior extends Resource
 
 var current_phase_index:= -1
 
+var current_command_index:= 0
+
+var current_phase_command: Command
+
 var blackboard:= Blackboard.new()
 
 
@@ -64,7 +68,11 @@ func _start() -> void:
 
 func _stop() -> void:
 
-	pass
+	if current_phase_command:
+
+		current_phase_command.command_executed.disconnect(_on_phase_command_executed)
+
+		current_phase_command._cancel()
 
 
 
@@ -78,35 +86,12 @@ func _enter_phase(index: int) -> void:
 
 	current_phase_index = index
 
-	var phase = _get_phase(current_phase_index)
+	current_command_index = 0
 
-	for command in phase.phase_commands:
+	_execute_phase_command(0)
 
-		command.command_executed.connect(_on_command_executed, CONNECT_ONE_SHOT)
 
-		match command._execute(blackboard):
-
-			Command.Result.SUCCESS:
-
-				pass
-
-			Command.Result.FAILURE:
-
-				pass
-
-			Command.Result.PENDING:
-
-				pass
-
-				if command.await_result:
-
-					await command.command_executed
-
-					continue
-
-			Command.Result.CANCELLED:
-
-				pass
+	
 
 
 
@@ -114,7 +99,33 @@ func _enter_phase(index: int) -> void:
 
 func _exit_phase() -> void:
 
-	pass
+	current_phase_index = 0
+
+	current_command_index = 0
+
+
+
+
+
+
+
+
+
+func _execute_phase_command(index: int) -> Command.Result:
+
+	var phase = _get_phase(current_phase_index)
+
+	current_phase_command = phase.phase_commands[index]
+
+	current_phase_command.command_executed.connect(_on_phase_command_executed, CONNECT_ONE_SHOT)
+
+	return current_phase_command._execute(blackboard)
+
+
+
+
+
+
 
 
 
@@ -149,6 +160,16 @@ func _get_disposition_multiplier(disposition: Disposition) -> float:
 
 
 
-func _on_command_executed(result: Command.Result) -> void:
+func _on_phase_command_executed() -> void:
 
-	pass
+	current_command_index += 1
+
+	var phase = _get_phase(current_phase_index)
+
+	if phase.phase_commands.size() - 1 < current_command_index:
+
+		current_phase_command = null
+
+		return
+
+	_execute_phase_command(current_command_index)

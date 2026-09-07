@@ -29,6 +29,9 @@ radius = 154.00325
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bqkhk"]
 size = Vector2(18, 28)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_bqwre"]
+radius = 40.112343
+
 [node name="Thief" unique_id=1179065956 instance=ExtResource("1_7fyac")]
 entity_def = ExtResource("2_g2erd")
 
@@ -36,6 +39,9 @@ entity_def = ExtResource("2_g2erd")
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_7fyac")
 animation = &"idle_down"
+
+[node name="CombatSprite" parent="VisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(1666789074) index="0" unique_id=1245738592]
+position = Vector2(0, -11)
 
 [node name="BodyCollision" parent="." index="1" unique_id=1637569305]
 position = Vector2(0, -4)
@@ -48,6 +54,15 @@ shape = SubResource("CircleShape2D_bqkhk")
 [node name="CollisionShape2D" parent="BodyHurtbox" parent_id_path=PackedInt32Array(869768629) index="0" unique_id=248750470]
 position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_bqkhk")
+
+[node name="InteractionSensor" parent="." index="4" unique_id=835967870]
+position = Vector2(0, -11)
+
+[node name="CollisionShape2D" parent="InteractionSensor" index="0" unique_id=1415403427]
+shape = SubResource("CircleShape2D_bqwre")
+
+[node name="CenterMarker" parent="." index="5" unique_id=1102797740]
+position = Vector2(0, -11)
 
 [editable path="VisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox"]
 [editable path="BodyHurtbox"]

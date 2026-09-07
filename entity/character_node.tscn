@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://5oeo0b2of4ao" path="res://system/component/navigation_component.gd" id="11_me77t"]
 [ext_resource type="Script" uid="uid://chey2k08sd5y4" path="res://system/state/combat_idle_state.gd" id="12_8mhx1"]
 [ext_resource type="Script" uid="uid://t0gd6nmeqkif" path="res://system/state/body_idle_state.gd" id="12_udydy"]
+[ext_resource type="Script" uid="uid://diqawhqdf7cvv" path="res://system/state/body_interacting_state.gd" id="17_dsukw"]
 
 [node name="CharacterNode" type="CharacterBody2D" unique_id=1179065956 node_paths=PackedStringArray("component_root", "state_machine", "vision_sensor", "interaction_sensor", "body_hurtbox", "combat_hitbox")]
 collision_mask = 0
@@ -64,6 +65,7 @@ collision_mask = 0
 script = ExtResource("2_mbyps")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionSensor" unique_id=1415403427]
+debug_color = Color(0.79, 0.42133337, 0, 0.019607844)
 
 [node name="CenterMarker" type="Marker2D" parent="." unique_id=1102797740]
 
@@ -99,8 +101,10 @@ script = ExtResource("11_me77t")
 nav_agent = NodePath("../../NavigationAgent2D")
 metadata/_custom_type_script = "uid://5oeo0b2of4ao"
 
-[node name="StateMachine" type="Node" parent="." unique_id=873685549 node_paths=PackedStringArray("body_root", "combat_root")]
+[node name="StateMachine" type="Node" parent="." unique_id=873685549 node_paths=PackedStringArray("initial_body_state", "initial_combat_state", "body_root", "combat_root")]
 script = ExtResource("5_jg2qq")
+initial_body_state = NodePath("BodyRoot/BodyIdleState")
+initial_combat_state = NodePath("CombatRoot/CombatIdleState")
 body_root = NodePath("BodyRoot")
 combat_root = NodePath("CombatRoot")
 
@@ -108,6 +112,9 @@ combat_root = NodePath("CombatRoot")
 
 [node name="BodyIdleState" type="Node" parent="StateMachine/BodyRoot" unique_id=1981698377]
 script = ExtResource("12_udydy")
+
+[node name="BodyInteractingState" type="Node" parent="StateMachine/BodyRoot" unique_id=1823712526]
+script = ExtResource("17_dsukw")
 
 [node name="CombatRoot" type="Node" parent="StateMachine" unique_id=822405411]
 

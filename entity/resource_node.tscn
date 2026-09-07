@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://7d00yyc7h186"]
+
+[ext_resource type="PackedScene" uid="uid://ce7h7pou0v67x" path="res://entity/object_node.tscn" id="1_53o7a"]
+
+[node name="ResourceNode" unique_id=637575485 instance=ExtResource("1_53o7a")]
+
+[editable path="BodyHurtbox"]

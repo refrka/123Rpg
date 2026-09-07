@@ -1,10 +1,15 @@
-class_name MoveToPositionCommand extends Command
+class_name MoveToEntityCommand extends Command
 
 
 
 var navigation_component: NavigationComponent
 
-@export var target_position: Vector2
+var target_entity: EntityNode
+
+
+
+
+
 
 
 
@@ -13,22 +18,23 @@ func _execute(_blackboard: Blackboard) -> Result:
 
 	super(_blackboard)
 
-	var _target_position = blackboard.get_value("target_position", null)
+	target_entity = blackboard.get_value("target_entity")
 
-	if _target_position != null:
+	if !target_entity:
 
-		target_position = _target_position
+		_set_result(Result.FAILURE)
+
+		return result
 
 	navigation_component = _get_actor().get_component(NavigationComponent)
 
 	navigation_component.navigation_finished.connect(_on_navigation_finished, CONNECT_ONE_SHOT)
 
-	navigation_component.set_target_position(target_position)
+	navigation_component.set_target_entity(target_entity)
 
 	_set_result(Result.PENDING)
 
 	return result
-
 
 
 
@@ -44,9 +50,8 @@ func _cancel() -> void:
 
 
 
-
 func _on_navigation_finished() -> void:
 
-	blackboard.erase_value("target_position")
+	_set_result(Result.SUCCESS)
 
 	command_executed.emit()

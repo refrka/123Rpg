@@ -2,6 +2,10 @@ class_name InputComponent extends Component
 
 
 
+signal interact_pressed
+
+signal interact_released
+
 
 
 var input_dir: Vector2
@@ -32,7 +36,19 @@ func _initialize(_entity: EntityNode) -> void:
 
 
 
+func _unhandled_input(event: InputEvent) -> void:
 
+	if !active:
+
+		return
+
+	if event.is_action_pressed("interact"):
+
+		interact_pressed.emit()
+
+	if event.is_action_released("interact"):
+
+		interact_released.emit()
 
 
 

@@ -120,3 +120,30 @@ func _deactivate() -> void:
 	if state_machine:
 
 		state_machine._deactivate()
+
+
+
+
+
+
+func is_busy() -> bool:
+
+	return state_machine.current_body_state is BodyBusyState
+
+
+
+
+
+func get_interactable_component() -> InteractableComponent:
+
+	for component in component_root.get_children():
+
+		if component is InteractableComponent:
+
+			return component
+
+	return null
+
+
+
+

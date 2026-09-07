@@ -4,15 +4,49 @@
 [ext_resource type="PackedScene" uid="uid://ylgrmunrywg2" path="res://ui/game_menu.tscn" id="1_xj5yv"]
 [ext_resource type="PackedScene" uid="uid://caaihxl625mc5" path="res://location/location.tscn" id="2_lkrbl"]
 [ext_resource type="PackedScene" uid="uid://bs4xcxdhy16gf" path="res://ui/main_menu.tscn" id="3_bxsma"]
+[ext_resource type="Script" uid="uid://bocw1xnw5qly0" path="res://area_trigger.gd" id="3_wd1uf"]
+[ext_resource type="Script" uid="uid://dxtjaiqoxn5qb" path="res://area_trigger_2.gd" id="4_0o8ui"]
 
-[node name="GameRoot" type="Node" unique_id=1688041711]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aajxx"]
+size = Vector2(9, 104)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8gxew"]
+size = Vector2(79, 10)
+
+[node name="GameRoot" type="Node" unique_id=1688041711 node_paths=PackedStringArray("location")]
 script = ExtResource("1_pjpa4")
+location = NodePath("WorldCanvas/WorldRoot/Location")
 
 [node name="WorldCanvas" type="CanvasLayer" parent="." unique_id=1962273433]
 
 [node name="WorldRoot" type="Node2D" parent="WorldCanvas" unique_id=1254222544]
 
 [node name="Location" parent="WorldCanvas/WorldRoot" unique_id=1762781793 instance=ExtResource("2_lkrbl")]
+
+[node name="Area2D" type="Area2D" parent="WorldCanvas/WorldRoot" unique_id=843161241]
+position = Vector2(222, 99)
+collision_layer = 0
+script = ExtResource("3_wd1uf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldCanvas/WorldRoot/Area2D" unique_id=1624265640]
+shape = SubResource("RectangleShape2D_aajxx")
+
+[node name="Area2D2" type="Area2D" parent="WorldCanvas/WorldRoot" unique_id=434344846 node_paths=PackedStringArray("button")]
+position = Vector2(308, 179)
+collision_layer = 0
+script = ExtResource("4_0o8ui")
+button = NodePath("AreaButton")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldCanvas/WorldRoot/Area2D2" unique_id=964342971]
+position = Vector2(1.5, 0)
+shape = SubResource("RectangleShape2D_8gxew")
+
+[node name="AreaButton" type="Button" parent="WorldCanvas/WorldRoot/Area2D2" unique_id=131675855]
+offset_left = -261.0
+offset_top = -139.0
+offset_right = -229.0
+offset_bottom = -123.0
+text = "Change to Random Behavior"
 
 [node name="OverlayCanvas" type="CanvasLayer" parent="." unique_id=87051162]
 
