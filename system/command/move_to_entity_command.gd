@@ -46,11 +46,15 @@ func _cancel() -> void:
 
 	navigation_component.stop()
 
+	super()
+
 
 
 
 
 func _on_navigation_finished() -> void:
+
+	navigation_component.stop()
 
 	_set_result(Result.SUCCESS)
 

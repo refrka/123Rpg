@@ -2,6 +2,10 @@ class_name Behavior extends Resource
 
 
 
+signal evaluation_requested
+
+
+
 @export var display_name: String
 
 @export var gate_conditions: Array[Condition]
@@ -169,6 +173,12 @@ func _on_phase_command_executed() -> void:
 	if phase.phase_commands.size() - 1 < current_command_index:
 
 		current_phase_command = null
+
+		if phase.phase_transition_index != -1:
+
+			_enter_phase(phase.phase_transition_index)
+
+		evaluation_requested.emit()
 
 		return
 

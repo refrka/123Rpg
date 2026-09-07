@@ -31,6 +31,8 @@ func _initialize(_entity: EntityNode) -> void:
 
 		behaviors.append(b)
 
+		b.evaluation_requested.connect(_on_evaluation_requested)
+
 		b._initialize(entity)
 		
 
@@ -89,5 +91,17 @@ func _change_behavior(new_behavior: Behavior) -> void:
 func _activate() -> void:
 
 	super()
+
+	_evaluate_all()
+
+
+
+
+
+
+
+
+
+func _on_evaluation_requested() -> void:
 
 	_evaluate_all()

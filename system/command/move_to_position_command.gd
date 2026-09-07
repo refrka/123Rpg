@@ -40,13 +40,13 @@ func _cancel() -> void:
 
 	navigation_component.stop()
 
+	super()
+
 
 
 
 
 
 func _on_navigation_finished() -> void:
-
-	blackboard.erase_value("target_position")
 
 	command_executed.emit()

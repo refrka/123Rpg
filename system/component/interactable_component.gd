@@ -1,15 +1,20 @@
 class_name InteractableComponent extends Component
 
 
+signal interaction_complete
+
+@export var interaction_duration: float
 
 
 
 
-
-
-func _start() -> void:
+func _start(interaction_source: EntityNode) -> void:
 
 	entity.state_machine.request_state(BodyInteractingState)
+
+	if !entity.entity_def.dialogue_library and !interaction_source.entity_def.dialogue_library:
+
+		interaction_complete.emit()
 	
 
 func _end() -> void:
@@ -35,4 +40,4 @@ func _cancel() -> void:
 
 func _get_duration() -> float:
 
-	return 0.0
+	return interaction_duration

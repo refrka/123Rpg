@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cfhgu5c81fw1w" path="res://system/component/input_component.gd" id="2_rkbax"]
 [ext_resource type="Resource" uid="uid://de86yi014b1de" path="res://player/player_def.tres" id="2_yw30f"]
 [ext_resource type="Script" uid="uid://c1ab0ojesdubb" path="res://system/state/body_moving_state.gd" id="5_qjkh3"]
+[ext_resource type="Script" uid="uid://rptsln3jgi3t" path="res://system/component/interactable_component.gd" id="6_boad6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yw30f"]
 atlas = ExtResource("2_g1dw6")
@@ -70,6 +71,11 @@ position = Vector2(0, -14)
 
 [node name="InputComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1298652872) index="6" unique_id=1505771537]
 script = ExtResource("2_rkbax")
+
+[node name="InteractableComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1298652872) index="8" unique_id=641637313]
+script = ExtResource("6_boad6")
+interaction_duration = 1.0
+metadata/_custom_type_script = "uid://rptsln3jgi3t"
 
 [node name="BodyMovingState" type="Node" parent="StateMachine/BodyRoot" parent_id_path=PackedInt32Array(1947284531) index="1" unique_id=1193616849]
 script = ExtResource("5_qjkh3")

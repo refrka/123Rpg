@@ -1,6 +1,7 @@
 class_name InteractionComponent extends Component
 
 
+signal interaction_complete
 
 
 
@@ -26,8 +27,6 @@ func _start_interaction(target_entity: EntityNode) -> void:
 
 	_set_target_interactable(target_entity)
 
-	target_interactable_component._start()
-
 	var duration = target_interactable_component._get_duration()
 
 	if duration > 0.0:
@@ -35,6 +34,12 @@ func _start_interaction(target_entity: EntityNode) -> void:
 		interaction_timer = Game.get_tree().create_timer(duration)
 
 		interaction_timer.timeout.connect(_on_interaction_duration_complete, CONNECT_ONE_SHOT)
+
+	else:
+
+		target_interactable_component.interaction_complete.connect(_on_interaction_complete)
+
+	target_interactable_component._start(entity)
 
 
 
@@ -58,6 +63,8 @@ func _complete_interaction() -> void:
 	target_interactable_component._complete()
 
 	_end_interaction()
+
+	interaction_complete.emit()
 
 
 
@@ -103,5 +110,13 @@ func _can_interact(target_entity: EntityNode) -> bool:
 
 
 func _on_interaction_duration_complete() -> void:
+
+	interaction_timer = null
+
+	_complete_interaction()
+
+
+
+func _on_interaction_complete() -> void:
 
 	_complete_interaction()

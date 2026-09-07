@@ -9,6 +9,8 @@ class_name BehaviorPhase extends Resource
 
 @export var transition_events: Dictionary[Script, Command]
 
+@export var phase_transition_index:= -1
+
 
 
 

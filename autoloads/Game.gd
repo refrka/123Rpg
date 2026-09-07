@@ -48,3 +48,5 @@ func is_active() -> bool:
 func is_paused() -> bool:
 
 	return get_tree().paused
+
+

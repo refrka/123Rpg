@@ -116,6 +116,8 @@ func _physics_process(delta: float) -> void:
 
 		var dir = entity.global_position.direction_to(next_position)
 
-		movement_component.set_move_dir(dir)
+		if !nav_agent.is_target_reached():
+
+			movement_component.set_move_dir(dir)
 
 		

@@ -13,6 +13,10 @@ func _ready() -> void:
 
 func _on_body_entered(body: PhysicsBody2D) -> void:
 
+	if body.entity_def.entity_id != "thief":
+
+		return
+
 	var behavior_component = body.get_component(BehaviorComponent)
 
 	var behavior = behavior_component.behaviors[3]

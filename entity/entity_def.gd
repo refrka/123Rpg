@@ -8,3 +8,5 @@
 @export var display_name: String
 
 @export var base_health:= 10.0
+
+@export var dialogue_library: Resource

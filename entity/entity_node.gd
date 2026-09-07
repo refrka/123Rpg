@@ -95,7 +95,9 @@ func _activate() -> void:
 
 	for component in component_root.get_children():
 
-		component._activate()
+		if component.initialized:
+
+			component._activate()
 
 	if state_machine:
 
