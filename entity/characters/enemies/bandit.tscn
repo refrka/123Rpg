@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://bcb5k64hx4wh8" path="res://entity/character_node.tscn" id="1_iayho"]
 [ext_resource type="Resource" uid="uid://devqgpk1w5t0y" path="res://entity/characters/enemies/bandit_def.tres" id="2_nx6jw"]
 [ext_resource type="Texture2D" uid="uid://dcj2j4rcaqsdd" path="res://entity/characters/enemies/bandit_sprite.png" id="2_ub2v2"]
-[ext_resource type="Script" uid="uid://rptsln3jgi3t" path="res://system/component/interactable_component.gd" id="4_uw5eg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nx6jw"]
 atlas = ExtResource("2_ub2v2")
@@ -63,10 +62,6 @@ shape = SubResource("CircleShape2D_cmfsp")
 
 [node name="CenterMarker" parent="." index="5" unique_id=1102797740]
 position = Vector2(0, -11)
-
-[node name="InteractableComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1298652872) index="7" unique_id=1616986966]
-script = ExtResource("4_uw5eg")
-metadata/_custom_type_script = "uid://rptsln3jgi3t"
 
 [editable path="VisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox"]
 [editable path="BodyHurtbox"]

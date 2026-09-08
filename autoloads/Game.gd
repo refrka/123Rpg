@@ -50,3 +50,13 @@ func is_paused() -> bool:
 	return get_tree().paused
 
 
+
+
+
+
+
+
+
+func get_player() -> Player:
+
+	return get_tree().get_first_node_in_group("player")

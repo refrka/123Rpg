@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://d00xm1l5u6bf1" path="res://system/command/command.gd" id="4_yuoec"]
 [ext_resource type="Script" uid="uid://bmj3ig5p45sje" path="res://system/command/move_to_position_command.gd" id="5_f0ixx"]
 [ext_resource type="Script" uid="uid://rbg77ld041kx" path="res://system/command/move_to_entity_command.gd" id="6_0yde7"]
-[ext_resource type="Script" uid="uid://cygl0q6xi11rl" path="res://system/command/interact_with_entity_command.gd" id="7_5on3h"]
+[ext_resource type="Script" uid="uid://ba6thtkw6h53" path="res://system/command/force_player_interaction_command.gd" id="7_5on3h"]
 
 [sub_resource type="Resource" id="Resource_yuoec"]
 script = ExtResource("5_f0ixx")
@@ -52,13 +52,12 @@ metadata/_custom_type_script = "uid://bkpp3kbsa48gg"
 script = ExtResource("6_0yde7")
 metadata/_custom_type_script = "uid://rbg77ld041kx"
 
-[sub_resource type="Resource" id="Resource_g2erd"]
+[sub_resource type="Resource" id="Resource_cmfsp"]
 script = ExtResource("7_5on3h")
-metadata/_custom_type_script = "uid://cygl0q6xi11rl"
 
 [sub_resource type="Resource" id="Resource_tw7lw"]
 script = ExtResource("3_f0ixx")
-phase_commands = Array[ExtResource("4_yuoec")]([SubResource("Resource_0o8ui"), SubResource("Resource_g2erd")])
+phase_commands = Array[ExtResource("4_yuoec")]([SubResource("Resource_0o8ui"), SubResource("Resource_cmfsp")])
 metadata/_custom_type_script = "uid://b4ot86r6gtxvc"
 
 [sub_resource type="Resource" id="Resource_qtcbl"]
@@ -83,7 +82,6 @@ metadata/_custom_type_script = "uid://due8im487owbs"
 [resource]
 script = ExtResource("1_lhok0")
 behavior_profile = SubResource("Resource_lr5gl")
-move_speed = 90.0
 entity_id = &"thief"
 display_name = "Thief"
 dialogue_library = SubResource("Resource_rgyib")

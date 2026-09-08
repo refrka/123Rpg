@@ -44,6 +44,18 @@ func _initialize() -> void:
 
 		state_machine._initialize(self)
 
+	if interaction_sensor:
+
+		interaction_sensor.initialize(self)
+
+	if body_hurtbox:
+
+		body_hurtbox.initialize(self)
+
+	if combat_hitbox:
+
+		combat_hitbox.initialize(self)
+
 
 
 
@@ -78,6 +90,18 @@ func get_component(component_script: Script) -> Component:
 
 
 
+func get_interactable_component() -> InteractableComponent:
+
+	for component in component_root.get_children():
+
+		if component is InteractableComponent:
+
+			return component
+
+	return null
+
+
+
 
 
 
@@ -103,6 +127,18 @@ func _activate() -> void:
 
 		state_machine._activate()
 
+	if interaction_sensor:
+
+		interaction_sensor.activate()
+
+	if body_hurtbox:
+
+		body_hurtbox.activate()
+
+	if combat_hitbox:
+
+		combat_hitbox.activate()
+
 
 
 
@@ -123,6 +159,18 @@ func _deactivate() -> void:
 
 		state_machine._deactivate()
 
+	if interaction_sensor:
+
+		interaction_sensor.deactivate()
+
+	if body_hurtbox:
+
+		body_hurtbox.deactivate()
+
+	if combat_hitbox:
+
+		combat_hitbox.deactivate()
+
 
 
 
@@ -133,18 +181,6 @@ func is_busy() -> bool:
 	return state_machine.current_body_state is BodyBusyState
 
 
-
-
-
-func get_interactable_component() -> InteractableComponent:
-
-	for component in component_root.get_children():
-
-		if component is InteractableComponent:
-
-			return component
-
-	return null
 
 
 

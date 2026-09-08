@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bcb5k64hx4wh8" path="res://entity/character_node.tscn" id="1_7fyac"]
 [ext_resource type="Texture2D" uid="uid://wkjxgcn70ei3" path="res://entity/characters/enemies/thief_sprite.png" id="2_bqkhk"]
 [ext_resource type="Resource" uid="uid://dnb55qcchd324" path="res://entity/characters/enemies/thief_def.tres" id="2_g2erd"]
+[ext_resource type="Script" uid="uid://d2slfsrbftgcw" path="res://system/component/interactable_component.gd" id="4_lr5gl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2erd"]
 atlas = ExtResource("2_bqkhk")
@@ -63,6 +64,10 @@ shape = SubResource("CircleShape2D_bqwre")
 
 [node name="CenterMarker" parent="." index="5" unique_id=1102797740]
 position = Vector2(0, -11)
+
+[node name="InteractableComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1298652872) index="6" unique_id=582508648]
+script = ExtResource("4_lr5gl")
+metadata/_custom_type_script = "uid://d2slfsrbftgcw"
 
 [editable path="VisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox"]
 [editable path="BodyHurtbox"]

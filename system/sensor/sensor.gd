@@ -71,6 +71,26 @@ func deactivate() -> void:
 
 
 
+func get_nearest_entity() -> EntityNode:
+
+	var nearest_entity: EntityNode = null
+
+	var nearest_distance:= -INF
+
+	for _entity in entities:
+
+		var distance = entity.global_position.distance_to(_entity.global_position)
+
+		if !nearest_entity or distance < nearest_distance:
+
+			nearest_entity = _entity
+
+			nearest_distance = distance
+
+	return nearest_entity
+
+
+
 
 func _connect_signals() -> void:
 

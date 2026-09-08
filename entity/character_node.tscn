@@ -4,12 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://nwjblhn74vti" path="res://system/sensor/hitbox.tscn" id="2_0rdkl"]
 [ext_resource type="Script" uid="uid://dlwkufpih1aj5" path="res://system/sensor/sensor.gd" id="2_mbyps"]
 [ext_resource type="PackedScene" uid="uid://bffwx4v3ji1jf" path="res://system/sensor/hurtbox.tscn" id="3_cxnu7"]
+[ext_resource type="Script" uid="uid://cof878q5h4vvk" path="res://system/sensor/interaction_sensor.gd" id="5_cku0k"]
 [ext_resource type="Script" uid="uid://bwq7g52j8dk61" path="res://system/state/state_machine.gd" id="5_jg2qq"]
 [ext_resource type="Script" uid="uid://l42xar04t01" path="res://system/component/movement_component.gd" id="5_pgotb"]
 [ext_resource type="Script" uid="uid://crnnq4ahqtcv3" path="res://system/component/behavior_component.gd" id="6_0hq70"]
 [ext_resource type="Script" uid="uid://b3q8vdqgq8oib" path="res://system/component/combat_component.gd" id="7_22lai"]
 [ext_resource type="Script" uid="uid://ce5sc78pccbjh" path="res://system/component/health_component.gd" id="8_8mhx1"]
-[ext_resource type="Script" uid="uid://bcfls24p4qdwo" path="res://system/component/interaction_component.gd" id="9_udydy"]
 [ext_resource type="Script" uid="uid://b3tm6gbbprkmc" path="res://system/component/effects_component.gd" id="10_me77t"]
 [ext_resource type="Script" uid="uid://5oeo0b2of4ao" path="res://system/component/navigation_component.gd" id="11_me77t"]
 [ext_resource type="Script" uid="uid://chey2k08sd5y4" path="res://system/state/combat_idle_state.gd" id="12_8mhx1"]
@@ -61,8 +61,8 @@ debug_color = Color(0.5661667, 0.79, 0, 0)
 
 [node name="InteractionSensor" type="Area2D" parent="." unique_id=835967870]
 collision_layer = 0
-collision_mask = 0
-script = ExtResource("2_mbyps")
+collision_mask = 3
+script = ExtResource("5_cku0k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionSensor" unique_id=1415403427]
 debug_color = Color(0.79, 0.42133337, 0, 0.019607844)
@@ -89,9 +89,6 @@ script = ExtResource("7_22lai")
 
 [node name="HealthComponent" type="Node" parent="ComponentRoot" unique_id=29735072]
 script = ExtResource("8_8mhx1")
-
-[node name="InteractionComponent" type="Node" parent="ComponentRoot" unique_id=1001188744]
-script = ExtResource("9_udydy")
 
 [node name="EffectsComponent" type="Node" parent="ComponentRoot" unique_id=1459866721]
 script = ExtResource("10_me77t")

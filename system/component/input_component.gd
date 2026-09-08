@@ -36,6 +36,7 @@ func _initialize(_entity: EntityNode) -> void:
 
 
 
+
 func _unhandled_input(event: InputEvent) -> void:
 
 	if !active:
