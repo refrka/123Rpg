@@ -8,18 +8,18 @@
 [ext_resource type="Script" uid="uid://c1ab0ojesdubb" path="res://system/state/body_moving_state.gd" id="5_qjkh3"]
 [ext_resource type="Script" uid="uid://bcfls24p4qdwo" path="res://system/component/interaction_component.gd" id="6_boad6"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yw30f"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_boad6"]
 atlas = ExtResource("2_g1dw6")
 region = Rect2(0, 0, 36, 36)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_lkrbl"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_g6k8r"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yw30f")
+"texture": SubResource("AtlasTexture_boad6")
 }],
 "loop": 1,
-"name": &"idle_down",
+"name": &"default",
 "speed": 5.0
 }]
 
@@ -40,10 +40,12 @@ radius = 29.0
 script = ExtResource("2_g6k8r")
 entity_def = ExtResource("2_yw30f")
 
-[node name="BodySprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="0" unique_id=1518069600]
+[node name="BodyAnimatedSprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="0" unique_id=1518069600]
 position = Vector2(0, -18)
-sprite_frames = SubResource("SpriteFrames_lkrbl")
-animation = &"idle_down"
+sprite_frames = SubResource("SpriteFrames_g6k8r")
+
+[node name="BodySprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="1" unique_id=302384902]
+position = Vector2(0, -18)
 
 [node name="CombatSprite" parent="VisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(1666789074) index="0" unique_id=1245738592]
 position = Vector2(0, -14)

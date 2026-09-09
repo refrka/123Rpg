@@ -18,12 +18,16 @@
 
 @export var combat_hitbox: Hitbox
 
+@export var body_sprite: Sprite2D
+
 
 
 
 var initialized:= false
 
 var active:= false
+
+var inventory:= Inventory.new()
 
 
 

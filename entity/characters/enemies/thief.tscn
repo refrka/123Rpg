@@ -5,18 +5,18 @@
 [ext_resource type="Resource" uid="uid://dnb55qcchd324" path="res://entity/characters/enemies/thief_def.tres" id="2_g2erd"]
 [ext_resource type="Script" uid="uid://d2slfsrbftgcw" path="res://system/component/interactable_component.gd" id="4_lr5gl"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g2erd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lr5gl"]
 atlas = ExtResource("2_bqkhk")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_7fyac"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_boad6"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g2erd")
+"texture": SubResource("AtlasTexture_lr5gl")
 }],
 "loop": 1,
-"name": &"idle_down",
+"name": &"default",
 "speed": 5.0
 }]
 
@@ -36,10 +36,12 @@ radius = 40.112343
 [node name="Thief" unique_id=1179065956 groups=["thief"] instance=ExtResource("1_7fyac")]
 entity_def = ExtResource("2_g2erd")
 
-[node name="BodySprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="0" unique_id=1518069600]
+[node name="BodyAnimatedSprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="0" unique_id=1518069600]
 position = Vector2(0, -16)
-sprite_frames = SubResource("SpriteFrames_7fyac")
-animation = &"idle_down"
+sprite_frames = SubResource("SpriteFrames_boad6")
+
+[node name="BodySprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="1" unique_id=302384902]
+position = Vector2(0, -16)
 
 [node name="CombatSprite" parent="VisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(1666789074) index="0" unique_id=1245738592]
 position = Vector2(0, -11)

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://bqghtbw1ltx7x"]
+
+[ext_resource type="Script" uid="uid://cpdljppo0cqe3" path="res://item/item_def.gd" id="1_wre4i"]
+
+[resource]
+script = ExtResource("1_wre4i")
+item_id = &"light_health_potion"
+metadata/_custom_type_script = "uid://cpdljppo0cqe3"

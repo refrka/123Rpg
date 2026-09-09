@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://t0gd6nmeqkif" path="res://system/state/body_idle_state.gd" id="12_udydy"]
 [ext_resource type="Script" uid="uid://diqawhqdf7cvv" path="res://system/state/body_interacting_state.gd" id="17_dsukw"]
 
-[node name="CharacterNode" type="CharacterBody2D" unique_id=1179065956 node_paths=PackedStringArray("component_root", "state_machine", "vision_sensor", "interaction_sensor", "body_hurtbox", "combat_hitbox")]
+[node name="CharacterNode" type="CharacterBody2D" unique_id=1179065956 node_paths=PackedStringArray("component_root", "state_machine", "vision_sensor", "interaction_sensor", "body_hurtbox", "combat_hitbox", "body_sprite")]
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_ufg3e")
@@ -26,12 +26,15 @@ vision_sensor = NodePath("VisionSensor")
 interaction_sensor = NodePath("InteractionSensor")
 body_hurtbox = NodePath("BodyHurtbox")
 combat_hitbox = NodePath("VisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox")
+body_sprite = NodePath("VisualRoot/BodyVisualRoot/BodySprite")
 
 [node name="VisualRoot" type="Node2D" parent="." unique_id=1995510688]
 
 [node name="BodyVisualRoot" type="Node2D" parent="VisualRoot" unique_id=312874977]
 
-[node name="BodySprite" type="AnimatedSprite2D" parent="VisualRoot/BodyVisualRoot" unique_id=1518069600]
+[node name="BodyAnimatedSprite" type="AnimatedSprite2D" parent="VisualRoot/BodyVisualRoot" unique_id=1518069600]
+
+[node name="BodySprite" type="Sprite2D" parent="VisualRoot/BodyVisualRoot" unique_id=302384902]
 
 [node name="CombatVisualRoot" type="Node2D" parent="VisualRoot" unique_id=1666789074]
 
@@ -61,7 +64,7 @@ debug_color = Color(0.5661667, 0.79, 0, 0)
 
 [node name="InteractionSensor" type="Area2D" parent="." unique_id=835967870]
 collision_layer = 0
-collision_mask = 3
+collision_mask = 7
 script = ExtResource("5_cku0k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionSensor" unique_id=1415403427]

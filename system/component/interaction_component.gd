@@ -98,11 +98,21 @@ func force_end_interaction() -> void:
 
 func _start_interaction(target_entity: EntityNode) -> void:
 
+	if _is_interacting():
+		 
+		if interaction_timer > 0.0:
+
+			_cancel_interaction()
+
+		else:
+
+			_end_interaction()
+
 	current_target_entity = target_entity
 
 	current_target_interactable_component = current_target_entity.get_interactable_component()
 
-	current_target_interactable_component.end_requested.connect(_on_interactable_end_requested)
+	current_target_interactable_component.end_requested.connect(_on_interactable_end_requested, CONNECT_ONE_SHOT)
 
 	interaction_timer = current_target_interactable_component._get_duration()
 
@@ -124,7 +134,9 @@ func _start_interaction(target_entity: EntityNode) -> void:
 
 func _end_interaction() -> void:
 
-	current_target_interactable_component.end_requested.disconnect(_on_interactable_end_requested)
+	if current_target_interactable_component.end_requested.is_connected(_on_interactable_end_requested):
+
+		current_target_interactable_component.end_requested.disconnect(_on_interactable_end_requested)
 
 	entity.state_machine.request_state(BodyIdleState)
 

@@ -3,15 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://7d00yyc7h186" path="res://entity/resource_node.tscn" id="1_w02n3"]
 [ext_resource type="Texture2D" uid="uid://bti6amyxn84ob" path="res://entity/objects/resources/resource_bush.png" id="2_qtjxt"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ourmy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtjxt"]
 atlas = ExtResource("2_qtjxt")
 region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_w02n3"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_2my28"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ourmy")
+"texture": SubResource("AtlasTexture_qtjxt")
 }],
 "loop": 1,
 "name": &"default",
@@ -26,9 +26,12 @@ radius = 21.023796
 
 [node name="ResourceBush" unique_id=637575485 instance=ExtResource("1_w02n3")]
 
-[node name="BodySprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(86824929) index="0" unique_id=613068804]
+[node name="BodyAnimatedSprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(86824929) index="0" unique_id=613068804]
 position = Vector2(0, -23)
-sprite_frames = SubResource("SpriteFrames_w02n3")
+sprite_frames = SubResource("SpriteFrames_2my28")
+
+[node name="BodySprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(86824929) index="1" unique_id=9534874]
+position = Vector2(0, -23)
 
 [node name="BodyCollision" parent="." index="1" unique_id=1021961883]
 position = Vector2(0, -7)

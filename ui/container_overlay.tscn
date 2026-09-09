@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cx131ifd0b37f"]
+
+[ext_resource type="Script" uid="uid://bggindw2drn48" path="res://ui/container_overlay.gd" id="1_5nw51"]
+
+[node name="ContainerOverlay" type="MarginContainer" unique_id=1418914684]
+custom_minimum_size = Vector2(200, 0)
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+script = ExtResource("1_5nw51")
+pause_game = true
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=702483288]
+layout_mode = 2

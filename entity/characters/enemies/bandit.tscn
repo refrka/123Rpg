@@ -8,7 +8,7 @@
 atlas = ExtResource("2_ub2v2")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ub2v2"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_lr5gl"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -35,9 +35,12 @@ radius = 20.0
 [node name="Bandit" unique_id=1179065956 instance=ExtResource("1_iayho")]
 entity_def = ExtResource("2_nx6jw")
 
-[node name="BodySprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="0" unique_id=1518069600]
+[node name="BodyAnimatedSprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="0" unique_id=1518069600]
 position = Vector2(0, -16)
-sprite_frames = SubResource("SpriteFrames_ub2v2")
+sprite_frames = SubResource("SpriteFrames_lr5gl")
+
+[node name="BodySprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="1" unique_id=302384902]
+position = Vector2(0, -16)
 
 [node name="CombatSprite" parent="VisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(1666789074) index="0" unique_id=1245738592]
 position = Vector2(0, -11)

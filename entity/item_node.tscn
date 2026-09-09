@@ -2,22 +2,54 @@
 
 [ext_resource type="Script" uid="uid://duji57yv4y2dy" path="res://entity/item_node.gd" id="1_hhj0b"]
 [ext_resource type="Script" uid="uid://bwq7g52j8dk61" path="res://system/state/state_machine.gd" id="2_1bwnk"]
+[ext_resource type="Texture2D" uid="uid://p3u4cuiww2ay" path="res://item/item_shadow_sprite.png" id="2_4hl2a"]
 [ext_resource type="Script" uid="uid://t0gd6nmeqkif" path="res://system/state/body_idle_state.gd" id="3_4hl2a"]
+[ext_resource type="Texture2D" uid="uid://bowbl2mgdwuto" path="res://item/consumables/food/apple_sprite.png" id="3_6d55p"]
+[ext_resource type="Script" uid="uid://dlwkufpih1aj5" path="res://system/sensor/sensor.gd" id="4_6d55p"]
 
-[node name="ItemNode" type="StaticBody2D" unique_id=1154531157 node_paths=PackedStringArray("component_root", "state_machine")]
-collision_layer = 0
-collision_mask = 0
+[sub_resource type="CircleShape2D" id="CircleShape2D_v6mwb"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aajxx"]
+radius = 5.0
+
+[node name="ItemNode" type="CharacterBody2D" unique_id=1491560061 node_paths=PackedStringArray("pick_up_sensor", "component_root", "state_machine", "body_sprite")]
+y_sort_enabled = true
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_hhj0b")
+pick_up_sensor = NodePath("PickUpSensor")
 component_root = NodePath("ComponentRoot")
 state_machine = NodePath("StateMachine")
+body_sprite = NodePath("VisualRoot/BodyVisualRoot/BodySprite")
 
 [node name="VisualRoot" type="Node2D" parent="." unique_id=332404051]
+y_sort_enabled = true
 
 [node name="BodyVisualRoot" type="Node2D" parent="VisualRoot" unique_id=1981814163]
 
-[node name="BodySprite" type="AnimatedSprite2D" parent="VisualRoot/BodyVisualRoot" unique_id=464982421]
+[node name="ShadowSprite" type="Sprite2D" parent="VisualRoot/BodyVisualRoot" unique_id=728110370]
+modulate = Color(1, 1, 1, 0.4)
+texture = ExtResource("2_4hl2a")
+
+[node name="BodyAnimatedSprite" type="AnimatedSprite2D" parent="VisualRoot/BodyVisualRoot" unique_id=464982421]
+
+[node name="BodySprite" type="Sprite2D" parent="VisualRoot/BodyVisualRoot" unique_id=1763662845]
+position = Vector2(0, -5)
+texture = ExtResource("3_6d55p")
 
 [node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=2073472726]
+shape = SubResource("CircleShape2D_v6mwb")
+debug_color = Color(0.12565511, 0.5359635, 0.9999501, 0)
+
+[node name="PickUpSensor" type="Area2D" parent="." unique_id=1527774052]
+collision_layer = 0
+script = ExtResource("4_6d55p")
+metadata/_custom_type_script = "uid://dlwkufpih1aj5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpSensor" unique_id=1572088455]
+shape = SubResource("CircleShape2D_aajxx")
+debug_color = Color(0.41599998, 0.7424001, 0.8, 0.011764706)
 
 [node name="ComponentRoot" type="Node" parent="." unique_id=1675986413]
 

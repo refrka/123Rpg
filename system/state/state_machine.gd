@@ -49,9 +49,11 @@ func _initialize(_entity: EntityNode) -> void:
 
 		state._initialize(entity, self)
 
-	for state in get_combat_states():
+	if combat_root:
 
-		state._initialize(entity, self)
+		for state in get_combat_states():
+
+			state._initialize(entity, self)
 
 	if initial_body_state:
 

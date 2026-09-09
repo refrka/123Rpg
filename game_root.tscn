@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bs4xcxdhy16gf" path="res://ui/main_menu.tscn" id="3_bxsma"]
 [ext_resource type="Script" uid="uid://bocw1xnw5qly0" path="res://area_trigger.gd" id="3_wd1uf"]
 [ext_resource type="Script" uid="uid://dxtjaiqoxn5qb" path="res://area_trigger_2.gd" id="4_0o8ui"]
-[ext_resource type="Script" uid="uid://bk4r3c3lpn2mu" path="res://ui/dialogue_overlay.gd" id="5_8gxew"]
+[ext_resource type="PackedScene" uid="uid://vya2d76ig7sh" path="res://ui/dialogue_overlay.tscn" id="5_ledqy"]
+[ext_resource type="PackedScene" uid="uid://cx131ifd0b37f" path="res://ui/container_overlay.tscn" id="6_ledqy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aajxx"]
 size = Vector2(9, 104)
@@ -60,14 +61,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="DialogueOverlay" type="MarginContainer" parent="OverlayCanvas/OverlayRoot" unique_id=971421884]
+[node name="DialogueOverlay" parent="OverlayCanvas/OverlayRoot" unique_id=692798406 instance=ExtResource("5_ledqy")]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_8gxew")
 
-[node name="PanelContainer" type="PanelContainer" parent="OverlayCanvas/OverlayRoot/DialogueOverlay" unique_id=1593502661]
-layout_mode = 2
+[node name="ContainerOverlay" parent="OverlayCanvas/OverlayRoot" unique_id=1418914684 instance=ExtResource("6_ledqy")]
+layout_mode = 1
+offset_left = -16.0
 
 [node name="DebugCanvas" type="CanvasLayer" parent="." unique_id=1834661430]
 

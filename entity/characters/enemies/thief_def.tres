@@ -82,6 +82,7 @@ metadata/_custom_type_script = "uid://due8im487owbs"
 [resource]
 script = ExtResource("1_lhok0")
 behavior_profile = SubResource("Resource_lr5gl")
+move_speed = 100.0
 entity_id = &"thief"
 display_name = "Thief"
 dialogue_library = SubResource("Resource_rgyib")
