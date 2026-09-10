@@ -45,6 +45,14 @@ func _start() -> void:
 
 
 
+func _end() -> void:
+
+	UI.deactivate_overlay(DialogueOverlay)
+
+
+
+
+
 func _cancel() -> void:
 
 	pass

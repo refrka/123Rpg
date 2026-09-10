@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://tx1lnuejx2fm"]
+
+[ext_resource type="Script" uid="uid://bbgp6tbdtt5x1" path="res://ui/profile_overlay.gd" id="1_e3pp2"]
+[ext_resource type="PackedScene" uid="uid://d335eiu305qod" path="res://ui/inventory_display.tscn" id="2_ihex5"]
+
+[node name="ProfileOverlay" type="MarginContainer" unique_id=1678299502 node_paths=PackedStringArray("inventory_display")]
+process_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+script = ExtResource("1_e3pp2")
+inventory_display = NodePath("PanelContainer/InventoryDisplay")
+pause_game = true
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=270052619]
+layout_mode = 2
+
+[node name="InventoryDisplay" parent="PanelContainer" unique_id=1523359517 instance=ExtResource("2_ihex5")]
+layout_mode = 2
+size_flags_horizontal = 4

@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://bfmnwsqfdsatc"]
+
+[ext_resource type="Script" uid="uid://bspckr6yqtp6w" path="res://ui/item_slot.gd" id="1_m0q4r"]
+[ext_resource type="Script" uid="uid://ccivl44undqbp" path="res://ui/input_element.gd" id="2_lxngi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lxngi"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.78431374)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m0q4r"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.78431374)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.5504412, 0.5504412, 0.5504409, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="ItemSlot" type="MarginContainer" unique_id=746794944 node_paths=PackedStringArray("count_label", "item_texture", "input_element")]
+process_mode = 3
+custom_minimum_size = Vector2(32, 32)
+script = ExtResource("1_m0q4r")
+count_label = NodePath("PanelContainer/MarginContainer/CountLabel")
+item_texture = NodePath("PanelContainer/MarginContainer/ItemTexture")
+input_element = NodePath("InputElement")
+selected_stylebox = SubResource("StyleBoxFlat_lxngi")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1908041913]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m0q4r")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=803651329]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="ItemTexture" type="TextureRect" parent="PanelContainer/MarginContainer" unique_id=1550463545]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 3
+
+[node name="CountLabel" type="Label" parent="PanelContainer/MarginContainer" unique_id=645238613]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "99"
+
+[node name="InputElement" type="MarginContainer" parent="." unique_id=370540289]
+layout_mode = 2
+mouse_filter = 0
+script = ExtResource("2_lxngi")

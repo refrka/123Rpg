@@ -5,8 +5,14 @@
 [ext_resource type="Script" uid="uid://cb26f3nivegx2" path="res://player/player.gd" id="2_g6k8r"]
 [ext_resource type="Script" uid="uid://cfhgu5c81fw1w" path="res://system/component/input_component.gd" id="2_rkbax"]
 [ext_resource type="Resource" uid="uid://de86yi014b1de" path="res://player/player_def.tres" id="2_yw30f"]
+[ext_resource type="Script" uid="uid://df30ovb71pxmp" path="res://item/item_data.gd" id="4_hg6s5"]
+[ext_resource type="Script" uid="uid://bs86td7ogvkvn" path="res://item/inventory.gd" id="5_8t03j"]
 [ext_resource type="Script" uid="uid://c1ab0ojesdubb" path="res://system/state/body_moving_state.gd" id="5_qjkh3"]
 [ext_resource type="Script" uid="uid://bcfls24p4qdwo" path="res://system/component/interaction_component.gd" id="6_boad6"]
+
+[sub_resource type="Resource" id="Resource_ihex5"]
+script = ExtResource("5_8t03j")
+metadata/_custom_type_script = "uid://bs86td7ogvkvn"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_boad6"]
 atlas = ExtResource("2_g1dw6")
@@ -39,6 +45,7 @@ radius = 29.0
 [node name="Player" unique_id=1179065956 groups=["player"] instance=ExtResource("1_oul6g")]
 script = ExtResource("2_g6k8r")
 entity_def = ExtResource("2_yw30f")
+inventory = SubResource("Resource_ihex5")
 
 [node name="BodyAnimatedSprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="0" unique_id=1518069600]
 position = Vector2(0, -18)

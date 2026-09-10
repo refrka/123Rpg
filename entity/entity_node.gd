@@ -20,14 +20,14 @@
 
 @export var body_sprite: Sprite2D
 
+@export var inventory: Inventory
+
 
 
 
 var initialized:= false
 
 var active:= false
-
-var inventory:= Inventory.new()
 
 
 
@@ -60,8 +60,11 @@ func _initialize() -> void:
 
 		combat_hitbox.initialize(self)
 
+	if !inventory:
 
+		inventory = Inventory.new()
 
+	inventory.initialize()
 
 
 

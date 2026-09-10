@@ -5,13 +5,20 @@ class_name ContainerComponent extends InteractableComponent
 
 func _start() -> void:
 
-	var dialogue_overlay = UI.activate_overlay(ContainerOverlay)
+	var container_overlay = UI.activate_overlay(ContainerOverlay)
 
-	dialogue_overlay.overlay_closed.connect(_on_container_overlay_closed, CONNECT_ONE_SHOT)
+	container_overlay.overlay_closed.connect(_on_container_overlay_closed, CONNECT_ONE_SHOT)
+
+	container_overlay.load_container_inventory(entity.inventory)
+	
 
 
 
 
+
+func _end() -> void:
+
+	UI.deactivate_overlay(ContainerOverlay)
 
 
 

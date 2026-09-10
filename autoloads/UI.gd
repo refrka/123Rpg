@@ -28,7 +28,7 @@ func _ready() -> void:
 
 func activate_overlay(overlay_script: Script) -> UIOverlay:
 
-	var overlay = _get_overlay(overlay_script)
+	var overlay = get_overlay(overlay_script)
 
 	if overlay:
 
@@ -50,7 +50,7 @@ func activate_overlay(overlay_script: Script) -> UIOverlay:
 
 func deactivate_overlay(overlay_script: Script) -> UIOverlay:
 
-	var overlay = _get_overlay(overlay_script)
+	var overlay = get_overlay(overlay_script)
 	
 	if overlay:
 
@@ -105,7 +105,7 @@ func unregister_overlay(overlay: UIOverlay) -> void:
 
 
 
-func _get_overlay(overlay_script: Script) -> UIOverlay:
+func get_overlay(overlay_script: Script) -> UIOverlay:
 
 	if overlay_registry.has(overlay_script):
 
@@ -133,6 +133,19 @@ func _unhandled_input(event: InputEvent) -> void:
 
 			else:
 
-				var overlay = active_overlays.back()
+				var top_overlay = active_overlays.back()
 
-				deactivate_overlay(overlay.get_script())
+				deactivate_overlay(top_overlay.get_script())
+
+
+	var overlay = UI.get_overlay(ProfileOverlay)
+
+	if event.is_action_pressed("profile"):
+
+		if overlay.active:
+
+			UI.deactivate_overlay(ProfileOverlay)
+
+		else:
+
+			UI.activate_overlay(ProfileOverlay)

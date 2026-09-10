@@ -4,9 +4,9 @@ class_name ItemData extends Resource
 signal item_data_updated
 
 
-var item_def: ItemDef
+@export var item_def: ItemDef
 
-var count:= 0
+@export var count:= 0
 
 
 
@@ -30,6 +30,18 @@ func set_data(_item_def: ItemDef, _count: int) -> void:
 
 	item_data_updated.emit()
 
+
+
+
+func add_data(item_data: ItemData) -> void:
+
+	if is_empty():
+
+		assign_data(item_data)
+
+	else:
+
+		absorb(item_data)
 
 
 
@@ -96,6 +108,16 @@ func absorb(item_data: ItemData) -> void:
 
 	item_data.set_data(item_def, remaining)
 
+
+
+
+func can_accept(_item_def: ItemDef) -> bool:
+
+	if is_empty() or item_def == _item_def:
+
+		return true
+
+	return false
 
 
 

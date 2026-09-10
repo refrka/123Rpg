@@ -138,6 +138,8 @@ func _end_interaction() -> void:
 
 		current_target_interactable_component.end_requested.disconnect(_on_interactable_end_requested)
 
+	current_target_interactable_component._end()
+
 	entity.state_machine.request_state(BodyIdleState)
 
 	current_target_entity.state_machine.request_state(BodyIdleState)
@@ -210,11 +212,17 @@ func _is_interacting() -> bool:
 
 func _on_interact_pressed() -> void:
 
-	var entity_node = entity.interaction_sensor.get_nearest_entity()
+	if !_is_interacting():
 
-	if entity_node:
+		var entity_node = entity.interaction_sensor.get_nearest_entity()
 
-		_start_interaction(entity_node)
+		if entity_node:
+
+			_start_interaction(entity_node)
+
+	else:
+
+		_end_interaction()
 
 
 

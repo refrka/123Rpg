@@ -12,7 +12,7 @@ class_name Inventory extends Resource
 
 
 
-func _init() -> void:
+func initialize() -> void:
 
 	_resize(size)
 
@@ -44,7 +44,7 @@ func _get_item_data_with_def(item_def: ItemDef) -> Array[ItemData]:
 
 	for item_data in item_list:
 
-		if item_data.item_def == item_def:
+		if item_data.item_def == item_def and item_data.count > 0:
 
 			data_list.append(item_data)
 

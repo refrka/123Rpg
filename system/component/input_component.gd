@@ -6,12 +6,24 @@ signal interact_pressed
 
 signal interact_released
 
+signal profile_pressed
+
 
 
 var input_dir: Vector2
 
 
 var movement_component: MovementComponent
+
+
+
+
+
+
+func _ready() -> void:
+
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 
 
 
@@ -50,6 +62,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_released("interact"):
 
 		interact_released.emit()
+
+	if event.is_action_pressed("profile"):
+
+		profile_pressed.emit()
 
 
 
