@@ -115,6 +115,16 @@ func handle_mouse_input(button_index: int, pressed: bool) -> void:
 
 				mouse_slot.drop_slot()
 
+			[2, true, false]:
+
+				if item_data.item_def is ConsumableDef:
+
+					var player = Game.get_player()
+
+					player.consume(item_data.item_def)
+
+					item_data.remove_amount(1)
+
 
 
 

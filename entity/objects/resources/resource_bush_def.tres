@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ObjectDef" format=3 uid="uid://c2kn06j1b1ggj"]
+
+[ext_resource type="Script" uid="uid://ctynuguh2hlac" path="res://entity/object_def.gd" id="1_y30up"]
+
+[resource]
+script = ExtResource("1_y30up")
+entity_id = &"resource_bush"
+display_name = "Resource bush"
+metadata/_custom_type_script = "uid://ctynuguh2hlac"

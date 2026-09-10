@@ -1,10 +1,20 @@
-[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://lcbviv5ca6jc"]
+[gd_resource type="Resource" script_class="ConsumableDef" format=3 uid="uid://lcbviv5ca6jc"]
 
-[ext_resource type="Script" uid="uid://cpdljppo0cqe3" path="res://item/item_def.gd" id="1_nctio"]
 [ext_resource type="Texture2D" uid="uid://bowbl2mgdwuto" path="res://item/consumables/food/apple_sprite.png" id="1_v6mwb"]
+[ext_resource type="Script" uid="uid://cq8t0h5kbd11g" path="res://system/effect/effect.gd" id="2_05a8y"]
+[ext_resource type="Script" uid="uid://borubbiddafwt" path="res://system/effect/instant/restore_health_instant_effect.gd" id="3_b75p3"]
+[ext_resource type="Script" uid="uid://gkb0r1m7ponh" path="res://item/consumable_def.gd" id="4_utuol"]
+
+[sub_resource type="Resource" id="Resource_wugme"]
+script = ExtResource("3_b75p3")
+amount = 2.0
+effect_id = &"restore_health"
+display_name = "Restore 2 health"
+metadata/_custom_type_script = "uid://borubbiddafwt"
 
 [resource]
-script = ExtResource("1_nctio")
+script = ExtResource("4_utuol")
+effects_on_consume = Array[ExtResource("2_05a8y")]([SubResource("Resource_wugme")])
 item_id = &"apple"
 body_sprite_texture = ExtResource("1_v6mwb")
 body_sprite_position = Vector2(0, -5)
