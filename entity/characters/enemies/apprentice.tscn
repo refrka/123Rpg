@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://ct6b4i5lfxh4m"]
+
+[ext_resource type="PackedScene" uid="uid://bcb5k64hx4wh8" path="res://entity/character_node.tscn" id="1_fvy01"]
+[ext_resource type="Resource" uid="uid://d30u1j4gdj006" path="res://entity/characters/enemies/apprentice_def.tres" id="2_ad2my"]
+[ext_resource type="Texture2D" uid="uid://o2cxkri0yec0" path="res://entity/characters/enemies/apprentice_sprite.png" id="2_jnkc7"]
+[ext_resource type="Script" uid="uid://d2slfsrbftgcw" path="res://system/component/interactable_component.gd" id="4_wugme"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ad2my"]
+radius = 6.0
+height = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wugme"]
+radius = 189.00264
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jnkc7"]
+size = Vector2(20, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aajxx"]
+size = Vector2(16, 14)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bg5s2"]
+radius = 34.132095
+
+[node name="Apprentice" unique_id=1179065956 instance=ExtResource("1_fvy01")]
+entity_def = ExtResource("2_ad2my")
+
+[node name="BodySprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="1" unique_id=302384902]
+position = Vector2(0, -24)
+texture = ExtResource("2_jnkc7")
+
+[node name="CombatSprite" parent="VisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(1666789074) index="0" unique_id=1245738592]
+position = Vector2(0, -15)
+
+[node name="BodyCollision" parent="." index="1" unique_id=1637569305]
+position = Vector2(0, -6)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_ad2my")
+
+[node name="CollisionShape2D" parent="VisionSensor" parent_id_path=PackedInt32Array(1364341677) index="0" unique_id=1241352674]
+shape = SubResource("CircleShape2D_wugme")
+
+[node name="CollisionShape2D" parent="BodyHurtbox" parent_id_path=PackedInt32Array(869768629) index="0" unique_id=248750470]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_jnkc7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BodyHurtbox" parent_id_path=PackedInt32Array(869768629) index="1" unique_id=1393730462]
+position = Vector2(0, -25)
+shape = SubResource("RectangleShape2D_aajxx")
+debug_color = Color(0.5661667, 0.79, 0, 0)
+
+[node name="CollisionShape2D" parent="InteractionSensor" parent_id_path=PackedInt32Array(835967870) index="0" unique_id=1415403427]
+position = Vector2(0, -15)
+shape = SubResource("CircleShape2D_bg5s2")
+
+[node name="CenterMarker" parent="." index="5" unique_id=1102797740]
+position = Vector2(0, -15)
+
+[node name="InteractableComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1298652872) index="6" unique_id=1403954542]
+script = ExtResource("4_wugme")
+metadata/_custom_type_script = "uid://d2slfsrbftgcw"
+
+[editable path="VisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox"]
+[editable path="BodyHurtbox"]

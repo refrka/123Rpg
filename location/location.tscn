@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d3v01cnw30pli" path="res://player/player.tscn" id="2_tm4m8"]
 [ext_resource type="PackedScene" uid="uid://cl0n4dxbs3gfe" path="res://entity/characters/enemies/thief.tscn" id="3_3qwiq"]
 [ext_resource type="PackedScene" uid="uid://oqlfj2v8q7sm" path="res://entity/objects/resources/resource_bush.tscn" id="5_jbmeb"]
+[ext_resource type="PackedScene" uid="uid://ct6b4i5lfxh4m" path="res://entity/characters/enemies/apprentice.tscn" id="6_0na8r"]
 [ext_resource type="PackedScene" uid="uid://t81hf3p6dau5" path="res://entity/objects/containers/small_chest.tscn" id="6_jbmeb"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_me77t"]
@@ -29,7 +30,10 @@ position = Vector2(139, 140)
 position = Vector2(406, 241)
 
 [node name="Thief" parent="YSortRoot" unique_id=1386622407 instance=ExtResource("3_3qwiq")]
-position = Vector2(451, 140)
+position = Vector2(252, 246)
+
+[node name="Apprentice" parent="YSortRoot" unique_id=1183379793 instance=ExtResource("6_0na8r")]
+position = Vector2(229, 246)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1121169985]
 

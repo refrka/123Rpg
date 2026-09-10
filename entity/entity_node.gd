@@ -40,13 +40,9 @@ func _initialize() -> void:
 
 	initialized = true
 
-	for component in component_root.get_children():
+	if vision_sensor:
 
-		component._initialize(self)
-
-	if state_machine:
-
-		state_machine._initialize(self)
+		vision_sensor.initialize(self)
 
 	if interaction_sensor:
 
@@ -63,6 +59,14 @@ func _initialize() -> void:
 	if !inventory:
 
 		inventory = Inventory.new()
+
+	for component in component_root.get_children():
+
+		component._initialize(self)
+
+	if state_machine:
+
+		state_machine._initialize(self)
 
 	inventory.initialize()
 
@@ -124,6 +128,24 @@ func _activate() -> void:
 
 	active = true
 
+	if interaction_sensor:
+
+		interaction_sensor.activate()
+
+	if vision_sensor:
+
+		vision_sensor.activate()
+
+	if body_hurtbox:
+
+		body_hurtbox.activate()
+
+	if combat_hitbox:
+
+		combat_hitbox.activate()
+
+	await get_tree().physics_frame
+
 	for component in component_root.get_children():
 
 		if component.initialized:
@@ -133,18 +155,6 @@ func _activate() -> void:
 	if state_machine:
 
 		state_machine._activate()
-
-	if interaction_sensor:
-
-		interaction_sensor.activate()
-
-	if body_hurtbox:
-
-		body_hurtbox.activate()
-
-	if combat_hitbox:
-
-		combat_hitbox.activate()
 
 
 
@@ -169,6 +179,10 @@ func _deactivate() -> void:
 	if interaction_sensor:
 
 		interaction_sensor.deactivate()
+
+	if vision_sensor:
+
+		vision_sensor.deactivate()
 
 	if body_hurtbox:
 

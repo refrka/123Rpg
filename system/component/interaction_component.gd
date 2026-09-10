@@ -132,8 +132,8 @@ func _start_interaction(target_entity: EntityNode) -> void:
 
 
 
-func _end_interaction() -> void:
 
+func _end_interaction() -> void:
 	if current_target_interactable_component.end_requested.is_connected(_on_interactable_end_requested):
 
 		current_target_interactable_component.end_requested.disconnect(_on_interactable_end_requested)
@@ -208,8 +208,6 @@ func _is_interacting() -> bool:
 
 
 
-
-
 func _on_interact_pressed() -> void:
 
 	if !_is_interacting():
@@ -223,6 +221,8 @@ func _on_interact_pressed() -> void:
 	else:
 
 		_end_interaction()
+
+
 
 
 

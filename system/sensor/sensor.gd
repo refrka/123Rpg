@@ -75,7 +75,7 @@ func get_nearest_entity() -> EntityNode:
 
 	var nearest_entity: EntityNode = null
 
-	var nearest_distance:= -INF
+	var nearest_distance:= INF
 
 	for _entity in entities:
 

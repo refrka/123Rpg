@@ -36,7 +36,7 @@ func update_timer(timer_value: float) -> void:
 
 
 
-func _start() -> void:
+func _start(_show_progress:= true) -> void:
 
 	var dialogue_overlay = UI.activate_overlay(DialogueOverlay)
 

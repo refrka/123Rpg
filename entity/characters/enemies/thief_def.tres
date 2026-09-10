@@ -6,75 +6,33 @@
 [ext_resource type="Script" uid="uid://b4ot86r6gtxvc" path="res://system/behavior/behavior_phase.gd" id="3_f0ixx"]
 [ext_resource type="Script" uid="uid://due8im487owbs" path="res://system/behavior/behavior_profile.gd" id="4_0yde7"]
 [ext_resource type="Script" uid="uid://d00xm1l5u6bf1" path="res://system/command/command.gd" id="4_yuoec"]
-[ext_resource type="Script" uid="uid://bmj3ig5p45sje" path="res://system/command/move_to_position_command.gd" id="5_f0ixx"]
-[ext_resource type="Script" uid="uid://rbg77ld041kx" path="res://system/command/move_to_entity_command.gd" id="6_0yde7"]
-[ext_resource type="Script" uid="uid://ba6thtkw6h53" path="res://system/command/force_player_interaction_command.gd" id="7_5on3h"]
+[ext_resource type="Script" uid="uid://d4extd2fjk4ob" path="res://system/behavior/attribute_baseline.gd" id="6_0yde7"]
+[ext_resource type="Script" uid="uid://cygl0q6xi11rl" path="res://system/command/interact_with_entity_command.gd" id="7_5on3h"]
 
-[sub_resource type="Resource" id="Resource_yuoec"]
-script = ExtResource("5_f0ixx")
-target_position = Vector2(450, 100)
-await_result = true
-metadata/_custom_type_script = "uid://bmj3ig5p45sje"
-
-[sub_resource type="Resource" id="Resource_0yde7"]
-script = ExtResource("5_f0ixx")
-target_position = Vector2(100, 100)
-metadata/_custom_type_script = "uid://bmj3ig5p45sje"
-
-[sub_resource type="Resource" id="Resource_5on3h"]
-script = ExtResource("3_f0ixx")
-phase_commands = Array[ExtResource("4_yuoec")]([SubResource("Resource_yuoec"), SubResource("Resource_0yde7")])
-metadata/_custom_type_script = "uid://b4ot86r6gtxvc"
-
-[sub_resource type="Resource" id="Resource_glfif"]
-script = ExtResource("1_mdlmf")
-display_name = "Wander"
-phases = Array[ExtResource("3_f0ixx")]([SubResource("Resource_5on3h")])
-metadata/_custom_type_script = "uid://bkpp3kbsa48gg"
-
-[sub_resource type="Resource" id="Resource_hv6ro"]
-script = ExtResource("5_f0ixx")
-target_position = Vector2(300, 150)
-metadata/_custom_type_script = "uid://bmj3ig5p45sje"
-
-[sub_resource type="Resource" id="Resource_cku0k"]
-script = ExtResource("3_f0ixx")
-phase_commands = Array[ExtResource("4_yuoec")]([SubResource("Resource_hv6ro")])
-metadata/_custom_type_script = "uid://b4ot86r6gtxvc"
-
-[sub_resource type="Resource" id="Resource_bqwre"]
-script = ExtResource("1_mdlmf")
-display_name = "1"
-phases = Array[ExtResource("3_f0ixx")]([SubResource("Resource_cku0k")])
-metadata/_custom_type_script = "uid://bkpp3kbsa48gg"
-
-[sub_resource type="Resource" id="Resource_0o8ui"]
-script = ExtResource("6_0yde7")
-metadata/_custom_type_script = "uid://rbg77ld041kx"
-
-[sub_resource type="Resource" id="Resource_cmfsp"]
+[sub_resource type="Resource" id="Resource_c2byy"]
 script = ExtResource("7_5on3h")
+metadata/_custom_type_script = "uid://cygl0q6xi11rl"
 
-[sub_resource type="Resource" id="Resource_tw7lw"]
+[sub_resource type="Resource" id="Resource_qsiu4"]
 script = ExtResource("3_f0ixx")
-phase_commands = Array[ExtResource("4_yuoec")]([SubResource("Resource_0o8ui"), SubResource("Resource_cmfsp")])
+phase_commands = Array[ExtResource("4_yuoec")]([SubResource("Resource_c2byy")])
 metadata/_custom_type_script = "uid://b4ot86r6gtxvc"
 
-[sub_resource type="Resource" id="Resource_qtcbl"]
+[sub_resource type="Resource" id="Resource_h28ch"]
 script = ExtResource("1_mdlmf")
-display_name = "2"
-phases = Array[ExtResource("3_f0ixx")]([SubResource("Resource_tw7lw")])
+display_name = "Thief behavior"
+phases = Array[ExtResource("3_f0ixx")]([SubResource("Resource_qsiu4")])
+requires_disposition = true
 metadata/_custom_type_script = "uid://bkpp3kbsa48gg"
 
-[sub_resource type="Resource" id="Resource_f0ixx"]
-script = ExtResource("1_mdlmf")
-display_name = "3"
-phases = Array[ExtResource("3_f0ixx")]([SubResource("Resource_tw7lw")])
-metadata/_custom_type_script = "uid://bkpp3kbsa48gg"
+[sub_resource type="Resource" id="Resource_3h77l"]
+script = ExtResource("6_0yde7")
+metadata/_custom_type_script = "uid://d4extd2fjk4ob"
 
 [sub_resource type="Resource" id="Resource_lr5gl"]
 script = ExtResource("4_0yde7")
-behaviors = Array[ExtResource("1_mdlmf")]([SubResource("Resource_glfif"), SubResource("Resource_bqwre"), SubResource("Resource_qtcbl"), SubResource("Resource_f0ixx")])
+behaviors = Array[ExtResource("1_mdlmf")]([SubResource("Resource_h28ch")])
+default_baseline = SubResource("Resource_3h77l")
 metadata/_custom_type_script = "uid://due8im487owbs"
 
 [sub_resource type="Resource" id="Resource_rgyib"]

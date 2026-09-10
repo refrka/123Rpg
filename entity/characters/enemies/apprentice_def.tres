@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CharacterDef" format=3 uid="uid://d30u1j4gdj006"]
+
+[ext_resource type="Script" uid="uid://bkum3t6uspol8" path="res://entity/character_def.gd" id="1_oww0p"]
+
+[resource]
+script = ExtResource("1_oww0p")
+entity_id = &"apprentice"
+display_name = "Apprentice"
+metadata/_custom_type_script = "uid://bkum3t6uspol8"

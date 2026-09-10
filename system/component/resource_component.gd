@@ -8,25 +8,28 @@ class_name ResourceComponent extends InteractableComponent
 
 
 
-func _start() -> void:
+func _start(show_progress:= true) -> void:
 
-	progress_bar.show()
+	if show_progress:
+
+		progress_bar.show()
 
 
 
 
 
-func _cancel() -> void:
+
+func _end() -> void:
 
 	progress_bar.hide()
+
+
 
 
 
 
 
 func _complete() -> void:
-
-	progress_bar.hide()
 
 	var apple_def = load("res://item/consumables/food/apple_def.tres")
 

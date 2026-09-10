@@ -3,7 +3,7 @@ class_name ContainerComponent extends InteractableComponent
 
 
 
-func _start() -> void:
+func _start(_show_progress:= true) -> void:
 
 	var container_overlay = UI.activate_overlay(ContainerOverlay)
 

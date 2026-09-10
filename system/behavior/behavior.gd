@@ -14,6 +14,8 @@ signal evaluation_requested
 
 @export var baseline_score:= 0.5
 
+@export var requires_disposition:= false
+
 var current_phase_index:= -1
 
 var current_command_index:= 0
