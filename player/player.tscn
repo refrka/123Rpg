@@ -70,10 +70,14 @@ sprite_frames = SubResource("SpriteFrames_g6k8r")
 [node name="BodySprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="1" unique_id=302384902]
 position = Vector2(0, -18)
 
-[node name="CombatSprite" parent="VisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(1666789074) index="0" unique_id=1245738592]
+[node name="CombatVisualRoot" parent="VisualRoot" parent_id_path=PackedInt32Array(1995510688) index="1" unique_id=1666789074]
 position = Vector2(0, -14)
 
-[node name="CombatAnimationPlayer" parent="VisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(1666789074) index="1" unique_id=23580488]
+[node name="CombatSprite" parent="VisualRoot/CombatVisualRoot" index="0" unique_id=1245738592]
+position = Vector2(0, 0)
+rotation = 0.143117
+
+[node name="CombatAnimationPlayer" parent="VisualRoot/CombatVisualRoot" index="1" unique_id=23580488]
 libraries/player = SubResource("AnimationLibrary_ebec5")
 
 [node name="BodyCollision" parent="." index="1" unique_id=1637569305]
@@ -96,6 +100,9 @@ shape = SubResource("CircleShape2D_uw5eg")
 
 [node name="CenterMarker" parent="." index="5" unique_id=1102797740]
 position = Vector2(0, -14)
+
+[node name="CombatOrigin" parent="CenterMarker" index="0" unique_id=469163336]
+rotation = 0.143117
 
 [node name="InputComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1298652872) index="6" unique_id=1505771537]
 script = ExtResource("2_rkbax")

@@ -86,6 +86,8 @@ func _start_atack() -> void:
 
 	current_animation_name = _get_current_attack_animation_name()
 
+	_set_attack_dir()
+
 	entity.state_machine.request_state(CombatAttackingState)
 
 
@@ -104,7 +106,9 @@ func _finish_attack() -> void:
 
 
 
-func _set_attack_dir(dir: Vector2) -> void:
+func _set_attack_dir() -> void:
+
+	var dir = _get_current_attack_dir()
 
 	if dir != current_attack_dir:
 
@@ -126,7 +130,13 @@ func _get_current_charge_animation_name() -> String:
 	return "%s/charge_%s" % [current_library_name, current_attack_index]
 
 
+func _get_current_attack_dir() -> Vector2:
 
+	if entity is Player:
+
+		return combat_origin.global_position.direction_to(entity.get_global_mouse_position())
+
+	return Vector2.RIGHT
 
 
 

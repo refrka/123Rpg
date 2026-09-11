@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://nwjblhn74vti" path="res://system/sensor/hitbox.tscn" id="2_0rdkl"]
 [ext_resource type="Script" uid="uid://dlwkufpih1aj5" path="res://system/sensor/sensor.gd" id="2_mbyps"]
 [ext_resource type="PackedScene" uid="uid://bffwx4v3ji1jf" path="res://system/sensor/hurtbox.tscn" id="3_cxnu7"]
+[ext_resource type="Texture2D" uid="uid://jsfe1eygarmw" path="res://item/equipment/weapons/short_sword/short_sword_attack_0.png" id="3_dgn7c"]
 [ext_resource type="Script" uid="uid://cof878q5h4vvk" path="res://system/sensor/interaction_sensor.gd" id="5_cku0k"]
 [ext_resource type="Script" uid="uid://bwq7g52j8dk61" path="res://system/state/state_machine.gd" id="5_jg2qq"]
 [ext_resource type="Script" uid="uid://l42xar04t01" path="res://system/component/movement_component.gd" id="5_pgotb"]
@@ -19,8 +20,8 @@
 [ext_resource type="Script" uid="uid://diqawhqdf7cvv" path="res://system/state/body_interacting_state.gd" id="17_dsukw"]
 [ext_resource type="Script" uid="uid://dh3eu5bypxxop" path="res://system/state/combat_attacking_state.gd" id="17_hv6ro"]
 
-[sub_resource type="Animation" id="Animation_hv6ro"]
-resource_name = "attack_0"
+[sub_resource type="Animation" id="Animation_dgn7c"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -28,10 +29,10 @@ tracks/0/path = NodePath(".:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": []
+"values": [false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -40,10 +41,10 @@ tracks/1/path = NodePath(".:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": []
+"values": [null]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -52,10 +53,10 @@ tracks/2/path = NodePath(".:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": []
+"values": [1]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -64,10 +65,10 @@ tracks/3/path = NodePath(".:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": []
+"values": [0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -76,10 +77,10 @@ tracks/4/path = NodePath("CombatHitbox/CollisionShape2D:shape")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": []
+"values": [null]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -88,6 +89,102 @@ tracks/5/path = NodePath("../../../CenterMarker/CombatOrigin/CombatSpriteRemote:
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dsukw"]
+_data = {
+&"RESET": SubResource("Animation_dgn7c")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dgn7c"]
+size = Vector2(16, 5)
+
+[sub_resource type="Animation" id="Animation_hv6ro"]
+resource_name = "attack_0"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083868265),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_dgn7c")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.019781262, 0.05595576),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CombatHitbox/CollisionShape2D:shape")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.086733274),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [SubResource("RectangleShape2D_dgn7c"), null]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../../../CenterMarker/CombatOrigin/CombatSpriteRemote:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CombatHitbox/CollisionShape2D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(),
 "transitions": PackedFloat32Array(),
 "update": 0,
@@ -104,6 +201,7 @@ _data = {
 }
 
 [node name="CharacterNode" type="CharacterBody2D" unique_id=1179065956 node_paths=PackedStringArray("component_root", "state_machine", "vision_sensor", "interaction_sensor", "body_hurtbox", "combat_hitbox", "body_sprite")]
+y_sort_enabled = true
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_ufg3e")
@@ -116,6 +214,7 @@ combat_hitbox = NodePath("VisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox"
 body_sprite = NodePath("VisualRoot/BodyVisualRoot/BodySprite")
 
 [node name="VisualRoot" type="Node2D" parent="." unique_id=1995510688]
+y_sort_enabled = true
 
 [node name="BodyVisualRoot" type="Node2D" parent="VisualRoot" unique_id=312874977]
 
@@ -126,14 +225,18 @@ body_sprite = NodePath("VisualRoot/BodyVisualRoot/BodySprite")
 [node name="CombatVisualRoot" type="Node2D" parent="VisualRoot" unique_id=1666789074]
 
 [node name="CombatSprite" type="Sprite2D" parent="VisualRoot/CombatVisualRoot" unique_id=1245738592]
+visible = false
+position = Vector2(12, 0)
 
 [node name="CombatHitbox" parent="VisualRoot/CombatVisualRoot/CombatSprite" unique_id=1741834420 instance=ExtResource("2_0rdkl")]
 
 [node name="CollisionShape2D" parent="VisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox" index="0" unique_id=237750791]
+position = Vector2(1, -0.5)
 debug_color = Color(1, 0, 0.1833334, 0.03137255)
 
 [node name="CombatAnimationPlayer" type="AnimationPlayer" parent="VisualRoot/CombatVisualRoot" unique_id=23580488]
 root_node = NodePath("../CombatSprite")
+libraries/ = SubResource("AnimationLibrary_dsukw")
 libraries/short_sword = SubResource("AnimationLibrary_hv6ro")
 
 [node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=1637569305]
