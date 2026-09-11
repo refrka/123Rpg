@@ -8,6 +8,12 @@ signal interact_released
 
 signal profile_pressed
 
+signal attack_pressed
+
+signal attack_released
+
+
+
 
 
 var input_dir: Vector2
@@ -66,6 +72,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("profile"):
 
 		profile_pressed.emit()
+
+	if event.is_action_pressed("attack"):
+
+		attack_pressed.emit()
+
+	if event.is_action_released("attack"):
+
+		attack_released.emit()
 
 
 

@@ -1,9 +1,21 @@
 [gd_resource type="Resource" script_class="CharacterDef" format=3 uid="uid://de86yi014b1de"]
 
+[ext_resource type="Script" uid="uid://beib7squx5764" path="res://system/combat/attack_entry.gd" id="1_8fxaj"]
 [ext_resource type="Script" uid="uid://bkum3t6uspol8" path="res://entity/character_def.gd" id="1_cujn1"]
+[ext_resource type="Script" uid="uid://klqmaf25bvdf" path="res://system/combat/attack_config.gd" id="2_y8wuh"]
+
+[sub_resource type="Resource" id="Resource_3jfkr"]
+script = ExtResource("1_8fxaj")
+metadata/_custom_type_script = "uid://beib7squx5764"
+
+[sub_resource type="Resource" id="Resource_yllr7"]
+script = ExtResource("2_y8wuh")
+attack_set = Array[ExtResource("1_8fxaj")]([SubResource("Resource_3jfkr")])
+metadata/_custom_type_script = "uid://klqmaf25bvdf"
 
 [resource]
 script = ExtResource("1_cujn1")
+melee_attack_config = SubResource("Resource_yllr7")
 entity_id = &"player"
 display_name = "Player"
 metadata/_custom_type_script = "uid://bkum3t6uspol8"

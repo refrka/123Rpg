@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="EquipmentDef" format=3 uid="uid://ip5x13rcarsr"]
-
-[ext_resource type="Script" uid="uid://bccladnuw0rpp" path="res://item/equipment_def.gd" id="1_pve45"]
-
-[resource]
-script = ExtResource("1_pve45")
-item_id = &"short_sword"
-max_stack = 1
-metadata/_custom_type_script = "uid://bccladnuw0rpp"

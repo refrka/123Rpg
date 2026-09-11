@@ -8,6 +8,8 @@ class_name Inventory extends Resource
 @export var size:= 9
 
 
+@export var weapon_data: EquipmentData
+
 
 
 

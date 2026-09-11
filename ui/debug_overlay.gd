@@ -44,7 +44,7 @@ func _ready() -> void:
 
 func _update_time_label() -> void:
 	
-	time_label.text = Clock.get_time_label()
+	time_label.text = Clock.get_time_string()
 
 
 

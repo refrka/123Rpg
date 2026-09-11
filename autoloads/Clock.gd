@@ -135,7 +135,7 @@ func set_day(_day: int) -> void:
 
 
 
-func get_time_label() -> String:
+func get_time_string() -> String:
 
 	var _tick = int(floor(tick))
 

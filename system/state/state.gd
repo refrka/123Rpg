@@ -1,6 +1,7 @@
 class_name State extends Node
 
 
+signal transition_requested(state_script: Script)
 
 
 @export var allow_reenter:= false
@@ -52,7 +53,9 @@ func get_state_script() -> Script:
 
 
 
+func transition_to(state_script: Script) -> void:
 
+	transition_requested.emit(state_script)
 
 
 

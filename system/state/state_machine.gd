@@ -49,11 +49,15 @@ func _initialize(_entity: EntityNode) -> void:
 
 		state._initialize(entity, self)
 
+		state.transition_requested.connect(_on_transition_requested)
+
 	if combat_root:
 
 		for state in get_combat_states():
 
 			state._initialize(entity, self)
+
+			state.transition_requested.connect(_on_transition_requested)
 
 	if initial_body_state:
 
@@ -167,6 +171,8 @@ func _change_state(new_state: State) -> void:
 
 		state_changed.emit(current_combat_state)
 
+	print(new_state)
+
 
 
 
@@ -215,3 +221,42 @@ func _deactivate() -> void:
 		current_body_state._exit()
 
 	
+
+
+
+
+
+
+
+
+
+
+func _on_transition_requested(state_script: Script) -> void:
+
+	request_state(state_script)
+
+
+
+
+
+
+
+
+
+
+
+
+
+func _physics_process(delta: float) -> void:
+
+	if !active:
+
+		return
+
+	if current_body_state and current_body_state.active:
+
+		current_body_state._tick(delta)
+
+	if current_combat_state and current_combat_state.active:
+
+		current_combat_state._tick(delta)

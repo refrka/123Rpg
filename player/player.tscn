@@ -8,10 +8,19 @@
 [ext_resource type="Script" uid="uid://df30ovb71pxmp" path="res://item/item_data.gd" id="4_hg6s5"]
 [ext_resource type="Script" uid="uid://bs86td7ogvkvn" path="res://item/inventory.gd" id="5_8t03j"]
 [ext_resource type="Script" uid="uid://c1ab0ojesdubb" path="res://system/state/body_moving_state.gd" id="5_qjkh3"]
+[ext_resource type="Resource" uid="uid://ip5x13rcarsr" path="res://item/equipment/weapons/short_sword/short_sword_def.tres" id="6_2ieo8"]
 [ext_resource type="Script" uid="uid://bcfls24p4qdwo" path="res://system/component/interaction_component.gd" id="6_boad6"]
+[ext_resource type="Script" uid="uid://c6m2qonkgur2h" path="res://item/equipment_data.gd" id="7_ebec5"]
+
+[sub_resource type="Resource" id="Resource_hv6ro"]
+script = ExtResource("7_ebec5")
+item_def = ExtResource("6_2ieo8")
+count = 1
+metadata/_custom_type_script = "uid://c6m2qonkgur2h"
 
 [sub_resource type="Resource" id="Resource_ihex5"]
 script = ExtResource("5_8t03j")
+weapon_data = SubResource("Resource_hv6ro")
 metadata/_custom_type_script = "uid://bs86td7ogvkvn"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_boad6"]
@@ -28,6 +37,13 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="Animation" id="Animation_2ieo8"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ebec5"]
+_data = {
+&"attack_0": SubResource("Animation_2ieo8")
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_udydy"]
 radius = 6.0
@@ -56,6 +72,9 @@ position = Vector2(0, -18)
 
 [node name="CombatSprite" parent="VisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(1666789074) index="0" unique_id=1245738592]
 position = Vector2(0, -14)
+
+[node name="CombatAnimationPlayer" parent="VisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(1666789074) index="1" unique_id=23580488]
+libraries/player = SubResource("AnimationLibrary_ebec5")
 
 [node name="BodyCollision" parent="." index="1" unique_id=1637569305]
 position = Vector2(0, -6)

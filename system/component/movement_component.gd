@@ -8,10 +8,12 @@ signal move_ended
 
 
 
+
+
+var modifier_tracker:= ModifierTracker.new()
+
+
 var move_dir: Vector2
-
-
-
 
 
 var current_move_velocity: Vector2
@@ -47,6 +49,16 @@ func set_move_dir(dir: Vector2) -> void:
 
 
 
+func get_move_speed() -> float:
+
+	var base_speed = entity.entity_def.move_speed
+
+	var modifier_multiplier = modifier_tracker.get_total_multiplier_value()
+
+	return base_speed * modifier_multiplier
+
+
+
 
 
 
@@ -64,7 +76,7 @@ func _physics_process(delta: float) -> void:
 
 	else:
 
-		move_velocity = move_velocity.move_toward(move_dir * entity.entity_def.move_speed, 2000.0 * delta)
+		move_velocity = move_velocity.move_toward(move_dir * get_move_speed(), 2000.0 * delta)
 
 	if move_velocity == Vector2.ZERO and current_move_velocity != Vector2.ZERO:
 
