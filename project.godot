@@ -22,6 +22,7 @@ Debug="*uid://c1secrslu6o18"
 Events="*uid://nsyhpp5pfjov"
 Scenes="*uid://gc0ywoxqsq2c"
 UI="*uid://5gquq72wawp6"
+Clock="*uid://cw3a4i1m4ss53"
 
 [debug]
 

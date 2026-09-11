@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://dcqnd45ttrg6g"]
+
+[ext_resource type="Script" uid="uid://bh53sk741dspw" path="res://ui/debug_overlay.gd" id="1_eg61t"]
+
+[node name="DebugOverlay" type="MarginContainer" unique_id=387654761 node_paths=PackedStringArray("day_label", "time_label", "start_clock_button", "stop_clock_button", "reset_clock_button")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+script = ExtResource("1_eg61t")
+day_label = NodePath("VBoxContainer/HBoxContainer/DayLabel")
+time_label = NodePath("VBoxContainer/HBoxContainer/TimeLabel")
+start_clock_button = NodePath("VBoxContainer/StartClockButton")
+stop_clock_button = NodePath("VBoxContainer/StopClockButton")
+reset_clock_button = NodePath("VBoxContainer/ResetClockButton")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1884386962]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=839301186]
+layout_mode = 2
+
+[node name="DayLabel" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=915831672]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Day 1"
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer" unique_id=214953893]
+layout_mode = 2
+
+[node name="TimeLabel" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=2132443860]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "0 : 00"
+
+[node name="StartClockButton" type="Button" parent="VBoxContainer" unique_id=32145080]
+layout_mode = 2
+text = "Start"
+
+[node name="StopClockButton" type="Button" parent="VBoxContainer" unique_id=1404756055]
+layout_mode = 2
+text = "Stop"
+
+[node name="ResetClockButton" type="Button" parent="VBoxContainer" unique_id=1474946270]
+layout_mode = 2
+text = "Reset"

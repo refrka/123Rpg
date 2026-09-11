@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cx131ifd0b37f" path="res://ui/container_overlay.tscn" id="6_ledqy"]
 [ext_resource type="PackedScene" uid="uid://ls431nyabd3s" path="res://ui/mouse_slot_overlay.tscn" id="7_6t5o2"]
 [ext_resource type="PackedScene" uid="uid://tx1lnuejx2fm" path="res://ui/profile_overlay.tscn" id="7_aiwur"]
+[ext_resource type="PackedScene" uid="uid://dcqnd45ttrg6g" path="res://ui/debug_overlay.tscn" id="9_krhou"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aajxx"]
 size = Vector2(9, 104)
@@ -90,6 +91,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="DebugOverlay" parent="DebugCanvas/DebugRoot" unique_id=387654761 instance=ExtResource("9_krhou")]
+layout_mode = 1
 
 [node name="GameMenuCanvas" type="CanvasLayer" parent="." unique_id=132678326]
 
