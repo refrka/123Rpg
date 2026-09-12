@@ -28,6 +28,9 @@ entity_def = ExtResource("2_ad2my")
 position = Vector2(0, -24)
 texture = ExtResource("2_jnkc7")
 
+[node name="CenterMarker" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="2" unique_id=1102797740]
+position = Vector2(0, -15)
+
 [node name="CombatSprite" parent="VisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(1666789074) index="0" unique_id=1245738592]
 position = Vector2(0, -15)
 
@@ -51,9 +54,6 @@ debug_color = Color(0.5661667, 0.79, 0, 0)
 [node name="CollisionShape2D" parent="InteractionSensor" parent_id_path=PackedInt32Array(835967870) index="0" unique_id=1415403427]
 position = Vector2(0, -15)
 shape = SubResource("CircleShape2D_bg5s2")
-
-[node name="CenterMarker" parent="." index="5" unique_id=1102797740]
-position = Vector2(0, -15)
 
 [node name="InteractableComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1298652872) index="6" unique_id=1403954542]
 script = ExtResource("4_wugme")

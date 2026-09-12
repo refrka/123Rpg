@@ -82,18 +82,6 @@ tracks/4/keys = {
 "update": 1,
 "values": [null]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../../BodyVisualRoot/CenterMarker/CombatOrigin/CombatSpriteRemote:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dsukw"]
 _data = {
@@ -169,22 +157,10 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../../BodyVisualRoot/CenterMarker/CombatOrigin/CombatSpriteRemote:position")
+tracks/5/path = NodePath("CombatHitbox/CollisionShape2D:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(-0.00031610715),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(14, 0)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("CombatHitbox/CollisionShape2D:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
 "times": PackedFloat32Array(),
 "transitions": PackedFloat32Array(),
 "update": 0,
@@ -210,7 +186,7 @@ state_machine = NodePath("StateMachine")
 vision_sensor = NodePath("VisionSensor")
 interaction_sensor = NodePath("InteractionSensor")
 body_hurtbox = NodePath("BodyHurtbox")
-combat_hitbox = NodePath("VisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox")
+combat_hitbox = NodePath("VisualRoot/BodyVisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox")
 body_sprite = NodePath("VisualRoot/BodyVisualRoot/BodySprite")
 
 [node name="VisualRoot" type="Node2D" parent="." unique_id=1995510688]
@@ -222,29 +198,23 @@ y_sort_enabled = true
 
 [node name="BodySprite" type="Sprite2D" parent="VisualRoot/BodyVisualRoot" unique_id=302384902]
 
-[node name="CenterMarker" type="Marker2D" parent="VisualRoot/BodyVisualRoot" unique_id=1102797740]
+[node name="CombatVisualRoot" type="Node2D" parent="VisualRoot/BodyVisualRoot" unique_id=1666789074]
+y_sort_enabled = true
 
-[node name="CombatOrigin" type="Node2D" parent="VisualRoot/BodyVisualRoot/CenterMarker" unique_id=469163336]
-
-[node name="CombatSpriteRemote" type="RemoteTransform2D" parent="VisualRoot/BodyVisualRoot/CenterMarker/CombatOrigin" unique_id=398266469]
-remote_path = NodePath("../../../../CombatVisualRoot/CombatSprite")
-
-[node name="CombatVisualRoot" type="Node2D" parent="VisualRoot" unique_id=1666789074]
-
-[node name="CombatSprite" type="Sprite2D" parent="VisualRoot/CombatVisualRoot" unique_id=1245738592]
-visible = false
-position = Vector2(14, 0)
-
-[node name="CombatHitbox" parent="VisualRoot/CombatVisualRoot/CombatSprite" unique_id=1741834420 instance=ExtResource("2_0rdkl")]
-
-[node name="CollisionShape2D" parent="VisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox" index="0" unique_id=237750791]
-position = Vector2(1, -0.5)
-debug_color = Color(1, 0, 0.1833334, 0.03137255)
-
-[node name="CombatAnimationPlayer" type="AnimationPlayer" parent="VisualRoot/CombatVisualRoot" unique_id=23580488]
+[node name="CombatAnimationPlayer" type="AnimationPlayer" parent="VisualRoot/BodyVisualRoot/CombatVisualRoot" unique_id=23580488]
 root_node = NodePath("../CombatSprite")
 libraries/ = SubResource("AnimationLibrary_dsukw")
 libraries/short_sword = SubResource("AnimationLibrary_hv6ro")
+
+[node name="CombatSprite" type="Sprite2D" parent="VisualRoot/BodyVisualRoot/CombatVisualRoot" unique_id=1245738592]
+visible = false
+position = Vector2(14, 0)
+
+[node name="CombatHitbox" parent="VisualRoot/BodyVisualRoot/CombatVisualRoot/CombatSprite" unique_id=1741834420 instance=ExtResource("2_0rdkl")]
+
+[node name="CollisionShape2D" parent="VisualRoot/BodyVisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox" index="0" unique_id=237750791]
+position = Vector2(1, -0.5)
+debug_color = Color(1, 0, 0.1833334, 0.03137255)
 
 [node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=1637569305]
 debug_color = Color(0.12565511, 0.5359635, 0.9999501, 0)
@@ -282,7 +252,7 @@ script = ExtResource("6_0hq70")
 
 [node name="CombatComponent" type="Node" parent="ComponentRoot" unique_id=320259048 node_paths=PackedStringArray("combat_origin")]
 script = ExtResource("7_22lai")
-combat_origin = NodePath("../../VisualRoot/BodyVisualRoot/CenterMarker/CombatOrigin")
+combat_origin = NodePath("../../CenterMarker/CombatOrigin")
 
 [node name="HealthComponent" type="Node" parent="ComponentRoot" unique_id=29735072]
 script = ExtResource("8_8mhx1")
@@ -297,7 +267,7 @@ metadata/_custom_type_script = "uid://5oeo0b2of4ao"
 
 [node name="AnimationComponent" type="Node" parent="ComponentRoot" unique_id=660737 node_paths=PackedStringArray("combat_anim_player")]
 script = ExtResource("12_ddap6")
-combat_anim_player = NodePath("../../VisualRoot/CombatVisualRoot/CombatAnimationPlayer")
+combat_anim_player = NodePath("../../VisualRoot/BodyVisualRoot/CombatVisualRoot/CombatAnimationPlayer")
 metadata/_custom_type_script = "uid://diloxmtd8fr1m"
 
 [node name="StateMachine" type="Node" parent="." unique_id=873685549 node_paths=PackedStringArray("initial_body_state", "initial_combat_state", "body_root", "combat_root")]
@@ -328,5 +298,13 @@ metadata/_custom_type_script = "uid://bjeoxvqlvv3o1"
 [node name="CombatAttackingState" type="Node" parent="StateMachine/CombatRoot" unique_id=616574193]
 script = ExtResource("17_hv6ro")
 
-[editable path="VisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox"]
+[node name="CenterMarker" type="Marker2D" parent="." unique_id=1102797740]
+
+[node name="CombatOrigin" type="Node2D" parent="CenterMarker" unique_id=469163336]
+
+[node name="CombatSpriteRemote" type="RemoteTransform2D" parent="CenterMarker/CombatOrigin" unique_id=398266469]
+position = Vector2(14, 0)
+remote_path = NodePath("../../../VisualRoot/BodyVisualRoot/CombatVisualRoot/CombatSprite")
+
+[editable path="VisualRoot/BodyVisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox"]
 [editable path="BodyHurtbox"]

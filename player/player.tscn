@@ -70,23 +70,12 @@ sprite_frames = SubResource("SpriteFrames_g6k8r")
 [node name="BodySprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="1" unique_id=302384902]
 position = Vector2(0, -18)
 
-[node name="CenterMarker" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="2" unique_id=1102797740]
-y_sort_enabled = true
-position = Vector2(0, -14)
-
-[node name="CombatOrigin" parent="VisualRoot/BodyVisualRoot/CenterMarker" index="0" unique_id=469163336]
-y_sort_enabled = true
-rotation = -0.54105204
-
-[node name="CombatVisualRoot" parent="VisualRoot" parent_id_path=PackedInt32Array(1995510688) index="1" unique_id=1666789074]
-y_sort_enabled = true
-
-[node name="CombatSprite" parent="VisualRoot/CombatVisualRoot" index="0" unique_id=1245738592]
-position = Vector2(10.286008, -20.180458)
-rotation = -0.54105204
-
-[node name="CombatAnimationPlayer" parent="VisualRoot/CombatVisualRoot" index="1" unique_id=23580488]
+[node name="CombatAnimationPlayer" parent="VisualRoot/BodyVisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(1666789074) index="0" unique_id=23580488]
 libraries/player = SubResource("AnimationLibrary_ebec5")
+
+[node name="CombatSprite" parent="VisualRoot/BodyVisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(1666789074) index="1" unique_id=1245738592]
+position = Vector2(12.11212, -21.02115)
+rotation = -0.52534413
 
 [node name="BodyCollision" parent="." index="1" unique_id=1637569305]
 position = Vector2(0, -6)
@@ -117,5 +106,13 @@ metadata/_custom_type_script = "uid://bcfls24p4qdwo"
 script = ExtResource("5_qjkh3")
 metadata/_custom_type_script = "uid://c1ab0ojesdubb"
 
-[editable path="VisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox"]
+[node name="CenterMarker" parent="." index="8" unique_id=1102797740]
+y_sort_enabled = true
+position = Vector2(0, -14)
+
+[node name="CombatOrigin" parent="CenterMarker" index="0" unique_id=469163336]
+y_sort_enabled = true
+rotation = -0.52534413
+
+[editable path="VisualRoot/BodyVisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox"]
 [editable path="BodyHurtbox"]

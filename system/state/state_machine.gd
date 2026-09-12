@@ -171,8 +171,6 @@ func _change_state(new_state: State) -> void:
 
 		state_changed.emit(current_combat_state)
 
-	print(new_state)
-
 
 
 
