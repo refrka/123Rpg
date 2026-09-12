@@ -85,7 +85,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../../../CenterMarker/CombatOrigin/CombatSpriteRemote:position")
+tracks/5/path = NodePath("../../BodyVisualRoot/CenterMarker/CombatOrigin/CombatSpriteRemote:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -169,14 +169,14 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../../../CenterMarker/CombatOrigin/CombatSpriteRemote:position")
+tracks/5/path = NodePath("../../BodyVisualRoot/CenterMarker/CombatOrigin/CombatSpriteRemote:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(-0.00031610715),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(12, 0)]
+"values": [Vector2(14, 0)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -222,11 +222,18 @@ y_sort_enabled = true
 
 [node name="BodySprite" type="Sprite2D" parent="VisualRoot/BodyVisualRoot" unique_id=302384902]
 
+[node name="CenterMarker" type="Marker2D" parent="VisualRoot/BodyVisualRoot" unique_id=1102797740]
+
+[node name="CombatOrigin" type="Node2D" parent="VisualRoot/BodyVisualRoot/CenterMarker" unique_id=469163336]
+
+[node name="CombatSpriteRemote" type="RemoteTransform2D" parent="VisualRoot/BodyVisualRoot/CenterMarker/CombatOrigin" unique_id=398266469]
+remote_path = NodePath("../../../../CombatVisualRoot/CombatSprite")
+
 [node name="CombatVisualRoot" type="Node2D" parent="VisualRoot" unique_id=1666789074]
 
 [node name="CombatSprite" type="Sprite2D" parent="VisualRoot/CombatVisualRoot" unique_id=1245738592]
 visible = false
-position = Vector2(12, 0)
+position = Vector2(14, 0)
 
 [node name="CombatHitbox" parent="VisualRoot/CombatVisualRoot/CombatSprite" unique_id=1741834420 instance=ExtResource("2_0rdkl")]
 
@@ -263,13 +270,6 @@ script = ExtResource("5_cku0k")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionSensor" unique_id=1415403427]
 debug_color = Color(0.79, 0.42133337, 0, 0.019607844)
 
-[node name="CenterMarker" type="Marker2D" parent="." unique_id=1102797740]
-
-[node name="CombatOrigin" type="Node2D" parent="CenterMarker" unique_id=469163336]
-
-[node name="CombatSpriteRemote" type="RemoteTransform2D" parent="CenterMarker/CombatOrigin" unique_id=398266469]
-remote_path = NodePath("../../../VisualRoot/CombatVisualRoot/CombatSprite")
-
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=220968712]
 
 [node name="ComponentRoot" type="Node" parent="." unique_id=1298652872]
@@ -282,7 +282,7 @@ script = ExtResource("6_0hq70")
 
 [node name="CombatComponent" type="Node" parent="ComponentRoot" unique_id=320259048 node_paths=PackedStringArray("combat_origin")]
 script = ExtResource("7_22lai")
-combat_origin = NodePath("../../CenterMarker/CombatOrigin")
+combat_origin = NodePath("../../VisualRoot/BodyVisualRoot/CenterMarker/CombatOrigin")
 
 [node name="HealthComponent" type="Node" parent="ComponentRoot" unique_id=29735072]
 script = ExtResource("8_8mhx1")

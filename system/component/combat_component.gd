@@ -19,6 +19,7 @@ var current_attack_dir:= Vector2.RIGHT
 
 
 
+
 func _initialize(_entity: EntityNode) -> void:
 
 	super(_entity)
@@ -137,6 +138,19 @@ func _get_current_attack_dir() -> Vector2:
 		return combat_origin.global_position.direction_to(entity.get_global_mouse_position())
 
 	return Vector2.RIGHT
+
+
+func _get_attack_entry(index:= -1) -> AttackEntry:
+
+	if index == -1:
+
+		index = current_attack_index
+
+	if !current_attack_config or current_attack_config.attack_set.size() - 1 < index:
+
+		return null
+
+	return current_attack_config.attack_set[index]
 
 
 
