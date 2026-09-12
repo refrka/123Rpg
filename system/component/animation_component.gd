@@ -25,6 +25,9 @@ func play_idle_dir(dir: Vector2) -> void:
 
 
 
+
+
+
 func play_moving_dir(dir: Vector2) -> void:
 
 	_set_body_flip_state(dir.x < 0.0)

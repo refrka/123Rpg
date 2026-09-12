@@ -8,6 +8,8 @@ var behaviors: Array[Behavior]
 
 var current_behavior: Behavior
 
+var current_target_disposition: Disposition
+
 var dispositions: Array[Disposition]
 
 
@@ -76,6 +78,10 @@ func get_nearest_disposition() -> Disposition:
 
 func _evaluate_all(target_disposition: Disposition = null) -> void:
 
+	if !target_disposition:
+
+		target_disposition = current_target_disposition
+
 	var best_score:= -INF
 
 	var best_behavior: Behavior = null
@@ -93,6 +99,8 @@ func _evaluate_all(target_disposition: Disposition = null) -> void:
 			best_score = score
 
 			best_behavior = behavior
+	
+	current_target_disposition = target_disposition
 
 	_change_behavior(best_behavior)
 
@@ -180,7 +188,7 @@ func _get_disposition(target_entity: EntityNode) -> Disposition:
 
 func _on_evaluation_requested() -> void:
 
-	_evaluate_all()
+	_evaluate_all(current_target_disposition)
 
 
 

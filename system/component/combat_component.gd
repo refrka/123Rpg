@@ -96,7 +96,7 @@ func _try_attack() -> void:
 		
 		if not cooldown_enabled:
 
-			_start_atack()
+			_start_attack()
 
 	else:
 
@@ -116,7 +116,7 @@ func _try_attack() -> void:
 
 
 
-func _start_atack() -> void:
+func _start_attack() -> void:
 
 	var attack_entry = _get_attack_entry()
 
@@ -149,7 +149,7 @@ func _finish_attack() -> void:
 
 		current_attack_index += 1
 
-		_start_atack()
+		_start_attack()
 
 	else:
 
@@ -228,7 +228,6 @@ func _set_buffer_enabled_state(state: bool) -> void:
 
 
 
-
 func _set_attack_dir() -> void:
 
 	var dir = _get_current_attack_dir()
@@ -238,6 +237,8 @@ func _set_attack_dir() -> void:
 		current_attack_dir = dir
 
 		combat_origin.rotation = current_attack_dir.angle()
+
+
 
 
 

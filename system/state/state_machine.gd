@@ -137,9 +137,13 @@ func _change_state(new_state: State) -> void:
 
 	if new_state is BodyState:
 
-		if new_state == current_body_state and current_body_state.allow_reenter:
+		if new_state == current_body_state:
+			
+			if current_body_state.allow_reenter:
 
-			current_body_state._enter()
+				current_body_state._disconnect_signals()
+
+				current_body_state._enter()
 
 			return
 
@@ -155,9 +159,13 @@ func _change_state(new_state: State) -> void:
 
 	elif new_state is CombatState:
 
-		if new_state == current_body_state and current_body_state.allow_reenter:
+		if new_state == current_combat_state:
+			
+			if current_combat_state.allow_reenter:
 
-			current_combat_state._enter()
+				current_combat_state._disconnect_signals()
+
+				current_combat_state._enter()
 
 			return
 

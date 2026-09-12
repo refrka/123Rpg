@@ -7,7 +7,6 @@
 [ext_resource type="Resource" uid="uid://de86yi014b1de" path="res://player/player_def.tres" id="2_yw30f"]
 [ext_resource type="Script" uid="uid://df30ovb71pxmp" path="res://item/item_data.gd" id="4_hg6s5"]
 [ext_resource type="Script" uid="uid://bs86td7ogvkvn" path="res://item/inventory.gd" id="5_8t03j"]
-[ext_resource type="Script" uid="uid://c1ab0ojesdubb" path="res://system/state/body_moving_state.gd" id="5_qjkh3"]
 [ext_resource type="Resource" uid="uid://ip5x13rcarsr" path="res://item/equipment/weapons/short_sword/short_sword_def.tres" id="6_2ieo8"]
 [ext_resource type="Script" uid="uid://bcfls24p4qdwo" path="res://system/component/interaction_component.gd" id="6_boad6"]
 [ext_resource type="Script" uid="uid://c6m2qonkgur2h" path="res://item/equipment_data.gd" id="7_ebec5"]
@@ -46,6 +45,30 @@ region = Rect2(108, 36, 36, 36)
 [sub_resource type="AtlasTexture" id="AtlasTexture_32hag"]
 atlas = ExtResource("2_g1dw6")
 region = Rect2(0, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjvpn"]
+atlas = ExtResource("2_g1dw6")
+region = Rect2(36, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7qer"]
+atlas = ExtResource("2_g1dw6")
+region = Rect2(36, 72, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4c7l"]
+atlas = ExtResource("2_g1dw6")
+region = Rect2(72, 72, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knn7v"]
+atlas = ExtResource("2_g1dw6")
+region = Rect2(108, 72, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pqkx"]
+atlas = ExtResource("2_g1dw6")
+region = Rect2(144, 72, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uw77l"]
+atlas = ExtResource("2_g1dw6")
+region = Rect2(36, 0, 36, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_boad6"]
 atlas = ExtResource("2_g1dw6")
@@ -94,6 +117,29 @@ animations = [{
 }],
 "loop": 0,
 "name": &"dodge_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_bjvpn")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_s7qer")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_g4c7l")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_knn7v")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_7pqkx")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_uw77l")
+}],
+"loop": 0,
+"name": &"down_up",
 "speed": 5.0
 }, {
 "frames": [{
@@ -165,7 +211,9 @@ position = Vector2(0, -18)
 
 [node name="BodyAnimatedSprite" parent="VisualRoot/BodyVisualRoot" index="0" unique_id=1518069600]
 sprite_frames = SubResource("SpriteFrames_g6k8r")
-animation = &"moving_up"
+animation = &"down_up"
+frame = 5
+frame_progress = 1.0
 
 [node name="CombatAnimationPlayer" parent="VisualRoot/BodyVisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(1666789074) index="0" unique_id=23580488]
 libraries/player = SubResource("AnimationLibrary_ebec5")
@@ -198,9 +246,8 @@ script = ExtResource("2_rkbax")
 script = ExtResource("6_boad6")
 metadata/_custom_type_script = "uid://bcfls24p4qdwo"
 
-[node name="BodyMovingState" type="Node" parent="StateMachine/BodyRoot" parent_id_path=PackedInt32Array(1947284531) index="1" unique_id=1193616849]
-script = ExtResource("5_qjkh3")
-metadata/_custom_type_script = "uid://c1ab0ojesdubb"
+[node name="CombatAttackingState" parent="StateMachine/CombatRoot" parent_id_path=PackedInt32Array(822405411) index="2" unique_id=616574193]
+allow_reenter = true
 
 [node name="CenterMarker" parent="." index="8" unique_id=1102797740]
 y_sort_enabled = true

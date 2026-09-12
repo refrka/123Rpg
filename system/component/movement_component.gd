@@ -39,8 +39,6 @@ func halt() -> void:
 
 	set_move_dir(Vector2.ZERO)
 
-	current_move_velocity = Vector2.ZERO
-
 
 
 

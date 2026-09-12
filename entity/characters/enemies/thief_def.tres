@@ -52,11 +52,12 @@ metadata/_custom_type_script = "uid://rbg77ld041kx"
 
 [sub_resource type="Resource" id="Resource_ghgwx"]
 script = ExtResource("8_1mi0g")
+buffer_index_chances = Array[float]([0.5])
 await_result = true
 
 [sub_resource type="Resource" id="Resource_mkou2"]
 script = ExtResource("5_5on3h")
-idle_duration_range = Vector2(0.4, 0.4)
+idle_duration_range = Vector2(0.1, 0.2)
 
 [sub_resource type="Resource" id="Resource_8tlgu"]
 script = ExtResource("3_f0ixx")
@@ -72,7 +73,7 @@ metadata/_custom_type_script = "uid://dmv65uxjw5ncc"
 
 [sub_resource type="Resource" id="Resource_n4r2q"]
 script = ExtResource("5_5on3h")
-idle_duration_range = Vector2(2, 3)
+idle_duration_range = Vector2(1, 1.5)
 
 [sub_resource type="Resource" id="Resource_mwj7e"]
 script = ExtResource("3_f0ixx")
