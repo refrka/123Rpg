@@ -38,11 +38,13 @@ func receive_damage_package(damage_package: DamagePackage) -> void:
 
 	for damage_entry in damage_package.damage_entries:
 
-		if entity is Player:
-
-			Game.camera.anim_player.play("shake")
-
 		reduce_health(damage_entry.amount)
+
+	var animation_component = entity.get_component(AnimationComponent)
+
+	animation_component.body_anim_player.play("flinch")
+
+	animation_component.body_anim_player.advance(0)
 
 
 

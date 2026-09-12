@@ -6,6 +6,8 @@ signal move_started
 
 signal move_ended
 
+signal face_dir_changed
+
 
 
 
@@ -14,6 +16,8 @@ var modifier_tracker:= ModifierTracker.new()
 
 
 var move_dir: Vector2
+
+var face_dir: Vector2
 
 
 var current_move_velocity: Vector2
@@ -45,6 +49,21 @@ func set_move_dir(dir: Vector2) -> void:
 	if dir != move_dir:
 
 		move_dir = dir
+
+		if dir != Vector2.ZERO:
+
+			set_face_dir(dir)
+
+
+
+
+func set_face_dir(dir: Vector2) -> void:
+
+	if dir != face_dir:
+
+		face_dir = dir
+
+		face_dir_changed.emit()
 
 
 

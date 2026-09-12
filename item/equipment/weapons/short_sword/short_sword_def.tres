@@ -7,11 +7,17 @@
 [sub_resource type="Resource" id="Resource_1lokr"]
 script = ExtResource("1_1lokr")
 speed_factor = 0.0
+cooldown_duration = 0.5
+metadata/_custom_type_script = "uid://beib7squx5764"
+
+[sub_resource type="Resource" id="Resource_qh867"]
+script = ExtResource("1_1lokr")
+damage_range = Vector2(2, 2)
 metadata/_custom_type_script = "uid://beib7squx5764"
 
 [sub_resource type="Resource" id="Resource_3c82k"]
 script = ExtResource("2_vtflb")
-attack_set = Array[ExtResource("1_1lokr")]([SubResource("Resource_1lokr")])
+attack_set = Array[ExtResource("1_1lokr")]([SubResource("Resource_1lokr"), SubResource("Resource_qh867")])
 metadata/_custom_type_script = "uid://klqmaf25bvdf"
 
 [resource]

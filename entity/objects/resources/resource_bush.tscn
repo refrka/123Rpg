@@ -15,7 +15,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_qtjxt")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"idle_down",
 "speed": 5.0
 }]
 
@@ -31,6 +31,7 @@ entity_def = ExtResource("2_ourmy")
 [node name="BodyAnimatedSprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(86824929) index="0" unique_id=613068804]
 position = Vector2(0, -23)
 sprite_frames = SubResource("SpriteFrames_2my28")
+animation = &"idle_down"
 
 [node name="BodySprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(86824929) index="1" unique_id=9534874]
 position = Vector2(0, -23)

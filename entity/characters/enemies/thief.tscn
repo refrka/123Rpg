@@ -3,7 +3,22 @@
 [ext_resource type="PackedScene" uid="uid://bcb5k64hx4wh8" path="res://entity/character_node.tscn" id="1_7fyac"]
 [ext_resource type="Texture2D" uid="uid://wkjxgcn70ei3" path="res://entity/characters/enemies/thief_sprite.png" id="2_bqkhk"]
 [ext_resource type="Resource" uid="uid://dnb55qcchd324" path="res://entity/characters/enemies/thief_def.tres" id="2_g2erd"]
+[ext_resource type="Script" uid="uid://df30ovb71pxmp" path="res://item/item_data.gd" id="3_ghgwx"]
 [ext_resource type="Script" uid="uid://d2slfsrbftgcw" path="res://system/component/interactable_component.gd" id="4_lr5gl"]
+[ext_resource type="Script" uid="uid://bs86td7ogvkvn" path="res://item/inventory.gd" id="4_qsuqc"]
+[ext_resource type="Resource" uid="uid://ip5x13rcarsr" path="res://item/equipment/weapons/short_sword/short_sword_def.tres" id="5_pg8bi"]
+[ext_resource type="Script" uid="uid://c6m2qonkgur2h" path="res://item/equipment_data.gd" id="6_n4r2q"]
+
+[sub_resource type="Resource" id="Resource_5on3h"]
+script = ExtResource("6_n4r2q")
+item_def = ExtResource("5_pg8bi")
+count = 1
+metadata/_custom_type_script = "uid://c6m2qonkgur2h"
+
+[sub_resource type="Resource" id="Resource_0yde7"]
+script = ExtResource("4_qsuqc")
+weapon_data = SubResource("Resource_5on3h")
+metadata/_custom_type_script = "uid://bs86td7ogvkvn"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lr5gl"]
 atlas = ExtResource("2_bqkhk")
@@ -16,7 +31,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_lr5gl")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"idle_down",
 "speed": 5.0
 }]
 
@@ -35,16 +50,18 @@ radius = 40.112343
 
 [node name="Thief" unique_id=1179065956 groups=["thief"] instance=ExtResource("1_7fyac")]
 entity_def = ExtResource("2_g2erd")
+inventory = SubResource("Resource_0yde7")
 
 [node name="BodyAnimatedSprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="0" unique_id=1518069600]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_boad6")
+animation = &"idle_down"
 
 [node name="BodySprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="1" unique_id=302384902]
 position = Vector2(0, -16)
 
-[node name="CombatSprite" parent="VisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(1666789074) index="0" unique_id=1245738592]
-position = Vector2(0, -11)
+[node name="CombatSprite" parent="VisualRoot/BodyVisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(1666789074) index="1" unique_id=1245738592]
+position = Vector2(14, -11)
 
 [node name="BodyCollision" parent="." index="1" unique_id=1637569305]
 position = Vector2(0, -4)
@@ -64,12 +81,12 @@ position = Vector2(0, -11)
 [node name="CollisionShape2D" parent="InteractionSensor" index="0" unique_id=1415403427]
 shape = SubResource("CircleShape2D_bqwre")
 
-[node name="CenterMarker" parent="." index="5" unique_id=1102797740]
-position = Vector2(0, -11)
-
 [node name="InteractableComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1298652872) index="6" unique_id=582508648]
 script = ExtResource("4_lr5gl")
 metadata/_custom_type_script = "uid://d2slfsrbftgcw"
 
-[editable path="VisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox"]
+[node name="CenterMarker" parent="." index="8" unique_id=1102797740]
+position = Vector2(0, -11)
+
+[editable path="VisualRoot/BodyVisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox"]
 [editable path="BodyHurtbox"]

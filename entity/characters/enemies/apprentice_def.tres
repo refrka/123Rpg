@@ -6,4 +6,5 @@
 script = ExtResource("1_oww0p")
 entity_id = &"apprentice"
 display_name = "Apprentice"
+base_health = 50.0
 metadata/_custom_type_script = "uid://bkum3t6uspol8"

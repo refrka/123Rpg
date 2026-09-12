@@ -23,19 +23,116 @@ script = ExtResource("5_8t03j")
 weapon_data = SubResource("Resource_hv6ro")
 metadata/_custom_type_script = "uid://bs86td7ogvkvn"
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ieo8"]
+atlas = ExtResource("2_g1dw6")
+region = Rect2(0, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebec5"]
+atlas = ExtResource("2_g1dw6")
+region = Rect2(0, 36, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yllr7"]
+atlas = ExtResource("2_g1dw6")
+region = Rect2(36, 36, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kb6p2"]
+atlas = ExtResource("2_g1dw6")
+region = Rect2(72, 36, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wodsf"]
+atlas = ExtResource("2_g1dw6")
+region = Rect2(108, 36, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32hag"]
+atlas = ExtResource("2_g1dw6")
+region = Rect2(0, 0, 36, 36)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_boad6"]
 atlas = ExtResource("2_g1dw6")
 region = Rect2(0, 0, 36, 36)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqiix"]
+atlas = ExtResource("2_g1dw6")
+region = Rect2(36, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7oew"]
+atlas = ExtResource("2_g1dw6")
+region = Rect2(72, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c35mf"]
+atlas = ExtResource("2_g1dw6")
+region = Rect2(108, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65viv"]
+atlas = ExtResource("2_g1dw6")
+region = Rect2(144, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7c3f"]
+atlas = ExtResource("2_g1dw6")
+region = Rect2(180, 0, 36, 36)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_g6k8r"]
 animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_2ieo8")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_ebec5")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_yllr7")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_kb6p2")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_wodsf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32hag")
+}],
+"loop": 0,
+"name": &"dodge_down",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_boad6")
 }],
-"loop": 1,
-"name": &"default",
+"loop": 0,
+"name": &"idle_down",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqiix")
+}],
+"loop": 0,
+"name": &"idle_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7oew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c35mf")
+}],
+"loop": 1,
+"name": &"moving_down",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65viv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7c3f")
+}],
+"loop": 1,
+"name": &"moving_up",
+"speed": 10.0
 }]
 
 [sub_resource type="Animation" id="Animation_2ieo8"]
@@ -63,19 +160,18 @@ script = ExtResource("2_g6k8r")
 entity_def = ExtResource("2_yw30f")
 inventory = SubResource("Resource_ihex5")
 
-[node name="BodyAnimatedSprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="0" unique_id=1518069600]
+[node name="BodyVisualRoot" parent="VisualRoot" parent_id_path=PackedInt32Array(1995510688) index="0" unique_id=312874977]
 position = Vector2(0, -18)
-sprite_frames = SubResource("SpriteFrames_g6k8r")
 
-[node name="BodySprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="1" unique_id=302384902]
-position = Vector2(0, -18)
+[node name="BodyAnimatedSprite" parent="VisualRoot/BodyVisualRoot" index="0" unique_id=1518069600]
+sprite_frames = SubResource("SpriteFrames_g6k8r")
+animation = &"moving_up"
 
 [node name="CombatAnimationPlayer" parent="VisualRoot/BodyVisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(1666789074) index="0" unique_id=23580488]
 libraries/player = SubResource("AnimationLibrary_ebec5")
 
 [node name="CombatSprite" parent="VisualRoot/BodyVisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(1666789074) index="1" unique_id=1245738592]
-position = Vector2(12.11212, -21.02115)
-rotation = -0.52534413
+position = Vector2(14, 4)
 
 [node name="BodyCollision" parent="." index="1" unique_id=1637569305]
 position = Vector2(0, -6)
@@ -112,7 +208,8 @@ position = Vector2(0, -14)
 
 [node name="CombatOrigin" parent="CenterMarker" index="0" unique_id=469163336]
 y_sort_enabled = true
-rotation = -0.52534413
+
+[node name="Camera2D" type="Camera2D" parent="." index="9" unique_id=1498904959]
 
 [editable path="VisualRoot/BodyVisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox"]
 [editable path="BodyHurtbox"]

@@ -31,7 +31,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_4nfnh")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"idle_down",
 "speed": 5.0
 }]
 
@@ -48,6 +48,7 @@ inventory = SubResource("Resource_4nfnh")
 [node name="BodyAnimatedSprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(86824929) index="0" unique_id=613068804]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_l7702")
+animation = &"idle_down"
 
 [node name="BodySprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(86824929) index="1" unique_id=9534874]
 position = Vector2(0, -16)

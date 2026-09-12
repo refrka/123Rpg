@@ -23,6 +23,7 @@ script = ExtResource("1_pjpa4")
 location = NodePath("WorldCanvas/WorldRoot/Location")
 
 [node name="WorldCanvas" type="CanvasLayer" parent="." unique_id=1962273433]
+follow_viewport_enabled = true
 
 [node name="WorldRoot" type="Node2D" parent="WorldCanvas" unique_id=1254222544]
 

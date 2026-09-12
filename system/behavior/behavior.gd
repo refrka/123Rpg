@@ -46,6 +46,10 @@ func _evaluate(target_disposition: Disposition = null) -> float:
 
 	blackboard.set_value("target_disposition", target_disposition)
 
+	if target_disposition:
+
+		blackboard.set_value("target_entity", target_disposition.target_entity)
+
 	for condition in gate_conditions:
 
 		if !condition._evaluate(blackboard):
@@ -140,7 +144,7 @@ func _execute_phase_command(index: int) -> Command.Result:
 
 func _get_phase(index: int) -> BehaviorPhase:
 
-	if phases.size() - 1 <= index:
+	if phases.size() - 1 >= index:
 
 		return phases[index]
 

@@ -18,13 +18,15 @@ func _execute(_blackboard: Blackboard) -> Result:
 
 	super(_blackboard)
 
-	target_entity = blackboard.get_value("target_entity")
+	var target_disposition = blackboard.get_value("target_disposition")
 
-	if !target_entity:
+	if !target_disposition:
 
 		_set_result(Result.FAILURE)
 
 		return result
+
+	target_entity = target_disposition.target_entity
 
 	navigation_component = _get_actor().get_component(NavigationComponent)
 

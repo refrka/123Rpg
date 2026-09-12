@@ -2,6 +2,8 @@
 
 
 
+signal entity_died
+
 
 
 @export var entity_def: EntityDef
@@ -19,6 +21,8 @@
 @export var combat_hitbox: Hitbox
 
 @export var body_sprite: Sprite2D
+
+@export var body_animated_sprite: AnimatedSprite2D
 
 @export var inventory: Inventory
 
@@ -77,6 +81,25 @@ func _initialize() -> void:
 
 
 
+
+func receive_damage_package(damage_package: DamagePackage) -> void:
+
+	for component in component_root.get_children():
+
+		if component.has_method("receive_damage_package") and component.active:
+
+			component.receive_damage_package(damage_package)
+
+
+
+
+
+
+
+
+
+
+
 func get_state(state_script: Script) -> State:
 
 	if state_machine:
@@ -110,6 +133,24 @@ func get_interactable_component() -> InteractableComponent:
 			return component
 
 	return null
+
+
+
+
+
+
+
+
+
+
+
+
+func is_busy() -> bool:
+
+	return state_machine.current_body_state is BodyBusyState
+
+
+
 
 
 
@@ -191,17 +232,6 @@ func _deactivate() -> void:
 	if combat_hitbox:
 
 		combat_hitbox.deactivate()
-
-
-
-
-
-
-func is_busy() -> bool:
-
-	return state_machine.current_body_state is BodyBusyState
-
-
 
 
 

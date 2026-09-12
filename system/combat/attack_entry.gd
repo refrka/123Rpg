@@ -11,3 +11,5 @@ class_name AttackEntry extends Resource
 @export var can_hold_charge:= true
 
 @export var speed_factor:= 1.0
+
+@export var cooldown_duration:= 0.0

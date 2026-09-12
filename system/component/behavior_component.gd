@@ -12,6 +12,7 @@ var dispositions: Array[Disposition]
 
 
 
+var evaluation_timer:= 0.0
 
 
 
@@ -52,6 +53,10 @@ func get_nearest_disposition() -> Disposition:
 
 	for disposition in dispositions:
 
+		if !is_instance_valid(disposition.target_entity):
+
+			continue
+
 		var distance = entity.global_position.distance_to(disposition.target_entity.global_position)
 
 		if !nearest_disposition or distance < nearest_distance:
@@ -83,7 +88,7 @@ func _evaluate_all(target_disposition: Disposition = null) -> void:
 
 		var score = behavior._evaluate(target_disposition)
 
-		if !best_behavior or score < best_score:
+		if !best_behavior or score > best_score:
 
 			best_score = score
 
@@ -125,6 +130,8 @@ func _generate_disposition(target_entity: EntityNode) -> Disposition:
 	disposition.target_entity = target_entity
 
 	dispositions.append(disposition)
+
+	target_entity.entity_died.connect(_on_disposition_entity_died.bind(disposition))
 
 	return disposition
 
@@ -180,6 +187,10 @@ func _on_evaluation_requested() -> void:
 
 func _on_entity_entered_sensor(entity_node: EntityNode) -> void:
 
+	if not entity_node is CharacterNode:
+
+		return
+
 	var disposition = _get_disposition(entity_node)
 
 	if !disposition:
@@ -192,3 +203,31 @@ func _on_entity_entered_sensor(entity_node: EntityNode) -> void:
 func _on_entity_exited_sensor(entity_node: EntityNode) -> void:
 
 	pass
+
+
+
+func _on_disposition_entity_died(disposition: Disposition) -> void:
+
+	await get_tree().physics_frame
+
+	dispositions.erase(disposition)
+
+
+
+
+
+
+
+func _process(delta: float) -> void:
+
+	if !active:
+
+		return
+
+	if evaluation_timer <= 0.0:
+
+		evaluation_timer = 0.3
+
+		_evaluate_all()
+
+	evaluation_timer -= delta

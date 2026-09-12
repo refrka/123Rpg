@@ -15,7 +15,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_nx6jw")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"idle_down",
 "speed": 5.0
 }]
 
@@ -38,12 +38,13 @@ entity_def = ExtResource("2_nx6jw")
 [node name="BodyAnimatedSprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="0" unique_id=1518069600]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_lr5gl")
+animation = &"idle_down"
 
 [node name="BodySprite" parent="VisualRoot/BodyVisualRoot" parent_id_path=PackedInt32Array(312874977) index="1" unique_id=302384902]
 position = Vector2(0, -16)
 
-[node name="CombatSprite" parent="VisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(1666789074) index="0" unique_id=1245738592]
-position = Vector2(0, -11)
+[node name="CombatSprite" parent="VisualRoot/BodyVisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(1666789074) index="1" unique_id=1245738592]
+position = Vector2(14, -11)
 
 [node name="BodyCollision" parent="." index="1" unique_id=1637569305]
 position = Vector2(0, -5)
@@ -63,8 +64,8 @@ position = Vector2(0, -11)
 [node name="CollisionShape2D" parent="InteractionSensor" index="0" unique_id=1415403427]
 shape = SubResource("CircleShape2D_cmfsp")
 
-[node name="CenterMarker" parent="." index="5" unique_id=1102797740]
+[node name="CenterMarker" parent="." index="8" unique_id=1102797740]
 position = Vector2(0, -11)
 
-[editable path="VisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox"]
+[editable path="VisualRoot/BodyVisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox"]
 [editable path="BodyHurtbox"]

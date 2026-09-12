@@ -16,6 +16,11 @@ var entity: EntityNode
 
 var state_machine: StateMachine
 
+var animation_component: AnimationComponent
+
+
+
+
 
 
 
@@ -31,6 +36,8 @@ func _initialize(_entity: EntityNode, _state_machine: StateMachine) -> void:
 	entity = _entity
 
 	state_machine = _state_machine
+
+	animation_component = entity.get_component(AnimationComponent)
 
 
 

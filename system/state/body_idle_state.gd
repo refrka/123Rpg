@@ -6,10 +6,18 @@ class_name BodyIdleState extends BodyState
 
 
 
+func _enter() -> void:
+
+	super()
+
+	animation_component.play_idle_dir(get_body_dir())
+
+
+
+
+
 
 func _connect_signals() -> void:
-
-	var movement_component = entity.get_component(MovementComponent)
 
 	if movement_component:
 
@@ -20,8 +28,6 @@ func _connect_signals() -> void:
 
 
 func _disconnect_signals() -> void:
-
-	var movement_component = entity.get_component(MovementComponent)
 
 	if movement_component:
 
