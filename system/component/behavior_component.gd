@@ -3,8 +3,14 @@ class_name BehaviorComponent extends Component
 
 
 
+var attitude: float
+
+var temperament: float
+
 
 var behaviors: Array[Behavior]
+
+var current_behavior_score: float
 
 var current_behavior: Behavior
 
@@ -47,6 +53,16 @@ func _initialize(_entity: EntityNode) -> void:
 
 
 
+func receive_damage_package(damage_package: DamagePackage) -> void:
+
+	var disposition = _get_disposition(damage_package.source_entity)
+
+	disposition.update_attribute(Global.Attribute.FEAR, 0.5)
+
+
+
+
+
 func get_nearest_disposition() -> Disposition:
 
 	var nearest_disposition: Disposition = null
@@ -74,9 +90,7 @@ func get_nearest_disposition() -> Disposition:
 
 
 
-
-
-func _evaluate_all(target_disposition: Disposition = null) -> void:
+func _evaluate_list(list: Array[Behavior], target_disposition: Disposition = null) -> void:
 
 	if !target_disposition:
 
@@ -86,11 +100,7 @@ func _evaluate_all(target_disposition: Disposition = null) -> void:
 
 	var best_behavior: Behavior = null
 
-	for behavior in behaviors:
-
-		if !target_disposition and behavior.requires_disposition:
-
-			target_disposition = get_nearest_disposition()
+	for behavior in list:
 
 		var score = behavior._evaluate(target_disposition)
 
@@ -99,17 +109,42 @@ func _evaluate_all(target_disposition: Disposition = null) -> void:
 			best_score = score
 
 			best_behavior = behavior
+
+	if best_behavior == current_behavior:
+
+		_evaluate_current_behavior(target_disposition)
+
+	else:
+
+		best_behavior._change_target_disposition(target_disposition)
+
+		_change_behavior(best_behavior, best_score)
+
+
+
+
+
+
+
+
+
+
+
+
+func _evaluate_current_behavior(target_disposition: Disposition) -> void:
+
+	var score = current_behavior._evaluate(target_disposition)
+
+	if score > current_behavior_score:
+
+		current_behavior._change_target_disposition(target_disposition)
+
 	
-	current_target_disposition = target_disposition
-
-	_change_behavior(best_behavior)
-
-	
 
 
 
 
-func _change_behavior(new_behavior: Behavior) -> void:
+func _change_behavior(new_behavior: Behavior, score: float) -> void:
 
 	if new_behavior == current_behavior:
 
@@ -119,9 +154,24 @@ func _change_behavior(new_behavior: Behavior) -> void:
 
 		current_behavior._stop()
 
+	current_behavior_score = score
+
 	current_behavior = new_behavior
 
 	current_behavior._start()
+
+
+
+
+
+
+func _can_transition_to(new_behavior: Behavior) -> bool:
+
+	if !current_behavior:
+
+		return true
+
+	return current_behavior.allowed_type_transitions.has(new_behavior.behavior_type)
 
 
 
@@ -139,6 +189,8 @@ func _generate_disposition(target_entity: EntityNode) -> Disposition:
 
 	dispositions.append(disposition)
 
+	disposition.attribute_updated.connect(_on_disposition_attribute_updated.bind(disposition))
+
 	target_entity.entity_died.connect(_on_disposition_entity_died.bind(disposition))
 
 	return disposition
@@ -154,7 +206,7 @@ func _activate() -> void:
 
 	await get_tree().physics_frame
 
-	_evaluate_all.call_deferred()
+	_evaluate_list.call_deferred(behaviors)
 
 
 
@@ -188,7 +240,7 @@ func _get_disposition(target_entity: EntityNode) -> Disposition:
 
 func _on_evaluation_requested() -> void:
 
-	_evaluate_all(current_target_disposition)
+	_evaluate_list(behaviors, current_target_disposition)
 
 
 
@@ -203,14 +255,22 @@ func _on_entity_entered_sensor(entity_node: EntityNode) -> void:
 
 	if !disposition:
 
-		_generate_disposition(entity_node)
+		disposition = _generate_disposition(entity_node)
+
+	disposition.target_visible = true
 
 
 
 
 func _on_entity_exited_sensor(entity_node: EntityNode) -> void:
 
-	pass
+	var disposition = _get_disposition(entity_node)
+
+	if disposition:
+
+		disposition.target_visible = false
+
+
 
 
 
@@ -223,19 +283,22 @@ func _on_disposition_entity_died(disposition: Disposition) -> void:
 
 
 
+func _on_disposition_attribute_updated(attribute: Global.Attribute, amount: float, disposition: Disposition) -> void:
 
+	var eligible_behaviors: Array[Behavior] = []
 
+	for behavior in behaviors:
 
-func _process(delta: float) -> void:
+		if _can_transition_to(behavior) and !behavior.evaluation_thresholds.is_empty():
 
-	if !active:
+			for threshold in behavior.evaluation_thresholds:
 
-		return
+				var compared_value = amount if threshold.use_delta else disposition.attributes[attribute]
 
-	if evaluation_timer <= 0.0:
+				if threshold.value_meets_threshold(compared_value):
 
-		evaluation_timer = 0.3
+					eligible_behaviors.append(behavior)
 
-		_evaluate_all()
+	if !eligible_behaviors.is_empty():
 
-	evaluation_timer -= delta
+		_evaluate_list(eligible_behaviors, disposition)

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bkum3t6uspol8" path="res://entity/character_def.gd" id="1_lhok0"]
 [ext_resource type="Script" uid="uid://bkpp3kbsa48gg" path="res://system/behavior/behavior.gd" id="1_mdlmf"]
+[ext_resource type="Script" uid="uid://bwlq61fgab1i5" path="res://system/behavior/attribute_threshold.gd" id="2_j3578"]
 [ext_resource type="Script" uid="uid://d1fu2jcoxhr46" path="res://system/condition/condition.gd" id="2_yuoec"]
 [ext_resource type="Script" uid="uid://b4ot86r6gtxvc" path="res://system/behavior/behavior_phase.gd" id="3_f0ixx"]
 [ext_resource type="Script" uid="uid://due8im487owbs" path="res://system/behavior/behavior_profile.gd" id="4_0yde7"]
@@ -15,6 +16,7 @@
 [ext_resource type="Resource" uid="uid://de86yi014b1de" path="res://player/player_def.tres" id="8_jnrlm"]
 [ext_resource type="Script" uid="uid://2fc4r8p8u6ry" path="res://system/condition/is_target_entity_valid_condition.gd" id="9_mkou2"]
 [ext_resource type="Script" uid="uid://dmv65uxjw5ncc" path="res://system/command/move_away_from_entity_command.gd" id="12_mkou2"]
+[ext_resource type="Script" uid="uid://b421g4nwmx7ss" path="res://system/condition/always_fail_condition.gd" id="13_mwj7e"]
 
 [sub_resource type="Resource" id="Resource_5on3h"]
 script = ExtResource("5_5on3h")
@@ -27,6 +29,7 @@ metadata/_custom_type_script = "uid://b4ot86r6gtxvc"
 
 [sub_resource type="Resource" id="Resource_dsgrx"]
 script = ExtResource("6_cmfsp")
+dir_x_range = Vector2(-1, 0)
 
 [sub_resource type="Resource" id="Resource_1mi0g"]
 script = ExtResource("3_f0ixx")
@@ -37,6 +40,7 @@ metadata/_custom_type_script = "uid://b4ot86r6gtxvc"
 [sub_resource type="Resource" id="Resource_f0ixx"]
 script = ExtResource("1_mdlmf")
 display_name = "Wander"
+behavior_type = 2
 phases = Array[ExtResource("3_f0ixx")]([SubResource("Resource_0yde7"), SubResource("Resource_1mi0g")])
 metadata/_custom_type_script = "uid://bkpp3kbsa48gg"
 
@@ -81,10 +85,14 @@ phase_commands = Array[ExtResource("4_yuoec")]([SubResource("Resource_pg8bi"), S
 phase_transition_index = 0
 metadata/_custom_type_script = "uid://b4ot86r6gtxvc"
 
+[sub_resource type="Resource" id="Resource_r15qj"]
+script = ExtResource("13_mwj7e")
+
 [sub_resource type="Resource" id="Resource_krhou"]
 script = ExtResource("1_mdlmf")
 display_name = "Attack enemy"
 gate_conditions = Array[ExtResource("2_yuoec")]([SubResource("Resource_jnrlm")])
+retarget_conditions = Array[ExtResource("2_yuoec")]([SubResource("Resource_r15qj")])
 phases = Array[ExtResource("3_f0ixx")]([SubResource("Resource_8tlgu"), SubResource("Resource_mwj7e")])
 baseline_score = 0.6
 requires_disposition = true

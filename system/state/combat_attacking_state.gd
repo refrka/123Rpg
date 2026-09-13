@@ -11,6 +11,8 @@ var modifier: Modifier
 
 
 
+
+
 func _initialize(_entity: EntityNode, _state_machine: StateMachine) -> void:
 
 	super(_entity, _state_machine)

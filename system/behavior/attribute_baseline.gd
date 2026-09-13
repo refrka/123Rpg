@@ -1,6 +1,12 @@
 class_name AttributeBaseline extends Resource
 
 
+
+@export var baselines: Dictionary[Enums.Attribute, float]
+	
+
+
+
 @export var attitude_baseline:= 0.0
 
 @export var temperament_baseline:= 0.0

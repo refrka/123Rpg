@@ -90,13 +90,15 @@ func _enter_combat() -> void:
 
 
 
-func _try_attack() -> void:
+func _try_attack() -> bool:
 
 	if not _is_attacking() and _is_attack_index_valid(current_attack_index):
 		
 		if not cooldown_enabled:
 
 			_start_attack()
+
+			return true
 
 	else:
 
@@ -109,6 +111,12 @@ func _try_attack() -> void:
 				buffered = true
 
 			buffer_enabled = false
+
+		else:
+
+			return false
+
+	return false
 
 
 

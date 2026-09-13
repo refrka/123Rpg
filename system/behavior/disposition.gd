@@ -4,13 +4,19 @@ class_name Disposition extends RefCounted
 
 signal expired
 
+signal attribute_updated(attribute: Global.Attribute, amount: float)
 
 
-var fear:= 0.0
+var attributes:= {
 
-var affection:= 0.0
+	Enums.Attribute.FEAR: 0.0,
 
-var respect:= 0.0
+	Enums.Attribute.AFFECTION: -0.5,
+
+	Enums.Attribute.RESPECT: 0.0,
+
+}
+
 
 
 
@@ -23,6 +29,19 @@ var expiration_timer:= 0.0
 var timer_active:= false
 
 
+
+var target_visible:= true
+
+var last_known_position:= Vector2.INF
+
+
+
+
+func update_attribute(attribute: Global.Attribute, amount: float) -> void:
+
+	attributes[attribute] += amount
+
+	attribute_updated.emit(attribute, amount)
 
 
 

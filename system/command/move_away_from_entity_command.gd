@@ -15,6 +15,12 @@ func _execute(_blackboard: Blackboard) -> Result:
 
 	var target_entity = blackboard.get_value("target_entity")
 
+	if !is_instance_valid(target_entity):
+
+		_set_result(Result.FAILURE)
+
+		return result
+
 	var dir = target_entity.global_position.direction_to(actor.global_position)
 
 	var dist = _get_distance()

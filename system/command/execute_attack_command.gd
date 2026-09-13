@@ -24,9 +24,13 @@ func _execute(_blackboard: Blackboard) -> Result:
 
 			combat_component.buffered = true
 
-	combat_component._try_attack()
+	if combat_component._try_attack():
 
-	_set_result(Result.PENDING)
+		_set_result(Result.PENDING)
+
+	else:
+
+		_set_result(Result.FAILURE)
 
 	return result
 
