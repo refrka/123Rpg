@@ -1,102 +1,9 @@
 [gd_resource type="Resource" script_class="CharacterDef" format=3 uid="uid://dnb55qcchd324"]
 
 [ext_resource type="Script" uid="uid://bkum3t6uspol8" path="res://entity/character_def.gd" id="1_lhok0"]
-[ext_resource type="Script" uid="uid://bkpp3kbsa48gg" path="res://system/behavior/behavior.gd" id="1_mdlmf"]
-[ext_resource type="Script" uid="uid://bwlq61fgab1i5" path="res://system/behavior/attribute_threshold.gd" id="2_j3578"]
-[ext_resource type="Script" uid="uid://d1fu2jcoxhr46" path="res://system/condition/condition.gd" id="2_yuoec"]
-[ext_resource type="Script" uid="uid://b4ot86r6gtxvc" path="res://system/behavior/behavior_phase.gd" id="3_f0ixx"]
+[ext_resource type="Script" uid="uid://bxnsr030xolni" path="res://system/behavior/behavior_2.gd" id="1_stalf"]
 [ext_resource type="Script" uid="uid://due8im487owbs" path="res://system/behavior/behavior_profile.gd" id="4_0yde7"]
-[ext_resource type="Script" uid="uid://d00xm1l5u6bf1" path="res://system/command/command.gd" id="4_yuoec"]
-[ext_resource type="Script" uid="uid://rbg77ld041kx" path="res://system/command/move_to_entity_command.gd" id="5_0yde7"]
-[ext_resource type="Script" uid="uid://bf115awws133f" path="res://system/command/idle_command.gd" id="5_5on3h"]
 [ext_resource type="Script" uid="uid://d4extd2fjk4ob" path="res://system/behavior/attribute_baseline.gd" id="6_0yde7"]
-[ext_resource type="Script" uid="uid://ba4usugthph53" path="res://system/command/move_to_random_position_command.gd" id="6_cmfsp"]
-[ext_resource type="Script" uid="uid://cowmr2asnpoj2" path="res://entity/entity_def.gd" id="7_8r3an"]
-[ext_resource type="Script" uid="uid://bhbr13fk5cihc" path="res://system/command/execute_attack_command.gd" id="8_1mi0g"]
-[ext_resource type="Resource" uid="uid://de86yi014b1de" path="res://player/player_def.tres" id="8_jnrlm"]
-[ext_resource type="Script" uid="uid://2fc4r8p8u6ry" path="res://system/condition/is_target_entity_valid_condition.gd" id="9_mkou2"]
-[ext_resource type="Script" uid="uid://dmv65uxjw5ncc" path="res://system/command/move_away_from_entity_command.gd" id="12_mkou2"]
-[ext_resource type="Script" uid="uid://b421g4nwmx7ss" path="res://system/condition/always_fail_condition.gd" id="13_mwj7e"]
-
-[sub_resource type="Resource" id="Resource_5on3h"]
-script = ExtResource("5_5on3h")
-
-[sub_resource type="Resource" id="Resource_0yde7"]
-script = ExtResource("3_f0ixx")
-phase_commands = Array[ExtResource("4_yuoec")]([SubResource("Resource_5on3h")])
-phase_transition_index = 1
-metadata/_custom_type_script = "uid://b4ot86r6gtxvc"
-
-[sub_resource type="Resource" id="Resource_dsgrx"]
-script = ExtResource("6_cmfsp")
-dir_x_range = Vector2(-1, 0)
-
-[sub_resource type="Resource" id="Resource_1mi0g"]
-script = ExtResource("3_f0ixx")
-phase_commands = Array[ExtResource("4_yuoec")]([SubResource("Resource_dsgrx")])
-phase_transition_index = 0
-metadata/_custom_type_script = "uid://b4ot86r6gtxvc"
-
-[sub_resource type="Resource" id="Resource_f0ixx"]
-script = ExtResource("1_mdlmf")
-display_name = "Wander"
-behavior_type = 2
-phases = Array[ExtResource("3_f0ixx")]([SubResource("Resource_0yde7"), SubResource("Resource_1mi0g")])
-metadata/_custom_type_script = "uid://bkpp3kbsa48gg"
-
-[sub_resource type="Resource" id="Resource_jnrlm"]
-script = ExtResource("9_mkou2")
-entity_def_whitelist = Array[ExtResource("7_8r3an")]([ExtResource("8_jnrlm")])
-metadata/_custom_type_script = "uid://2fc4r8p8u6ry"
-
-[sub_resource type="Resource" id="Resource_soos4"]
-script = ExtResource("5_0yde7")
-await_result = true
-metadata/_custom_type_script = "uid://rbg77ld041kx"
-
-[sub_resource type="Resource" id="Resource_ghgwx"]
-script = ExtResource("8_1mi0g")
-buffer_index_chances = Array[float]([0.5])
-await_result = true
-
-[sub_resource type="Resource" id="Resource_mkou2"]
-script = ExtResource("5_5on3h")
-idle_duration_range = Vector2(0.1, 0.2)
-
-[sub_resource type="Resource" id="Resource_8tlgu"]
-script = ExtResource("3_f0ixx")
-phase_commands = Array[ExtResource("4_yuoec")]([SubResource("Resource_soos4"), SubResource("Resource_ghgwx"), SubResource("Resource_mkou2")])
-phase_transition_index = 1
-metadata/_custom_type_script = "uid://b4ot86r6gtxvc"
-
-[sub_resource type="Resource" id="Resource_pg8bi"]
-script = ExtResource("12_mkou2")
-distance_range = Vector2(100, 200)
-await_result = true
-metadata/_custom_type_script = "uid://dmv65uxjw5ncc"
-
-[sub_resource type="Resource" id="Resource_n4r2q"]
-script = ExtResource("5_5on3h")
-idle_duration_range = Vector2(1, 1.5)
-
-[sub_resource type="Resource" id="Resource_mwj7e"]
-script = ExtResource("3_f0ixx")
-phase_commands = Array[ExtResource("4_yuoec")]([SubResource("Resource_pg8bi"), SubResource("Resource_n4r2q")])
-phase_transition_index = 0
-metadata/_custom_type_script = "uid://b4ot86r6gtxvc"
-
-[sub_resource type="Resource" id="Resource_r15qj"]
-script = ExtResource("13_mwj7e")
-
-[sub_resource type="Resource" id="Resource_krhou"]
-script = ExtResource("1_mdlmf")
-display_name = "Attack enemy"
-gate_conditions = Array[ExtResource("2_yuoec")]([SubResource("Resource_jnrlm")])
-retarget_conditions = Array[ExtResource("2_yuoec")]([SubResource("Resource_r15qj")])
-phases = Array[ExtResource("3_f0ixx")]([SubResource("Resource_8tlgu"), SubResource("Resource_mwj7e")])
-baseline_score = 0.6
-requires_disposition = true
-metadata/_custom_type_script = "uid://bkpp3kbsa48gg"
 
 [sub_resource type="Resource" id="Resource_3h77l"]
 script = ExtResource("6_0yde7")
@@ -104,7 +11,6 @@ metadata/_custom_type_script = "uid://d4extd2fjk4ob"
 
 [sub_resource type="Resource" id="Resource_lr5gl"]
 script = ExtResource("4_0yde7")
-behaviors = Array[ExtResource("1_mdlmf")]([SubResource("Resource_f0ixx"), SubResource("Resource_krhou")])
 default_baseline = SubResource("Resource_3h77l")
 metadata/_custom_type_script = "uid://due8im487owbs"
 

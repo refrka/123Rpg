@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://cof878q5h4vvk" path="res://system/sensor/interaction_sensor.gd" id="5_cku0k"]
 [ext_resource type="Script" uid="uid://bwq7g52j8dk61" path="res://system/state/state_machine.gd" id="5_jg2qq"]
 [ext_resource type="Script" uid="uid://l42xar04t01" path="res://system/component/movement_component.gd" id="5_pgotb"]
-[ext_resource type="Script" uid="uid://crnnq4ahqtcv3" path="res://system/component/behavior_component.gd" id="6_0hq70"]
 [ext_resource type="Script" uid="uid://b3q8vdqgq8oib" path="res://system/component/combat_component.gd" id="7_22lai"]
 [ext_resource type="Script" uid="uid://ce5sc78pccbjh" path="res://system/component/health_component.gd" id="8_8mhx1"]
 [ext_resource type="Script" uid="uid://b3tm6gbbprkmc" path="res://system/component/effects_component.gd" id="10_me77t"]
@@ -17,6 +16,7 @@
 [ext_resource type="Script" uid="uid://chey2k08sd5y4" path="res://system/state/combat_idle_state.gd" id="12_8mhx1"]
 [ext_resource type="Script" uid="uid://diloxmtd8fr1m" path="res://system/component/animation_component.gd" id="12_ddap6"]
 [ext_resource type="Script" uid="uid://t0gd6nmeqkif" path="res://system/state/body_idle_state.gd" id="12_udydy"]
+[ext_resource type="Script" uid="uid://lgqo68u18ydu" path="res://system/component/behavior_component_2.gd" id="14_ovhqt"]
 [ext_resource type="Script" uid="uid://bjeoxvqlvv3o1" path="res://system/state/combat_ready_state.gd" id="16_cku0k"]
 [ext_resource type="Script" uid="uid://diqawhqdf7cvv" path="res://system/state/body_interacting_state.gd" id="17_dsukw"]
 [ext_resource type="Script" uid="uid://dh3eu5bypxxop" path="res://system/state/combat_attacking_state.gd" id="17_hv6ro"]
@@ -173,7 +173,7 @@ size = Vector2(16, 5.5)
 
 [sub_resource type="Animation" id="Animation_hv6ro"]
 resource_name = "attack_0"
-length = 0.19999999999999998
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -444,9 +444,6 @@ debug_color = Color(0.79, 0.42133337, 0, 0.019607844)
 [node name="MovementComponent" type="Node" parent="ComponentRoot" unique_id=1090916971]
 script = ExtResource("5_pgotb")
 
-[node name="BehaviorComponent" type="Node" parent="ComponentRoot" unique_id=516791025]
-script = ExtResource("6_0hq70")
-
 [node name="CombatComponent" type="Node" parent="ComponentRoot" unique_id=320259048 node_paths=PackedStringArray("combat_origin")]
 script = ExtResource("7_22lai")
 combat_origin = NodePath("../../CenterMarker/CombatOrigin")
@@ -467,6 +464,10 @@ script = ExtResource("12_ddap6")
 body_anim_player = NodePath("../../VisualRoot/BodyVisualRoot/BodyAnimationPlayer")
 combat_anim_player = NodePath("../../VisualRoot/BodyVisualRoot/CombatVisualRoot/CombatAnimationPlayer")
 metadata/_custom_type_script = "uid://diloxmtd8fr1m"
+
+[node name="BehaviorComponent2" type="Node" parent="ComponentRoot" unique_id=768728180]
+script = ExtResource("14_ovhqt")
+metadata/_custom_type_script = "uid://lgqo68u18ydu"
 
 [node name="StateMachine" type="Node" parent="." unique_id=873685549 node_paths=PackedStringArray("initial_body_state", "initial_combat_state", "body_root", "combat_root")]
 script = ExtResource("5_jg2qq")
