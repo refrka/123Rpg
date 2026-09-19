@@ -15,7 +15,9 @@ metadata/_custom_type_script = "uid://klqmaf25bvdf"
 
 [resource]
 script = ExtResource("1_cujn1")
+move_speed = 350.0
 melee_attack_config = SubResource("Resource_yllr7")
 entity_id = &"player"
 display_name = "Player"
+base_health = 100.0
 metadata/_custom_type_script = "uid://bkum3t6uspol8"

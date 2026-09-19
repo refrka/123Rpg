@@ -246,9 +246,6 @@ script = ExtResource("2_rkbax")
 script = ExtResource("6_boad6")
 metadata/_custom_type_script = "uid://bcfls24p4qdwo"
 
-[node name="CombatAttackingState" parent="StateMachine/CombatRoot" parent_id_path=PackedInt32Array(822405411) index="2" unique_id=616574193]
-allow_reenter = true
-
 [node name="CenterMarker" parent="." index="8" unique_id=1102797740]
 y_sort_enabled = true
 position = Vector2(0, -14)

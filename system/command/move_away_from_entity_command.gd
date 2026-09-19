@@ -13,7 +13,9 @@ func _execute(_blackboard: Blackboard) -> Result:
 
 	var actor = _get_actor()
 
-	var target_entity = blackboard.get_value("target_entity")
+	var target_disposition = blackboard.get_value("target_disposition")
+
+	var target_entity = target_disposition.target_entity
 
 	if !is_instance_valid(target_entity):
 

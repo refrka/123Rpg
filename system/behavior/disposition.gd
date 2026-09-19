@@ -1,17 +1,20 @@
 class_name Disposition extends RefCounted
 
 
+@warning_ignore_start("unused_signal")
 
 signal expired
 
-signal attribute_updated(attribute: Global.Attribute, amount: float)
+signal attribute_updated(attribute: Enums.Attribute, amount: float)
+
+signal visibility_updated(visible: bool)
 
 
 var attributes:= {
 
 	Enums.Attribute.FEAR: 0.0,
 
-	Enums.Attribute.AFFECTION: -0.5,
+	Enums.Attribute.AFFECTION: 0.0,
 
 	Enums.Attribute.RESPECT: 0.0,
 
@@ -24,10 +27,6 @@ var attributes:= {
 
 var target_entity: EntityNode
 
-var expiration_timer:= 0.0
-
-var timer_active:= false
-
 
 
 var target_visible:= true
@@ -37,12 +36,21 @@ var last_known_position:= Vector2.INF
 
 
 
-func update_attribute(attribute: Global.Attribute, amount: float) -> void:
+
+func set_visible_state(state: bool) -> void:
+
+	target_visible = state
+
+	visibility_updated.emit(state)
+
+
+
+
+func update_attribute(attribute: Enums.Attribute, amount: float) -> void:
 
 	attributes[attribute] += amount
 
 	attribute_updated.emit(attribute, amount)
-
 
 
 

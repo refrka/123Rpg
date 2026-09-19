@@ -57,7 +57,7 @@ func receive_damage_package(damage_package: DamagePackage) -> void:
 
 	var disposition = _get_disposition(damage_package.source_entity)
 
-	disposition.update_attribute(Global.Attribute.FEAR, 0.5)
+	disposition.update_attribute(Enums.Attribute.FEAR, 0.5)
 
 
 
@@ -200,6 +200,7 @@ func _generate_disposition(target_entity: EntityNode) -> Disposition:
 
 
 
+
 func _activate() -> void:
 
 	super()
@@ -245,6 +246,7 @@ func _on_evaluation_requested() -> void:
 
 
 
+
 func _on_entity_entered_sensor(entity_node: EntityNode) -> void:
 
 	if not entity_node is CharacterNode:
@@ -258,6 +260,7 @@ func _on_entity_entered_sensor(entity_node: EntityNode) -> void:
 		disposition = _generate_disposition(entity_node)
 
 	disposition.target_visible = true
+
 
 
 
@@ -283,7 +286,7 @@ func _on_disposition_entity_died(disposition: Disposition) -> void:
 
 
 
-func _on_disposition_attribute_updated(attribute: Global.Attribute, amount: float, disposition: Disposition) -> void:
+func _on_disposition_attribute_updated(attribute: Enums.Attribute, amount: float, disposition: Disposition) -> void:
 
 	var eligible_behaviors: Array[Behavior] = []
 

@@ -2,10 +2,7 @@
 
 [ext_resource type="Script" uid="uid://i7oifgyecu33" path="res://location/location.gd" id="1_b5lvo"]
 [ext_resource type="PackedScene" uid="uid://d3v01cnw30pli" path="res://player/player.tscn" id="2_tm4m8"]
-[ext_resource type="PackedScene" uid="uid://oqlfj2v8q7sm" path="res://entity/objects/resources/resource_bush.tscn" id="5_jbmeb"]
-[ext_resource type="PackedScene" uid="uid://ct6b4i5lfxh4m" path="res://entity/characters/enemies/apprentice.tscn" id="6_0na8r"]
 [ext_resource type="PackedScene" uid="uid://cl0n4dxbs3gfe" path="res://entity/characters/enemies/thief.tscn" id="6_3h77l"]
-[ext_resource type="PackedScene" uid="uid://t81hf3p6dau5" path="res://entity/objects/containers/small_chest.tscn" id="6_jbmeb"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_me77t"]
 vertices = PackedVector2Array(664.71094, 363.15625, -1.0703125, 373.82813, -3.921875, -7.1015625, 654.27344, -13.890625)
@@ -20,22 +17,12 @@ metadata/_custom_type_script = "uid://i7oifgyecu33"
 [node name="YSortRoot" type="Node2D" parent="." unique_id=546240414]
 y_sort_enabled = true
 
-[node name="ResourceBush" parent="YSortRoot" unique_id=637575485 instance=ExtResource("5_jbmeb")]
-position = Vector2(340, 164)
-
-[node name="SmallChest" parent="YSortRoot" unique_id=1965920797 instance=ExtResource("6_jbmeb")]
-position = Vector2(139, 140)
-
 [node name="Player" parent="YSortRoot" unique_id=1179065956 instance=ExtResource("2_tm4m8")]
 y_sort_enabled = true
 position = Vector2(600, 69)
 
 [node name="CollisionShape2D" parent="YSortRoot/Player/VisualRoot/BodyVisualRoot/CombatVisualRoot/CombatSprite/CombatHitbox" parent_id_path=PackedInt32Array(1179065956, 1741834420) index="0" unique_id=237750791]
 position = Vector2(1, -0.5)
-
-[node name="Apprentice" parent="YSortRoot" unique_id=639976193 instance=ExtResource("6_0na8r")]
-y_sort_enabled = true
-position = Vector2(170, 229)
 
 [node name="Thief" parent="YSortRoot" unique_id=1633074788 instance=ExtResource("6_3h77l")]
 position = Vector2(337, 225)

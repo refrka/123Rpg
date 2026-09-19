@@ -13,3 +13,4 @@ func _ready() -> void:
 		child._initialize()
 
 		child._activate()
+

@@ -2,8 +2,130 @@
 
 [ext_resource type="Script" uid="uid://bkum3t6uspol8" path="res://entity/character_def.gd" id="1_lhok0"]
 [ext_resource type="Script" uid="uid://bxnsr030xolni" path="res://system/behavior/behavior_2.gd" id="1_stalf"]
+[ext_resource type="Script" uid="uid://ba323cbccj24y" path="res://system/behavior/attribute_map.gd" id="2_5on3h"]
+[ext_resource type="Script" uid="uid://bwlq61fgab1i5" path="res://system/behavior/attribute_threshold.gd" id="2_j3578"]
+[ext_resource type="Script" uid="uid://d1fu2jcoxhr46" path="res://system/condition/condition.gd" id="2_yuoec"]
+[ext_resource type="Script" uid="uid://b4ot86r6gtxvc" path="res://system/behavior/behavior_phase.gd" id="3_f0ixx"]
 [ext_resource type="Script" uid="uid://due8im487owbs" path="res://system/behavior/behavior_profile.gd" id="4_0yde7"]
+[ext_resource type="Script" uid="uid://d00xm1l5u6bf1" path="res://system/command/command.gd" id="4_yuoec"]
+[ext_resource type="Script" uid="uid://rbg77ld041kx" path="res://system/command/move_to_entity_command.gd" id="5_0yde7"]
+[ext_resource type="Script" uid="uid://bf115awws133f" path="res://system/command/idle_command.gd" id="5_5on3h"]
 [ext_resource type="Script" uid="uid://d4extd2fjk4ob" path="res://system/behavior/attribute_baseline.gd" id="6_0yde7"]
+[ext_resource type="Script" uid="uid://ba4usugthph53" path="res://system/command/move_to_random_position_command.gd" id="6_cmfsp"]
+[ext_resource type="Script" uid="uid://bhbr13fk5cihc" path="res://system/command/execute_attack_command.gd" id="8_1mi0g"]
+[ext_resource type="Script" uid="uid://dmv65uxjw5ncc" path="res://system/command/move_away_from_entity_command.gd" id="12_mkou2"]
+
+[sub_resource type="Curve" id="Curve_8r3an"]
+_limits = [0.0, 1.0, -1.0, 1.0]
+_data = [Vector2(-1, 1), 0.0, 0.0, 0, 0, Vector2(-0.5, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+metadata/_snap_enabled = true
+metadata/_snap_count = 20
+
+[sub_resource type="Resource" id="Resource_cmfsp"]
+script = ExtResource("2_5on3h")
+curves = Dictionary[int, Curve]({
+2: SubResource("Curve_8r3an")
+})
+metadata/_custom_type_script = "uid://ba323cbccj24y"
+
+[sub_resource type="Resource" id="Resource_1mi0g"]
+script = ExtResource("6_cmfsp")
+metadata/_custom_type_script = "uid://ba4usugthph53"
+
+[sub_resource type="Resource" id="Resource_ujca4"]
+script = ExtResource("3_f0ixx")
+phase_commands = Array[ExtResource("4_yuoec")]([SubResource("Resource_1mi0g")])
+phase_transition_index = 1
+metadata/_custom_type_script = "uid://b4ot86r6gtxvc"
+
+[sub_resource type="Resource" id="Resource_8r3an"]
+script = ExtResource("5_5on3h")
+metadata/_custom_type_script = "uid://bf115awws133f"
+
+[sub_resource type="Resource" id="Resource_dsgrx"]
+script = ExtResource("3_f0ixx")
+phase_commands = Array[ExtResource("4_yuoec")]([SubResource("Resource_8r3an")])
+phase_transition_index = 0
+metadata/_custom_type_script = "uid://b4ot86r6gtxvc"
+
+[sub_resource type="Resource" id="Resource_q8xwr"]
+script = ExtResource("1_stalf")
+display_name = "Wander"
+behavior_type = 2
+phases = Array[ExtResource("3_f0ixx")]([SubResource("Resource_ujca4"), SubResource("Resource_dsgrx")])
+attribute_map = SubResource("Resource_cmfsp")
+metadata/_custom_type_script = "uid://bxnsr030xolni"
+
+[sub_resource type="Curve" id="Curve_dsgrx"]
+_limits = [0.0, 1.0, -1.0, 1.0]
+_data = [Vector2(-1, 1), 0.0, 0.0, 0, 0, Vector2(0.5017836, 0.9999995), 0.0, 0.0, 0, 0, Vector2(1, 0.01223731), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_lccch"]
+script = ExtResource("2_5on3h")
+curves = Dictionary[int, Curve]({
+3: SubResource("Curve_dsgrx")
+})
+metadata/_custom_type_script = "uid://ba323cbccj24y"
+
+[sub_resource type="Resource" id="Resource_pg8bi"]
+script = ExtResource("5_0yde7")
+metadata/_custom_type_script = "uid://rbg77ld041kx"
+
+[sub_resource type="Resource" id="Resource_qsuqc"]
+script = ExtResource("3_f0ixx")
+phase_commands = Array[ExtResource("4_yuoec")]([SubResource("Resource_pg8bi")])
+phase_transition_index = 1
+metadata/_custom_type_script = "uid://b4ot86r6gtxvc"
+
+[sub_resource type="Resource" id="Resource_jnrlm"]
+script = ExtResource("8_1mi0g")
+buffer_index_chances = Array[float]([0.5])
+await_result = true
+metadata/_custom_type_script = "uid://bhbr13fk5cihc"
+
+[sub_resource type="Resource" id="Resource_mwj7e"]
+script = ExtResource("5_5on3h")
+idle_duration_range = Vector2(0.4, 0.4)
+await_result = true
+metadata/_custom_type_script = "uid://bf115awws133f"
+
+[sub_resource type="Resource" id="Resource_mkou2"]
+script = ExtResource("3_f0ixx")
+phase_commands = Array[ExtResource("4_yuoec")]([SubResource("Resource_jnrlm"), SubResource("Resource_mwj7e")])
+phase_transition_index = 2
+metadata/_custom_type_script = "uid://b4ot86r6gtxvc"
+
+[sub_resource type="Resource" id="Resource_b2pei"]
+script = ExtResource("12_mkou2")
+await_result = true
+metadata/_custom_type_script = "uid://dmv65uxjw5ncc"
+
+[sub_resource type="Resource" id="Resource_631fs"]
+script = ExtResource("3_f0ixx")
+phase_commands = Array[ExtResource("4_yuoec")]([SubResource("Resource_b2pei")])
+phase_transition_index = 3
+metadata/_custom_type_script = "uid://b4ot86r6gtxvc"
+
+[sub_resource type="Resource" id="Resource_r15qj"]
+script = ExtResource("5_5on3h")
+idle_duration_range = Vector2(1, 2)
+await_result = true
+metadata/_custom_type_script = "uid://bf115awws133f"
+
+[sub_resource type="Resource" id="Resource_bir6i"]
+script = ExtResource("3_f0ixx")
+phase_commands = Array[ExtResource("4_yuoec")]([SubResource("Resource_r15qj")])
+phase_transition_index = 0
+metadata/_custom_type_script = "uid://b4ot86r6gtxvc"
+
+[sub_resource type="Resource" id="Resource_adi5r"]
+script = ExtResource("1_stalf")
+display_name = "Attack"
+phases = Array[ExtResource("3_f0ixx")]([SubResource("Resource_qsuqc"), SubResource("Resource_mkou2"), SubResource("Resource_631fs"), SubResource("Resource_bir6i")])
+attribute_map = SubResource("Resource_lccch")
+metadata/_custom_type_script = "uid://bxnsr030xolni"
 
 [sub_resource type="Resource" id="Resource_3h77l"]
 script = ExtResource("6_0yde7")
@@ -11,6 +133,7 @@ metadata/_custom_type_script = "uid://d4extd2fjk4ob"
 
 [sub_resource type="Resource" id="Resource_lr5gl"]
 script = ExtResource("4_0yde7")
+behaviors = Array[ExtResource("1_stalf")]([SubResource("Resource_q8xwr"), SubResource("Resource_adi5r")])
 default_baseline = SubResource("Resource_3h77l")
 metadata/_custom_type_script = "uid://due8im487owbs"
 

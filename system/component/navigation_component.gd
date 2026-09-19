@@ -47,7 +47,9 @@ func set_target_position(target_position: Vector2) -> void:
 
 	current_target_position = target_position
 
-	nav_agent.target_position = target_position
+	if target_position != entity.global_position:
+
+		nav_agent.target_position = target_position
 
 
 
@@ -87,7 +89,7 @@ func stop() -> void:
 
 func _on_navigation_finished() -> void:
 
-	movement_component.halt()
+	stop()
 
 	navigation_finished.emit()
 

@@ -35,6 +35,8 @@ func _enter() -> void:
 
 	animation_component.combat_anim_player.play(combat_component.current_animation_name)
 
+	animation_component.play_idle_dir(combat_component.current_attack_dir)
+
 	var attack_entry = combat_component._get_attack_entry()
 
 	modifier = Modifier.new_passive(attack_entry.speed_factor)

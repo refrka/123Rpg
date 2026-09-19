@@ -5,11 +5,40 @@ class_name Behavior2 extends Resource
 
 signal evaluation_requested
 
+signal last_command_executed
+
+
+
+enum BehaviorType {
+
+	COMBAT,
+
+	PRESERVATION,
+
+	AMBIENT,
+
+	SOCIAL,
+
+}
 
 
 
 
 @export var display_name: String
+
+@export var behavior_type: BehaviorType
+
+@export var allowed_type_transitions:= [
+
+	BehaviorType.COMBAT,
+
+	BehaviorType.PRESERVATION,
+
+	BehaviorType.AMBIENT,
+	
+	BehaviorType.SOCIAL,
+
+]
 
 @export var baseline_score:= 0.5
 
@@ -21,9 +50,14 @@ signal evaluation_requested
 
 @export var gate_conditions: Array[Condition]
 
+@export var attribute_map: AttributeMap
 
 
-var blackboard: Blackboard
+
+
+var active:= false
+
+var blackboard:= Blackboard.new()
 
 var current_phase_index: int
 
@@ -34,6 +68,8 @@ var current_phase_command: Command
 var current_target_disposition: Disposition
 
 
+
+var end_on_current_command_executed:= false
 
 
 
@@ -53,14 +89,48 @@ func _initialize(entity: EntityNode) -> void:
 
 func _evaluate(target_disposition: Disposition = null) -> float:
 
-	var attribute_multiplier = _get_attribute_multiplier()
+	blackboard.set_value("target_disposition", target_disposition)
+
+	for condition in gate_conditions:
+
+		if !condition._evaluate(blackboard):
+
+			return 0.0
+
+	if !targeting_thresholds.is_empty() and target_disposition == null:
+
+		return 0.0
+
+	if behavior_type == BehaviorType.COMBAT or behavior_type == BehaviorType.SOCIAL:
+
+		if target_disposition and !target_disposition.target_visible:
+
+			return 0.0
+
+	var attribute_multiplier = 1.0
+
+	if target_disposition and target_disposition.target_visible:
+
+		attribute_multiplier = _get_attribute_multiplier(target_disposition)
+
+	print("FUCK YOU", display_name, attribute_multiplier)
 
 	return baseline_score * attribute_multiplier
 
 
 
 
+
+
 func _validate_current_target() -> void:
+
+	if behavior_type == BehaviorType.COMBAT or behavior_type == BehaviorType.SOCIAL:
+
+		if !current_target_disposition.target_visible:
+
+			evaluation_requested.emit()
+
+			return
 
 	for threshold in targeting_thresholds:
 
@@ -80,6 +150,10 @@ func _validate_current_target() -> void:
 
 func _start(target_disposition: Disposition = null) -> void:
 
+	active = true
+
+	blackboard.set_value("target_disposition", target_disposition)
+
 	current_target_disposition = target_disposition
 
 	_enter_phase(0)
@@ -90,7 +164,12 @@ func _start(target_disposition: Disposition = null) -> void:
 
 func _stop() -> void:
 
-	pass
+	active = false
+
+	_exit_phase()
+
+	current_target_disposition = null
+
 
 
 
@@ -120,9 +199,9 @@ func _exit_phase() -> void:
 
 	if current_phase_command:
 
-		current_phase_command._cancel()
-
 		current_phase_command.command_executed.disconnect(_on_phase_command_executed)
+
+		current_phase_command._cancel()
 
 
 
@@ -145,11 +224,13 @@ func _execute_phase_command(index: int) -> void:
 
 	current_phase_command = phase.phase_commands[index]
 
-	match current_phase_command._execute(blackboard):
-			
-		Command.Result.PENDING:
+	if current_phase_command.command_executed.is_connected(_on_phase_command_executed):
 
-			current_phase_command.command_executed.connect(_on_phase_command_executed, CONNECT_ONE_SHOT)
+		print("already connected in behavior %s: " % display_name, current_phase_command)
+
+	current_phase_command.command_executed.connect(_on_phase_command_executed, CONNECT_ONE_SHOT)
+
+	current_phase_command._execute(blackboard)
 
 
 
@@ -173,10 +254,27 @@ func _get_phase(index: int) -> BehaviorPhase:
 
 
 
-func _get_attribute_multiplier() -> float:
 
-	return 1.0
 
+func _get_attribute_multiplier(target_disposition: Disposition = null) -> float:
+
+	var multiplier:= 1.0
+
+	if !target_disposition:
+
+		target_disposition = current_target_disposition
+
+	if target_disposition:
+
+		var fear_mult = attribute_map.get_value(Enums.Attribute.FEAR, target_disposition.attributes[Enums.Attribute.FEAR])
+
+		var affection_mult = attribute_map.get_value(Enums.Attribute.AFFECTION, target_disposition.attributes[Enums.Attribute.AFFECTION])
+
+		var respect_mult = attribute_map.get_value(Enums.Attribute.RESPECT, target_disposition.attributes[Enums.Attribute.RESPECT])
+
+		multiplier *= fear_mult * affection_mult * respect_mult
+
+	return multiplier
 
 
 
@@ -191,3 +289,21 @@ func _get_attribute_multiplier() -> float:
 func _on_phase_command_executed() -> void:
 
 	current_phase_command = null
+
+	var next_index = current_command_index + 1
+
+	var phase = _get_phase(current_phase_index)
+
+	if phase.phase_commands.size() - 1 >= next_index:
+
+		_execute_phase_command(next_index)
+
+	else:
+		
+		last_command_executed.emit()
+
+		if phase.phase_transition_index != -1:
+
+			_enter_phase(phase.phase_transition_index)
+
+		

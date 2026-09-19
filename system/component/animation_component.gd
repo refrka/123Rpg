@@ -17,7 +17,9 @@ class_name AnimationComponent extends Component
 
 func play_idle_dir(dir: Vector2) -> void:
 
-	_set_body_flip_state(dir.x < 0.0)
+	if dir.x != 0.0:
+
+		_set_body_flip_state(dir.x < 0.0)
 
 	var anim_name = "idle_down" if dir.y >= 0.0 else "idle_up"
 
@@ -30,7 +32,9 @@ func play_idle_dir(dir: Vector2) -> void:
 
 func play_moving_dir(dir: Vector2) -> void:
 
-	_set_body_flip_state(dir.x < 0.0)
+	if dir.x != 0.0:
+
+		_set_body_flip_state(dir.x < 0.0)
 
 	var anim_name = "moving_down" if dir.y >= 0.0 else "moving_up"
 
